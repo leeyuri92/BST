@@ -16,5 +16,5 @@ public class CommunityController {
   @Autowired
   private CommunityService communityService;
 
-  
+    
 }
