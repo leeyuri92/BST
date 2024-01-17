@@ -6,7 +6,7 @@
 %>
 <nav class="navbar navbar-expand-sm " style="background-color: #f5f5f7;">
   <div class="container-fluid">
-    <a  href="/mainpage.jsp" class="navbar-brand fw-bold fs-3" >
+    <a  href="/mainpage/mainpage.jsp" class="navbar-brand fw-bold fs-3" >
       <img src="/images/icon/Ticket.png" alt="" width="47" height="50">
       베스트 시니어 티켓
     </a>
@@ -23,7 +23,7 @@
           <a class="nav-link" href="/reservation/ticketList.jsp">티켓팅</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/myPage/myPageForm.jsp">마이페이지</a>
+          <a class="nav-link" href="/mypage/reserveList">마이페이지</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/QnA/QnA.jsp">고객센터</a>
@@ -31,6 +31,9 @@
         
       </ul>
 
+    <%
+      if(nickname == null){
+    %>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/auth/login/login.jsp">로그인</a>
@@ -39,6 +42,9 @@
           <a class="nav-link" href="/auth/regist/regist.jsp">회원가입</a>
         </li>
       </ul>
+      <%
+    }
+      %>
       
       <%
         if(nickname != null){

@@ -10,18 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bst.ticket.dao.ReservationDao;
-import com.bst.ticket.service.ReservationService;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao{
-  Logger logger = LoggerFactory.getLogger(ReservationService.class);
+  Logger logger = LoggerFactory.getLogger(ReservationDaoImpl.class);
 
   @Autowired
   SqlSessionTemplate sqlSessionTemplate;
 
   @Override
-  public List<Map<String, Object>> ticketList(List<Map<String, Object>> pmap) throws Exception {
-    
-    return null;
+  public List<Map<String, Object>> reserveList(Map<String, Object> mmap) throws Exception {
+    logger.info("Ropositiry : reserveList 호출");
+    return sqlSessionTemplate.selectList("reserveList", mmap);
   }
 }

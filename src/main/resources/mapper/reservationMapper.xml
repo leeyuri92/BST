@@ -2,16 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.ReservationMapper">
 
-<!-- <select id="" parameterType=""  resultType = "">
+<select id="reserveList" parameterType="map"  resultType = "map">
+  select a.rsv_id, b.mbr_seq, b.mbr_nm, b.mbr_email, c.gm_date, d.std_name, e.team_name, e.team_logo
+  from test_reservation as a 
+    inner join test_member as b 
+      inner join test_game as c 
+      inner join test_stadium as d 
+      inner join test_team as e
+  on a.mbr_seq = b.mbr_seq 
+  and a.gm_id = c.gm_id 
+  and c.std_id = d.std_id 
+  and b.team_id = e.team_id
+    <where>
+        <if test="mbr_seq!=null">AND b.mbr_seq=#{mbr_seq}</if>
+    </where>
+
 </select>
-
-<insert id="" parameterType="">
-</insert>
-
-<update id="" parameterType="">
-</update>
-
-<delete id="" parameterType="">
-</delete> -->
 
 </mapper>

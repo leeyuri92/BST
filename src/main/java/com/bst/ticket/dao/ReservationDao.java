@@ -5,5 +5,6 @@ import java.util.Map;
 
 public interface ReservationDao {
 
-  public List<Map<String,Object>> ticketList(List<Map<String, Object>> pmap) throws Exception;
-} 
+  List<Map<String,Object>> reserveList(Map<String, Object> mmap) throws Exception;
+
+}
