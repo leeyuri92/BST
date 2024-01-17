@@ -10,6 +10,6 @@ import java.util.Map;
 */
 public interface MemberService {
 
-  public List<Map<String,Object>> memberList(List<Map<String, Object>> pmap) throws Exception;
+  public List<Map<String,Object>> memberList(Map<String, Object> mmap) throws Exception;
 
 }

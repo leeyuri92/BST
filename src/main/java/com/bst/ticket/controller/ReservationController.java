@@ -17,7 +17,7 @@ import com.bst.ticket.service.ReservationService;
 /**********************************************************************************
     작성자 : 박병현
     작성일자 : 24.01.17
-    기능 : 마이페이지 
+    기능 : 예약리스트 조회
 **********************************************************************************/
 @Controller
 @RequestMapping("/reservation/*")
@@ -29,16 +29,27 @@ public class ReservationController {
 /**********************************************************************************
     작성자 : 박병현
     작성일자 : 24.01.17
-    기능 : 예약한 내역 조회
+    기능 : 마이페이지에 예약내역 조회
 **********************************************************************************/
-  @GetMapping("reserveList")
+  @GetMapping("mypageForm")
   public String reserveList(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
-    logger.info("Controller : reserveList 호출");
-    List<Map<String ,Object>> gameList;
+    logger.info("Controller : mypageForm 호출");
+    List<Map<String ,Object>> reserveList;
     
-    gameList = reservationService.reserveList(mmap);
-    model.addAttribute("gameList", gameList);
+    reserveList = reservationService.reserveList(mmap);
+    model.addAttribute("reserveList", reserveList);
 
     return "forward:/mypage/mypageForm.jsp";
+  }
+
+  @GetMapping("reserveForm")
+  public String reserveForm(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
+    logger.info("Controller : reserveForm 호출");
+    List<Map<String ,Object>> reserveList;
+    
+    reserveList = reservationService.reserveList(mmap);
+    model.addAttribute("reserveList", reserveList);
+
+    return "forward:/mypage/reserveForm.jsp";
   }
 }

@@ -3,16 +3,20 @@
 <mapper namespace="com.mybatis.mapper.ReservationMapper">
 
 <select id="reserveList" parameterType="map"  resultType = "map">
-  select a.rsv_id, b.mbr_seq, b.mbr_nm, b.mbr_email, c.gm_date, d.std_name, e.team_name, e.team_logo
+  select a.rsv_id, a.rsv_number, b.mbr_nm, c.gm_date, d.std_name, e.team_name as team_away, f.team_name as team_home, g.team_name as myteam
   from test_reservation as a 
     inner join test_member as b 
       inner join test_game as c 
       inner join test_stadium as d 
       inner join test_team as e
+      inner join test_team as f
+      inner join test_team as g
   on a.mbr_seq = b.mbr_seq 
   and a.gm_id = c.gm_id 
   and c.std_id = d.std_id 
-  and b.team_id = e.team_id
+  and c.team_id = e.team_id
+  and c.team_id2 = f.team_id
+  and b.team_id = g.team_id
     <where>
         <if test="mbr_seq!=null">AND b.mbr_seq=#{mbr_seq}</if>
     </where>

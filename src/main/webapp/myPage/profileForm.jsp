@@ -1,10 +1,15 @@
 <%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%
+	List<Map<String,Object>> memberList = (List)request.getAttribute("memberList");
+	out.print(memberList);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>티켓팅 페이지</title>
+  <title>프로필</title>
   <%@include file="/common/bootstrap_common.jsp" %>
 
   <script type="text/javascript">
@@ -21,10 +26,13 @@
 <!--================================= body start ==================================-->
 <div class="container mt-5">
   <div class="page-header">
-    <h2 class="nav justify-content-center">티켓팅</h2>
+    <h2 class="nav justify-content-center">프로필</h2>
     <hr />
   </div>
 </div>
+
+
+
 <!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->

@@ -20,10 +20,10 @@
           <a class="nav-link" href="/community/community.jsp">커뮤니티</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/reservation/ticketList.jsp">티켓팅</a>
+          <a class="nav-link" href="/ticket/ticketList">티켓팅</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mypage/reserveList">마이페이지</a>
+          <a class="nav-link" href="/reservation/mypageForm?mbr_seq=1">마이페이지</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/QnA/QnA.jsp">고객센터</a>

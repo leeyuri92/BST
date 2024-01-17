@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.TicketMapper">
+
+<select id="ticketList" parameterType="map"  resultType = "map">
+  
+  select gm_id, gm_total, gm_reserve, gm_date
+      , b.team_name as team_away
+          , c.team_name as team_home
+          , d.std_name
+  from test_game as a 
+    inner join test_team as b 
+    inner join test_team as c 
+    inner join test_stadium as d
+  on a.team_id = b.team_id 
+  and a.team_id2 = c.team_id 
+  and a.std_id = d.std_id
+
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

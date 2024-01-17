@@ -24,11 +24,9 @@ public class MemberDaoImpl implements MemberDao{
     기능 : 회원조회(service)
   */
   @Override
-  public List<Map<String, Object>> memberList(List<Map<String, Object>> pmap) throws Exception {
+  public List<Map<String, Object>> memberList(Map<String, Object> mmap) throws Exception {
     logger.info("Service : memberList 호출");
 
-    sqlSessionTemplate.selectList("memberList",pmap);
-    
-    return null;
+    return sqlSessionTemplate.selectList("memberList",mmap);
   }
 }

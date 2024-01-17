@@ -22,17 +22,21 @@ public class MemberContoller {
   @Autowired
   private MemberService memberService;
   
-  /*ex)
-    작성자 : 홍길동
-    작성일자 : 24.01.12
-    기능 : 회원조회
-   */
-  @GetMapping("memberList")
-    public String memberList(@RequestParam List<Map<String,Object>> pmap, Model model) throws Exception{
-      logger.info("Controller : memberList 호출");
 
-      memberService.memberList(pmap);
-      
-      return null;
+
+
+  /*
+    작성자 : 박병현
+    작성일자 : 24.01.18
+    기능 : 프로필페이지에 회원 정보 조회
+   */
+  @GetMapping("memberProfile")
+    public String memberProfile(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
+      logger.info("Controller : memberProfile 호출");
+
+      List<Map<String,Object>> memberList = null;
+      memberList = memberService.memberList(mmap);
+      model.addAttribute("memberList", memberList);
+      return "forward:/mypage/profileForm.jsp";
   }
 }

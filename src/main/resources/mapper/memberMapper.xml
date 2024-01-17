@@ -3,24 +3,14 @@
 <mapper namespace="com.mybatis.mapper.MemberMapper">
 
 <select id="memberList" parameterType="map"  resultType = "map">
-  select mem_no from member
-		<!-- <where>
-			<if test="n_no!=null">AND n_no=#{n_no}</if>
-			<if test="gubun!=null">
-				<choose>
-					<when test='gubun.equals("n_title")'>
-						AND n_title LIKE '%'||#{keyword}||'%'
-					</when>
-					<when test='gubun.equals("n_content")'>
-						AND n_content LIKE '%'||#{keyword}||'%'
-					</when>
-					<when test='gubun.equals("n_writer")'>
-						AND n_writer LIKE '%'||#{keyword}||'%'
-					</when>
-				</choose>
-			</if>
-		</where>
-		order by n_no desc -->
+  select a.mbr_seq, a.mbr_id, a.mbr_pwd, a.mbr_nm, mbr_residentnumber, a.mbr_phone, a.mbr_email, 
+					b.team_name, b.team_logo, a.mbr_role, a.mbr_address, a.mbr_postcode
+	from test_member a 
+	inner join test_team b
+		on  a.team_id = b.team_id
+			<where>
+				<if test="mbr_seq!=null">AND a.mbr_seq=#{mbr_seq}</if>
+			</where>
 </select>
 
 <insert id="memberInsert" parameterType="map">

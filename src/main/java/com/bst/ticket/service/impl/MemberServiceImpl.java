@@ -24,11 +24,9 @@ public class MemberServiceImpl implements MemberService{
     기능 : 회원조회(service)
   */
   @Override
-  public List<Map<String, Object>> memberList(List<Map<String, Object>> pmap) throws Exception {
+  public List<Map<String, Object>> memberList(Map<String, Object> mmap) throws Exception {
     logger.info("Service : memberList 호출");
 
-    memberDao.memberList(pmap);
-    
-    return null;
+    return memberDao.memberList(mmap);
   }
 }
