@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### common file XXX
+.yml
+/src/main/java/com/bst/ticket/DatabaseConfiguration.java

@@ -17,7 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
+//
 //스프링부트  스타터에서는 의존관계에대한 처리뿐아리나 의존전이도 "자동화" 하였다
 //서버기동시 스캔한다
 @Configuration // spring-data.xml
