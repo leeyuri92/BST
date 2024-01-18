@@ -29,7 +29,7 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @GetMapping("noticeList")
-    public String noticeList(@RequestParam Map<String, Object> pmap, Model model) {
+    public String noticeList(@RequestParam Map<String, Object> pmap, Model model) throws Exception {
         List<Map<String, Object>> listA =null;
         listA=noticeService.noticeListINFO(pmap);
             model.addAttribute("listA", listA);
@@ -38,7 +38,7 @@ public class NoticeController {
 
 
     @GetMapping("noticeDetail")
-    public String noticeDetail(@RequestParam Map<String, Object> cmap, Model model) {
+    public String noticeDetail(@RequestParam Map<String, Object> cmap, Model model) throws Exception {
         List<Map<String, Object>> listC = null;
         listC=noticeService.noticeListContent(cmap);
             model.addAttribute("listC", listC);

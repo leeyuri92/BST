@@ -18,7 +18,7 @@ public class NoticeServiceImpl implements NoticeService {
     private NoticeDao noticeDao;
 
     @Override
-    public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap) {
+    public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap) throws Exception{
         List<Map<String, Object>> list = new ArrayList<>();
         logger.info("Service INFO호출");
         list = noticeDao.noticeListINFO(pmap);
@@ -27,7 +27,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<Map<String, Object>> noticeListContent(Map<String, Object> cmap) {
+    public List<Map<String, Object>> noticeListContent(Map<String, Object> cmap) throws Exception {
         List<Map<String, Object>> list2 = new ArrayList<>();
         list2 = noticeDao.noticeListContent(cmap);
         logger.info(list2.toString());
