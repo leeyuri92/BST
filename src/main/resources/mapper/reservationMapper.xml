@@ -4,13 +4,13 @@
 
 <select id="reserveList" parameterType="map"  resultType = "map">
   select a.rsv_id, a.rsv_number, b.mbr_nm, c.gm_date, d.std_name, e.team_name as team_away, f.team_name as team_home, g.team_name as myteam
-  from test_reservation as a 
-    inner join test_member as b 
-      inner join test_game as c 
-      inner join test_stadium as d 
-      inner join test_team as e
-      inner join test_team as f
-      inner join test_team as g
+  from reservation as a 
+    inner join member as b 
+      inner join game as c 
+      inner join stadium as d 
+      inner join team as e
+      inner join team as f
+      inner join team as g
   on a.mbr_seq = b.mbr_seq 
   and a.gm_id = c.gm_id 
   and c.std_id = d.std_id 
