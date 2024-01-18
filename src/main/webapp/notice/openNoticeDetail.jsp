@@ -2,7 +2,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,17 +28,21 @@
     <hr />
   </div>
 </div>
+
+<h2>여기는 detail</h2>
+
 <div>
   <%
-  List<Map<String, Object>> listA = (List<Map<String, Object>>) request.getAttribute("listA");
-  if (listA != null && !listA.isEmpty()) {
-      for (Map<String, Object> item : listA) {
+  List<Map<String, Object>> listC = (List<Map<String, Object>>) request.getAttribute("listC");
+  if (listC != null && !listC.isEmpty()) {
+      for (Map<String, Object> item : listC) {
           out.println("Item: " + item);
       }
   } else {
       out.println("List is either null or empty.");
   }
   %></div>
+
 <!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->
