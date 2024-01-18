@@ -14,8 +14,8 @@
 </select>
 
 <insert id="memberInsert" parameterType="map">
-  <!-- insert into  member()
-		values(no.nextval, #{}, #{}, #{}) -->
+insert into test_member(mbr_id,mbr_pwd,mbr_nm,mbr_birthdate,mbr_phone,mbr_email,mbr_address,mbr_postcode,team_id)
+values(#{mbr_id},#{mbr_pwd},#{mbr_nm},#{mbr_birthdate},#{mbr_phone},#{mbr_email},#{mbr_address},#{mbr_postcode},#{team_id})
 </insert>
 
 <update id="memberUpdate" parameterType="int">
