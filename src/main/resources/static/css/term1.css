@@ -1,0 +1,97 @@
+.container-custom {
+  width: 1600px;
+  height: 800px;
+  padding-bottom: 12px;
+  background: #F5F5F7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid black;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.inner-container {
+  width: 364px;
+  height: 361px;
+  position: relative;
+}
+
+.welcome-text {
+  width: 256px;
+  height: 115px;
+  position: absolute;
+  left: 46px;
+  top: 151px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.checkbox-section {
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  display: flex;
+}
+
+.checkbox-container {
+  width: 338px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(3, 34, 143, 0.10);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.checkbox-label {
+  width: 216px;
+  height: 20px;
+  color: rgba(3, 34, 143, 0.50);
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+
+.button-container {
+  align-self: stretch;
+  height: 42px;
+  padding-left: 200px;
+  padding-right: 200px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.custom-button {
+  flex:1 1 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.button-text {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  word-wrap: break-word;
+}

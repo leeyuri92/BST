@@ -39,7 +39,7 @@
           <a class="nav-link" href="/auth/login/login.jsp">로그인</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/auth/regist/regist.jsp">회원가입</a>
+          <a class="nav-link" href="/auth/term/term1.jsp">회원가입</a>
         </li>
       </ul>
       <%
