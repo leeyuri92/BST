@@ -18,7 +18,7 @@ spring:
       
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/schema?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tm_baseball?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
       username: root
       password: 12345678
       connection-timeout: 20000
