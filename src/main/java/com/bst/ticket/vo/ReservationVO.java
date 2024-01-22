@@ -1,4 +1,4 @@
-package com.vo;
+package com.bst.ticket.vo;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CommunityVO {
+public class ReservationVO {
   private int mem_no;
   
   @Builder
-    public CommunityVO(int mem_no){
+    public ReservationVO(int mem_no){
       super();
       this.mem_no = mem_no;
     }

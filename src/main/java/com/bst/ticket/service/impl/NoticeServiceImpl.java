@@ -11,14 +11,16 @@ import org.springframework.stereotype.Service;
 
 import com.bst.ticket.dao.NoticeDao;
 import com.bst.ticket.service.NoticeService;
+
 @Service
 public class NoticeServiceImpl implements NoticeService {
-    Logger logger=LoggerFactory.getLogger("NoticeServiceImpl".getClass());
+    Logger logger = LoggerFactory.getLogger("NoticeServiceImpl".getClass());
+
     @Autowired
     private NoticeDao noticeDao;
 
     @Override
-    public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap) throws Exception{
+    public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         logger.info("Service INFO호출");
         list = noticeDao.noticeListINFO(pmap);

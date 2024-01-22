@@ -1,4 +1,4 @@
-package com.vo;
+package com.bst.ticket.vo;
 
 import lombok.Builder;
 import lombok.Data;

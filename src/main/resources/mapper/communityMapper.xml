@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.mybatis.mapper.CommunityMapper">
 
-<!-- <select id="" parameterType=""  resultType = "">
-
+<select id="selectBoard" resultType="com.bst.ticket.vo.CommunityVO">
+    SELECT b.bd_id         AS boardId,
+           b.bd_title      AS boardTitle,
+           b.bd_content    AS boardContent,
+           b.bd_created_at AS boardCreatedAt,
+           b.bd_hit        AS boardHit,
+           m.mbr_seq       AS memberId,
+           m.mbr_nm        AS memberName
+    FROM board b
+             JOIN
+         member m ON b.mbr_seq = m.mbr_seq;
 </select>
+    <!-- <select id="" parameterType=""  resultType = "">
 
-<insert id="" parameterType="">
-</insert>
+    </select>
 
-<update id="" parameterType="">
-</update>
+    <insert id="" parameterType="">
+    </insert>
 
-<delete id="" parameterType="">
-</delete> -->
+    <update id="" parameterType="">
+    </update>
 
+    <delete id="" parameterType="">
+    </delete> -->
 
 
 </mapper>
