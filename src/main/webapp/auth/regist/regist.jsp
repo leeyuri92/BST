@@ -164,18 +164,18 @@
                       //setPost({...post, zipcode:data.zonecode, addr:addr}) ;
                       // document.querySelector("#mem_zipcode").value = data.zonecode;//우편번호
                       // document.querySelector("#mem_address").value = addr;//주소
-                      document.getElementById("mbr_address").value = data.zonecode;//우편번호
-                      document.getElementById("mbr_postalcode").value = addr;//주소
+                      document.getElementById("mbr_address").value =addr; //우편번호
+                      document.getElementById("mbr_postalcode").value = data.zonecode;//주소
                       //document.getElementById("postDetail").focus();
                   }
               }).open();
           }
   </script>
-
+</div>
 <!--================================= footer start ==================================-->
 	<%@include file="/include/ticket_footer.jsp" %>
 <!--================================== footer end ===================================-->
-</div>
+
 </body>
 
 </html>

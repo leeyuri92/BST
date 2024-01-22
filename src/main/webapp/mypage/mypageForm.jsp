@@ -53,27 +53,42 @@
         </button>
       </div>
     </div>
+    <br/>
     <div class="category">
       <div>
-        <img id="img_category" src="/images/icon/openNotice.png">
-        <a href="/notice/openNotice.jsp" id="img_text">공지사항</a>
+        <a href="/notice/openNotice.jsp" id="img_text">
+          <img id="img_category" src="/images/icon/openNotice.png">
+          <p class="category_name">공지사항</p>
+        </a>
       </div>
       <div>
+        <a href="/community/community.jsp" id="img_text">
         <img id="img_category" src="/images/icon/Community.png">
-        <a href="/community/community.jsp" id="img_text">커뮤니티</a>
+          <p class="category_name">커뮤니티</p>
+        </a>
       </div>
       <div>
+        <a href="/ticket/ticketList.jsp" id="img_text">
         <img id="img_category" src="/images/icon/ticketting.png">
-        <a href="/ticket/ticketList.jsp" id="img_text">티켓팅</a>
+          <p class="category_name">티켓팅</p>
+        </a>
       </div>
       <div>
+        <a href="/mypage/reserveForm.jsp" id="img_text">
         <img id="img_category" src="/images/icon/reservation.png">
-        <a href="/mypage/reserveForm.jsp" id="img_text">예약내역</a>
+          <p class="category_name">예약내역</p>
+        </a>
       </div>
       <div>
+        <a href="/QnA/QnA.jsp" id="img_text">
         <img id="img_category" src="/images/icon/QnA.png">
-        <a href="/QnA/QnA.jsp" id="img_text">고객센터</a>
+          <p class="category_name">고객센터</p>
+        </a>
       </div>
+    </div>
+    <br/>
+    <div class="category">
+      
     </div>
   </div>
 </div>
