@@ -26,9 +26,10 @@ public class NoticeDaoImpl implements NoticeDao {
     }
 
     @Override
-    public List<Map<String, Object>> noticeListContent(Map<String, Object> cmap) {
-        List<Map<String, Object>> list2 = sqlSessionTemplate.selectList("noticeListContent",cmap);
-        logger.info(list2.toString());
-        return list2;
+    public Map<String, Object> getNoticeDetail(int ntc_id)  {
+        Map<String, Object> rMap = sqlSessionTemplate.selectOne("noticeListContent", ntc_id);
+        logger.info(rMap.toString());
+        return rMap;
     }
+    
 }

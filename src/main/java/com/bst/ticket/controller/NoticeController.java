@@ -28,6 +28,11 @@ public class NoticeController {
     @Autowired
     private NoticeService noticeService;
 
+    /*
+    작성자 : 김재현
+    작성일자 : 24.01.19
+    기능 : 공지 리스트 조회
+   */
     @GetMapping("noticeList")
     public String noticeList(@RequestParam Map<String, Object> pmap, Model model) throws Exception {
         List<Map<String, Object>> listA =null;
@@ -36,13 +41,19 @@ public class NoticeController {
             return "forward:openNotice.jsp";
     }
 
-
+    /*
+    작성자 : 김재현
+    작성일자 : 24.01.19
+    기능 : 공지 리스트 상세조회
+   */
     @GetMapping("noticeDetail")
     public String noticeDetail(@RequestParam Map<String, Object> cmap, Model model) throws Exception {
-        List<Map<String, Object>> listC = null;
-        listC=noticeService.noticeListContent(cmap);
-            model.addAttribute("listC", listC);
-            logger.info(listC.toString());
-        return "forward:openNoiceDetail.jsp";
+        Map<String, Object> rMap = null;
+        if (cmap.containsKey("ntc_id")) {
+            int ntc_id = Integer.parseInt(cmap.get("ntc_id").toString());
+            rMap = noticeService.getNoticeDetail(ntc_id);
+        }
+        model.addAttribute("rMap", rMap);
+        return "forward:openNoticeDetail.jsp";
     }
 }

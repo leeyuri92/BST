@@ -8,7 +8,6 @@ public interface NoticeDao {
 
   public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap)throws Exception;
 
-  public List<Map<String, Object>> noticeListContent(Map<String, Object> cmap)throws Exception;
-
+  public Map<String, Object> getNoticeDetail(int ntc_id) throws Exception;
 
   }
