@@ -118,7 +118,7 @@
     </div>
     <div style="margin-bottom: 5px"></div>
     <div style="display: flex; flex-wrap: wrap">
-      <input type="text" class="form-control" id="mbr_postcode" name="mbr_postcode"
+      <input type="text" class="form-control" id="mbr_postalcode" name="mbr_postalcode"
         placeholder="주소"/>
     </div>
     <div class="form-floating mb-3 mt-3">
@@ -165,7 +165,7 @@
                       // document.querySelector("#mem_zipcode").value = data.zonecode;//우편번호
                       // document.querySelector("#mem_address").value = addr;//주소
                       document.getElementById("mbr_address").value = data.zonecode;//우편번호
-                      document.getElementById("mbr_postcode").value = addr;//주소
+                      document.getElementById("mbr_postalcode").value = addr;//주소
                       //document.getElementById("postDetail").focus();
                   }
               }).open();
