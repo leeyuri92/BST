@@ -40,6 +40,7 @@
       />
       <label for="mbr_id">아이디</label>
     </div>
+    
     <div class="form-floating mb-3 mt-3">
       <input
         type="password"
@@ -177,5 +178,4 @@
 <!--================================== footer end ===================================-->
 </div>
 </body>
-
 </html>

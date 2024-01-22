@@ -12,37 +12,86 @@
 <body>
 	<%@include file="/include/ticket_header.jsp" %>
 
-  <div class="page">
-    <div class="header-container">
-      <div class="title">베스트 시니어 티켓 회원가입</div>
-      <img class="movie-ticket" src="https://via.placeholder.com/47x65" />
-    </div>
-
-    <div class="input-container">
-      <div class="title-required">* 표시는 필수기입정보입니다</div>
-      <div class="input-title">
-        <span style="color: black;">아이디 </span>
-        <span style="color: #8F0303;">*</span>
+  <div class="container mt-5">
+    <div class="card p-4">
+      <h2 class="text-center mb-4">회원가입</h2>
+      <form id="f_member" method="post" action="/auth/regist">
+      <div class="form-group">
+        <label for="username">아이디 <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="username" placeholder="아이디를 입력하세요.">
       </div>
-      <div class="textfield">
-        <div class="text">아이디를 입력하세요.</div>
-      </div>
-    </div>
 
-    <!-- Repeat the above structure for other input sections -->
-
-    <div class="button-container">
-      <div class="secondary-button">
-        <div class="button-text">취소</div>
+      <div class="form-group">
+        <label for="password">비밀번호 <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요.">
       </div>
-      <div class="primary-button">
-        <div class="button-text">회원가입</div>
+
+      <div class="form-group">
+        <label for="confirmPassword">비밀번호 확인 <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="비밀번호를 재입력하세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="name">이름 <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">생년월일 <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" id="dob">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">전화번호 <span class="text-danger">*</span></label>
+        <input type="tel" class="form-control" id="phone" placeholder="전화번호를 입력해주세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="email">이메일 <span class="text-danger">*</span></label>
+        <input type="email" class="form-control" id="email" placeholder="이메일을 입력해주세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="address">주소(선택사항)</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="address" placeholder="우편번호" aria-describedby="search-btn">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="search-btn">검색</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="detailedAddress">상세주소</label>
+        <input type="text" class="form-control" id="detailedAddress" placeholder="상세주소를 입력해주세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="team">구단(선택사항)</label>
+        <select class="form-control" id="team">
+          <option value="" selected>구단을 선택해주세요.</option>
+          <option value="team1">팀 1</option>
+          <option value="team2">팀 2</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+    </form>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="button" class="btn btn-warning">취소</input>
+        </div>
+        <div class="form-group col-md-6">
+          <input type="button" class="btn btn-danger"
+          onclick="memberInsert()">회원가입</input>
+        </div>
       </div>
     </div>
   </div>
 
 
-  <!-- Bootstrap JS and Popper.js CDN links -->
+
 	<%@include file="/include/ticket_footer.jsp" %>
+  <!-- Bootstrap JS and Popper.js CDN links -->
 </body>
 </html>

@@ -13,7 +13,6 @@ import com.bst.ticket.service.RegistService;
 
 @Service
 public class RegistServiceImpl implements RegistService{
-
     Logger logger = LoggerFactory.getLogger(RegistServiceImpl.class);
 
   @Autowired
