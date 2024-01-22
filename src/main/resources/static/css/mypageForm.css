@@ -77,10 +77,24 @@
   font-style: normal;
   font-weight: 700;
   line-height: 16px;
+  text-decoration: none;
+}
+
+.category_name{
+  margin-top: 10px;
+  color: black;
 }
 @media (max-width: 1000px) {
-  #img_text {
-    display: none; /* 글자를 숨김 */
+  .category_name{
+    /* 글자를 숨김 */
+    display: none; 
+
   }
-  
+  .mypageBody{
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center; 
+  }
 }
