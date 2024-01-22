@@ -8,6 +8,16 @@
   <title>약관동의 페이지</title>
   <%@include file="/common/bootstrap_common.jsp" %>
   <script type="text/javascript"> 
+function selectAll(selectAll)  {
+  const checkboxes = document.getElementsByName('allAgree');
+  const button = document.querySelector('.button-container');
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked;
+    button.disabled = true;
+  })
+}
+  
   const next =()=>{
     location.href = "/auth/regist/regist.jsp"
   }
@@ -28,7 +38,8 @@
 
     <div class="checkbox-section">
       <div class="checkbox-container">
-        <input type="checkbox" name="allAgree" id="allAgree">
+        <input type="checkbox" name="allAgree"value='selectall'
+        onclick='selectAll(this)' >
         <label class="checkbox-label" type="checkbox-label" for="allAgree">
           약관 전체동의</label>
       </div>
@@ -38,7 +49,7 @@
 
     <div class="checkbox-section">
       <div class="checkbox-container">
-        <input type="checkbox" name="allAgree" id="allAgree">
+        <input type="checkbox" name="allAgree">
         <a class="checkbox-label"  href="javascript:openWindowPop('/popup/pop_agreement.html', 'popup')">
           이용약관 동의(필수) ></a>
       </div>
@@ -47,7 +58,7 @@
 
     <div class="checkbox-section">
       <div class="checkbox-container">
-        <input type="checkbox" name="allAgree" id="allAgree">
+        <input type="checkbox" name="allAgree">
         <a class="checkbox-label" href="javascript:openWindowPop('/popup/pop_service.html', 'popup');">
           개인정보 수집 및 이용동의(필수)></a>
       </div>
@@ -56,9 +67,9 @@
     <br>
     <br>
     <div class="button-container">
-      <div class="custom-button" type="button" onclick="next()">
-          <div class="button-text" type="button" disabled>다 음</div>
-      </div>
+      <button class="custom-button"  id="target" onclick="next()"  >
+          <div class="button-text" type="text" >다 음</div>
+      </button>
     </div>
   </div>
 
