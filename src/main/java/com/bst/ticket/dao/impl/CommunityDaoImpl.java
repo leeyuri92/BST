@@ -1,6 +1,7 @@
 package com.bst.ticket.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bst.ticket.vo.CommunityVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,5 +22,10 @@ public class CommunityDaoImpl implements CommunityDao {
     @Override
     public List<CommunityVO> getCommunityBoardList() {
         return sqlSessionTemplate.selectList("selectBoard");
+    }
+
+    @Override
+    public CommunityVO getCommunityBoardById(Integer boardId) {
+        return sqlSessionTemplate.selectOne("getCommunityBoardById", boardId);
     }
 }

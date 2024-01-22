@@ -57,7 +57,7 @@
                 <c:forEach var="board" items="${communityBoardList}">
                     <tr>
                         <th scope="row">${board.boardId}</th>
-                        <td><a href="#">${board.boardTitle}</a></td>
+                        <td><a href="/community/view/${board.boardId}">${board.boardTitle}</a></td>
                         <th scope="row"> ${board.memberName}</th>
                     </tr>
                 </c:forEach>

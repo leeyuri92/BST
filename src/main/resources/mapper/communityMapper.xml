@@ -3,18 +3,32 @@
 
 <mapper namespace="com.mybatis.mapper.CommunityMapper">
 
-<select id="selectBoard" resultType="com.bst.ticket.vo.CommunityVO">
-    SELECT b.bd_id         AS boardId,
-           b.bd_title      AS boardTitle,
-           b.bd_content    AS boardContent,
-           b.bd_created_at AS boardCreatedAt,
-           b.bd_hit        AS boardHit,
-           m.mbr_seq       AS memberId,
-           m.mbr_nm        AS memberName
-    FROM board b
-             JOIN
-         member m ON b.mbr_seq = m.mbr_seq;
-</select>
+    <!--게시글 목록-->
+    <select id="selectBoard" resultType="com.bst.ticket.vo.CommunityVO">
+        SELECT b.bd_id         AS boardId,
+               b.bd_title      AS boardTitle,
+               b.bd_content    AS boardContent,
+               b.bd_created_at AS boardCreatedAt,
+               b.bd_hit        AS boardHit,
+               m.mbr_seq       AS memberId,
+               m.mbr_nm        AS memberName
+        FROM board b
+                 JOIN
+             member m ON b.mbr_seq = m.mbr_seq;
+    </select>
+    <!--게시글 상세조회-->
+    <select id="getCommunityBoardById" resultType="com.bst.ticket.vo.CommunityVO">
+        SELECT b.bd_id         AS boardId,
+               b.bd_title      AS boardTitle,
+               b.bd_content    AS boardContent,
+               b.bd_created_at AS boardCreatedAt,
+               m.mbr_nm        AS memberName
+        FROM board b
+                 JOIN
+             member m ON b.mbr_seq = m.mbr_seq
+        WHERE b.bd_id = #{boardId};
+    </select>
+
     <!-- <select id="" parameterType=""  resultType = "">
 
     </select>
