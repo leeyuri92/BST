@@ -1,0 +1,18 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.mainMapper">
+
+    <select id= "MainTicket" parameterType="map" resultType="java.util.Map">
+        select a.gm_id, a.gm_date,
+               b.team_name as team_away,
+               c.team_name as team_home,
+               d.std_name
+        from test_game a
+                 inner join  test_team b
+                 inner join test_team c
+                 inner join test_stadium d
+                            on a.team_id = b.team_id
+                                and a.team_id2 = c.team_id
+                                and a.std_id = d.std_id
+    </select>
+
+</mapper>
