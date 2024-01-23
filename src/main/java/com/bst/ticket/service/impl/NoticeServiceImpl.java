@@ -22,14 +22,14 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
-        logger.info("Service INFO호출");
+        logger.info("Service Detail");
         list = noticeDao.noticeListINFO(pmap);
         logger.info(list.toString());
         return list;
     }
 
     @Override
-    public Map<String, Object> getNoticeDetail(int ntc_id) throws Exception {
+    public Map<String,Object> getNoticeDetail(int ntc_id) throws Exception {
         logger.info("getNoticeDetail : " + ntc_id);
         Map<String, Object> rMap = null;
         rMap = noticeDao.getNoticeDetail(ntc_id);

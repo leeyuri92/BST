@@ -20,7 +20,7 @@
   <script type="text/javascript">
     /* 자바 스크립트 부분 */
     const noticeDetail=(ntc_id)=>{
-      window.location.href="noticeDetail.jsp?ntc_id"+ntc_id;
+      window.location.href="noticeDetail?ntc_id=" +ntc_id;
     }
   </script>
 

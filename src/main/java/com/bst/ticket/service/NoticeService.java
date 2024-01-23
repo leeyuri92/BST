@@ -12,6 +12,6 @@ public interface NoticeService {
 
 public List<Map<String, Object>> noticeListINFO(Map<String, Object> pmap)throws Exception;
 
-public Map<String, Object> getNoticeDetail(int ntc_id) throws Exception;
+public  Map<String,Object> getNoticeDetail(int ntc_id) throws Exception;
 
 } 
