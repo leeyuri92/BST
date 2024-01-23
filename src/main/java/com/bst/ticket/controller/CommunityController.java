@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/community/*")
+@RequestMapping("/community")
 public class CommunityController {
     Logger logger = LoggerFactory.getLogger(CommunityController.class);
 
@@ -62,8 +62,12 @@ public class CommunityController {
         return mav;
     }
 
-
     //게시글 작성폼
+    @GetMapping("/writeform")
+    public String communityBoardWriteForm() {
+        logger.info("Community Board write form");
+        return "communityBoardWriteForm";
+    }
     //게시글 작성
     //게시글 수정
     //게시글 삭제

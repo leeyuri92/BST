@@ -76,7 +76,8 @@
                            aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">검색</button>
-                        <a href="#" class="btn btn-success ml-2">글쓰기</a>
+                        <a href="/community/writeform" class="btn btn-secondary btn-lg active" role="button"
+                           aria-pressed="true">글쓰기</a>
                     </div>
                 </div>
             </div>
