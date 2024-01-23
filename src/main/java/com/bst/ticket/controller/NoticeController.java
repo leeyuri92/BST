@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.bst.ticket.service.NoticeService;
 
 @Controller
@@ -47,13 +42,11 @@ public class NoticeController {
     기능 : 공지 리스트 상세조회
    */
     @GetMapping("noticeDetail")
-    public String noticeDetail(@RequestParam Map<String, Object> cmap, Model model) throws Exception {
+    public String noticeDetail(int ntc_id, Model model) throws Exception {
         Map<String, Object> rMap = null;
-        if (cmap.containsKey("ntc_id")) {
-            int ntc_id = Integer.parseInt(cmap.get("ntc_id").toString());
-            rMap = noticeService.getNoticeDetail(ntc_id);
-        }
+            rMap = noticeService.getNoticeDetail(ntc_id);;
         model.addAttribute("rMap", rMap);
+        logger.info("ntc_id"+ntc_id);
         return "forward:openNoticeDetail.jsp";
     }
 }
