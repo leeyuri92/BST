@@ -1,4 +1,5 @@
 <%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="/css/header.css" />
 <%
   String nickname = (String)session.getAttribute("nickname");
   //로그인을 하지 않았다면 null이 출력됨
@@ -6,15 +7,15 @@
 %>
 <nav class="navbar navbar-expand-sm " style="background-color: #f5f5f7;">
   <div class="container-fluid">
-    <a  href="/mainpage/mainpage.jsp" class="navbar-brand fw-bold fs-3" >
+    <a  href="/mainpage/mainpage.jsp" class="navbar-brand" >
       <img src="/images/icon/Ticket.png" alt="" width="47" height="50">
       베스트 시니어 티켓
     </a>
 
     <div class="collapse navbar-collapse fw-bold fs-4">
       <ul class="navbar-nav nav justify-content-center ms-auto me-auto mb-0 mb-lg-0">
-        
-          <a class="nav-link" href="/notice/openNotice.jsp">오픈공지</a>
+
+        <a class="nav-link" href="/notice/openNotice.jsp">오픈공지</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/community/community.jsp">커뮤니티</a>
@@ -28,12 +29,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/QnA/QnA.jsp">고객센터</a>
         </li>
-        
+
       </ul>
 
-    <%
-      if(nickname == null){
-    %>
+      <%
+        if(nickname == null){
+      %>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/auth/login/login.jsp">로그인</a>
@@ -43,9 +44,9 @@
         </li>
       </ul>
       <%
-    }
+        }
       %>
-      
+
       <%
         if(nickname != null){
       %>
@@ -62,16 +63,16 @@
         }
       </script>
       <%
-    }
+        }
       %>
 
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
         <button class="btn btn btn-outline-primary" type="submit">
 
-              <a  href="#">
-                <img src="/images/icon/Search.png" alt="" width="30" height="30">
-              </a>
+          <a  href="#">
+            <img src="/images/icon/Search.png" alt="" width="30" height="30">
+          </a>
 
         </button>
       </form>
