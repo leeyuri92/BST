@@ -22,6 +22,7 @@
                b.bd_title      AS boardTitle,
                b.bd_content    AS boardContent,
                b.bd_created_at AS boardCreatedAt,
+               b.bd_hit        AS boardHit,
                m.mbr_nm        AS memberName
         FROM board b
                  JOIN
@@ -29,18 +30,11 @@
         WHERE b.bd_id = #{boardId};
     </select>
 
-    <!-- <select id="" parameterType=""  resultType = "">
-
-    </select>
-
-    <insert id="" parameterType="">
-    </insert>
-
-    <update id="" parameterType="">
+    <!--Increase hit count-->
+    <update id="boardHitsUpdate" parameterType="int">
+        UPDATE board
+        SET bd_hit = bd_hit + 1
+        where bd_id = #{boardId}
     </update>
-
-    <delete id="" parameterType="">
-    </delete> -->
-
 
 </mapper>

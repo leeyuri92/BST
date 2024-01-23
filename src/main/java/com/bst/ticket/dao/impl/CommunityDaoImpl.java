@@ -28,4 +28,10 @@ public class CommunityDaoImpl implements CommunityDao {
     public CommunityVO getCommunityBoardById(Integer boardId) {
         return sqlSessionTemplate.selectOne("getCommunityBoardById", boardId);
     }
+
+    @Override
+    public void boardHitUpdate(Integer boardId) {
+        sqlSessionTemplate.update("boardHitsUpdate", boardId);
+    }
+
 }

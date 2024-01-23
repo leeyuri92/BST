@@ -59,6 +59,7 @@
                         <th scope="row">${board.boardId}</th>
                         <td><a href="/community/view/${board.boardId}">${board.boardTitle}</a></td>
                         <th scope="row"> ${board.memberName}</th>
+                        <th scope="row">${board.boardHit}</th>
                     </tr>
                 </c:forEach>
                 </tbody>

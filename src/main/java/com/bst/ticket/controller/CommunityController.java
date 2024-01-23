@@ -54,7 +54,9 @@ public class CommunityController {
         ModelAndView mav = new ModelAndView("communityBoardDetail");
         CommunityVO communityBoard = communityDao.getCommunityBoardById(boardId);
         if (communityBoard != null) {
-            logger.info("Board title={}, content={}", communityBoard.getBoardTitle(), communityBoard.getBoardContent());
+            logger.info("Board title={}, content={}, hit={}", communityBoard.getBoardTitle(),
+                    communityBoard.getBoardContent(), communityBoard.getBoardHit());
+            communityDao.boardHitUpdate(boardId);
             mav.addObject("communityBoard", communityBoard);
         }
         return mav;

@@ -1,5 +1,6 @@
 package com.bst.ticket.vo;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,6 @@ public class CommunityVO {
     private Integer boardHit;
     private Integer memberId;
     private String memberName;
-
 
     public Integer getBoardId() {
         return boardId;
