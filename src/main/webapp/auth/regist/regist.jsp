@@ -15,6 +15,7 @@
     const memberInsert=()=>{
       document.querySelector("#f_member").submit();
     }
+
     </script>
 </head>
 <body>
@@ -45,8 +46,8 @@
       <input
         type="password"
         class="form-control"
-        id="mbr_pwd"
-        name="mbr_pwd"
+        id="mbr_pw"
+        name="mbr_pw"
         placeholder="Enter 비밀번호"
       />
       <label for="mbr_pwd" >비밀번호</label>
@@ -59,7 +60,7 @@
         name="mbr_pwd"
         placeholder="Enter 비밀번호확인"
       />
-      <label for="mem_pw" type="password">비밀번호확인</label>
+      <label for="mbr_pw" type="password">비밀번호확인</label>
     </div>
     <div class="form-floating mb-3 mt-3">
       <input
@@ -79,7 +80,7 @@
         name="mbr_birthdate"
         placeholder="Enter 생년월일"
       />
-      <label for="mem_name">생년월일</label>
+      <label for="mbr_birthdate">생년월일</label>
     </div>
     <div class="form-floating mb-3 mt-3">
       <input
@@ -139,7 +140,7 @@
       />
       <input
         type="button"
-        class="btn btn-danger"
+        class="btn btn-primary"
         onclick="memberInsert()"
         value="회원가입"
       />
