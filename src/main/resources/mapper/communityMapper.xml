@@ -37,4 +37,10 @@
         where bd_id = #{boardId}
     </update>
 
+    <insert id="saveCommunityBoard" parameterType="hashMap">
+        INSERT INTO board(bd_title, bd_content, bd_created_at, mbr_seq)
+        VALUES (#{boardTitle}, #{boardContent}, NOW(), 0)
+    </insert>
+
+
 </mapper>

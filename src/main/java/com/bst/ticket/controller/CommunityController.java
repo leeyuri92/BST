@@ -7,15 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import com.bst.ticket.service.CommunityService;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.plaf.ComponentUI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -40,7 +41,7 @@ public class CommunityController {
     Feature: Community board
      */
     //게시글 리스트
-    @GetMapping("/")
+    @GetMapping("/list")
     public ModelAndView CommunityboardList() {
         ModelAndView mav = new ModelAndView("community");
         List<CommunityVO> communityBoardList = communityDao.getCommunityBoardList();
@@ -49,7 +50,7 @@ public class CommunityController {
     }
 
     //게시글 조회
-    @GetMapping("/view/{boardId}")
+    @GetMapping("/list/view/{boardId}")
     public ModelAndView getCommunityBoard(@PathVariable("boardId") Integer boardId) {
         ModelAndView mav = new ModelAndView("communityBoardDetail");
         CommunityVO communityBoard = communityDao.getCommunityBoardById(boardId);
@@ -64,11 +65,19 @@ public class CommunityController {
 
     //게시글 작성폼
     @GetMapping("/writeform")
-    public String communityBoardWriteForm() {
-        logger.info("Community Board write form");
+    public String communityBoardForm() {
+        logger.info("Community Board Write Form");
         return "communityBoardWriteForm";
     }
+
     //게시글 작성
+    @PostMapping("/write")
+    public String saveCommunityBoard(@RequestParam Map<String, CommunityVO> boardMap) {
+        logger.info("Board title={}, content={}", boardMap.get("boardTitle"), boardMap.get("boardContent"));
+        communityDao.saveCommunityBoard(boardMap);
+        return "redirect:/community/list";
+    }
+
     //게시글 수정
     //게시글 삭제
 

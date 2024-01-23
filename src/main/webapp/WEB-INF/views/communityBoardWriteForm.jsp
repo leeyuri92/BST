@@ -23,7 +23,7 @@
 
 <!--================================= body start ==================================-->
 
-<form action="#" method="post">
+<form action="/community/write" method="post">
     <div class="form-group">
         <label class="control-label " for="name">제목</label>
         <input class="form-control" id="boardTitle" name="boardTitle" type="text"/>

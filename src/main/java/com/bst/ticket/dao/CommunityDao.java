@@ -1,10 +1,9 @@
 package com.bst.ticket.dao;
 
 import com.bst.ticket.vo.CommunityVO;
-import jakarta.persistence.Id;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 /**
  * Author: 전수빈
@@ -21,6 +20,9 @@ public interface CommunityDao {
 
     //게시글 조회수
     public void boardHitUpdate(Integer boardId);
-    
+
+
+    //게시글 작성
+    void saveCommunityBoard(Map<String, CommunityVO> boardMap);
 
 }

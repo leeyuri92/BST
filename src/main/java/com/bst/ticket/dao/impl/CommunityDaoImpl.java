@@ -1,7 +1,7 @@
 package com.bst.ticket.dao.impl;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import com.bst.ticket.vo.CommunityVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -33,5 +33,11 @@ public class CommunityDaoImpl implements CommunityDao {
     public void boardHitUpdate(Integer boardId) {
         sqlSessionTemplate.update("boardHitsUpdate", boardId);
     }
+
+    @Override
+    public void saveCommunityBoard(Map<String, CommunityVO> boardMap) {
+        sqlSessionTemplate.insert("saveCommunityBoard", boardMap);
+    }
+
 
 }
