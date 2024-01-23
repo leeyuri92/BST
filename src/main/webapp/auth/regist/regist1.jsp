@@ -5,93 +5,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/regist1.css">
-  <title>회원가입</title>
+  <title>회원가입 페이지</title>
   <%@include file="/common/bootstrap_common.jsp" %>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript">
+
+      const mbr_id = document.getElementById('mbr_id');
+      const mbr_pwd = document.getElementById('mbr_pwd');
+      const mbr_nm = document.getElementById('mbr_nm');
+      const mbr_birthdate = document.getElementById('mbr_birthdate');
+      const mbr_phone = document.getElementById('mbr_phone');
+      const mbr_email = document.getElementById('mbr_email');
+      const idh = document.getElementById('idh');
+
+
+      const expIdText = /^[A-Za-z]{4,20}$/;
+      const expPwText = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+      const expNameText= /^[가-힣]+$/; // + 반복
+      const expphoneText = /^\d{3}-\d{3,4}-\d{4}$/;
+      const expEmailText = /^[A-Za-z-0-9\-\.]+@[A-Ja-z-0-9\-\.]+\.[A-Ja-z-0-9]+$/;
+
+
+        const memberInsert=()=>{
+            document.querySelector("#f_member").submit();
+        }
+        const back=()=>{
+            location.href = "/auth/term/term1.jsp"
+        }
+    </script>
 </head>
 <body>
 	<%@include file="/include/ticket_header.jsp" %>
 
-  <div class="container mt-5">
-    <div class="card p-4">
+  <div class="memberContainer">
       <h2 class="text-center mb-4">회원가입</h2>
-      <form id="f_member" method="post" action="/auth/regist">
-      <div class="form-group">
-        <label for="username">아이디 <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="username" placeholder="아이디를 입력하세요.">
+    <form id="f_member" method="post" action="/auth/regist">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_id">아이디 <span class="text-danger">*</span>
+          <span id="idh" class="text-danger" hidden="hidden">아이디형식이안맞습니다 </span>
+        </label>
+        <input type="text" class="form-control" id="mbr_id" name="mbr_id"  placeholder="아이디를 입력하세요.">
       </div>
 
-      <div class="form-group">
-        <label for="password">비밀번호 <span class="text-danger">*</span></label>
-        <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_pw">비밀번호 <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="mbr_pw" name="mbr_pw" placeholder="비밀번호를 입력하세요.">
       </div>
 
-      <div class="form-group">
-        <label for="confirmPassword">비밀번호 확인 <span class="text-danger">*</span></label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="비밀번호를 재입력하세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_pwd">비밀번호 확인 <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="mbr_pwd" name="mbr_pwd" placeholder="비밀번호를 재입력하세요.">
       </div>
 
-      <div class="form-group">
-        <label for="name">이름 <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_nm">이름 <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="mbr_nm" name="mbr_nm" placeholder="이름을 입력해주세요.">
       </div>
 
-      <div class="form-group">
-        <label for="dob">생년월일 <span class="text-danger">*</span></label>
-        <input type="date" class="form-control" id="dob">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_birthdate">생년월일 <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" id="mbr_birthdate" name="mbr_birthdate">
       </div>
 
-      <div class="form-group">
-        <label for="phone">전화번호 <span class="text-danger">*</span></label>
-        <input type="tel" class="form-control" id="phone" placeholder="전화번호를 입력해주세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_phone">전화번호 <span class="text-danger">*</span></label>
+        <input type="tel" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="전화번호를 입력해주세요.">
       </div>
 
-      <div class="form-group">
-        <label for="email">이메일 <span class="text-danger">*</span></label>
-        <input type="email" class="form-control" id="email" placeholder="이메일을 입력해주세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_email">이메일 <span class="text-danger">*</span></label>
+        <input type="email" class="form-control" id="mbr_email" name="mbr_email" placeholder="이메일을 입력해주세요.">
       </div>
 
-      <div class="form-group">
-        <label for="address">주소(선택사항)</label>
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_address">주소(선택사항)</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="address" placeholder="우편번호" aria-describedby="search-btn">
+          <input type="text" class="form-control" id="mbr_address" name="mbr_address" placeholder="우편번호" aria-describedby="search-btn">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="search-btn">검색</button>
+            <button class="btn btn-success" type="button" id="search-btn" onclick="openZipcode()">검색</button>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="detailedAddress">상세주소</label>
-        <input type="text" class="form-control" id="detailedAddress" placeholder="상세주소를 입력해주세요.">
+      <div class="form-group mb-3 mt-3">
+        <label for="mbr_postalcode">상세주소</label>
+        <input type="text" class="form-control" id="mbr_postalcode" name="mbr_postalcode" placeholder="상세주소를 입력해주세요.">
       </div>
 
-      <div class="form-group">
-        <label for="team">구단(선택사항)</label>
-        <select class="form-control" id="team">
-          <option value="" selected>구단을 선택해주세요.</option>
-          <option value="team1">팀 1</option>
-          <option value="team2">팀 2</option>
+      <div class="form-group mb-3 mt-3">
+        <label for="team_id">구단(선택사항)</label>
+        <select class="form-control" id="team_id" name="team_id">
+          <option value="1" selected>구단을 선택해주세요.</option>
+          <option value="2">한화</option>
+          <option value="3">기아</option>
           <!-- Add more options as needed -->
         </select>
       </div>
     </form>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <input type="button" class="btn btn-warning">취소</input>
-        </div>
-        <div class="form-group col-md-6">
-          <input type="button" class="btn btn-danger"
-          onclick="memberInsert()">회원가입</input>
-        </div>
+      <div class="memberfooter">
+        <input
+                type="button"
+                class="btn btn-secondary"
+                onclick="back()"
+                value="뒤로가기"
+        />
+        <input
+                type="button"
+                class="btn btn-primary"
+                onclick="memberInsert()"
+                value="회원가입"
+        />
       </div>
+      <script>
+          //회원가입 우편번호찾기
+          // 여기배포햇나? -head에 위치 - 호이스팅이슈
+          // 단-DOM 읽혀진 이후에만 접근이 가능하다 - undefined - 배포위치 고려해본다 -기준
+          const openZipcode = () => {
+              new daum.Postcode({//Postcode객체 생성하기  - 생성하자마자 내부에 구현하기가 전기해고있다
+                  oncomplete: function(data) {//완료되었을때 - 요청에 대한 응답이 완료되었을때 -이벤트처리
+                      let addr = '';
+                      if (data.userSelectedType === 'R') {
+                          addr = data.roadAddress;//도로명
+                      } else {
+                          addr = data.jibunAddress;//지번
+                      }
+                      console.log(data);
+                      console.log(addr);
+                      //console.log(post.postNum);
+                      //setPost({...post, zipcode:data.zonecode, addr:addr}) ;
+                      // document.querySelector("#mem_zipcode").value = data.zonecode;//우편번호
+                      // document.querySelector("#mem_address").value = addr;//주소
+                      document.getElementById("mbr_postalcode").value =data.zonecode; //우편번호
+                      document.getElementById("mbr_address").value = addr//주소
+                      //document.getElementById("postDetail").focus();
+                  }
+              }).open();
+          }
+      </script>
     </div>
-  </div>
-
-
-
-	<%@include file="/include/ticket_footer.jsp" %>
-  <!-- Bootstrap JS and Popper.js CDN links -->
+        <%@include file="/include/ticket_footer.jsp" %>
 </body>
 </html>
