@@ -1,5 +1,7 @@
 package com.bst.ticket.service;
 
+import com.bst.ticket.vo.MemberVO;
+
 import java.util.Map;
 
 public interface RegistService {
@@ -9,7 +11,7 @@ public interface RegistService {
     작성일자 : 24.01.18
     기능 : 회원가입(RegistService)
     */
-public int Regist(Map<String, Object> pmap) throws Exception;
+   public int regist(MemberVO memberVO) throws Exception;
 
     /*
    작성자 : 이동건

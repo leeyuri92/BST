@@ -2,9 +2,11 @@ package com.bst.ticket.controller;
 
 import java.util.Map;
 
+import com.bst.ticket.vo.MemberVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,23 +19,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/auth/*")
 public class RegistController {
   Logger logger = LoggerFactory.getLogger(RegistController.class);
+
   @Autowired
   RegistService registService;
+
+  @Autowired
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
       /*
     작성자 : 이동건
     작성일자 : 24.01.18
-    기능 : 회원가입(RegistController)
+    기능 : 회원가입 (RegistController)
+    */
+    /*
+    작성자 : 이유리
+    작성일자 : 24.01.24
+    기능 : 회원가입 시큐리티 추가 (RegistController)
     */
 
   @PostMapping("regist")
-  public String Regist(@RequestParam Map<String,Object> mmap) throws Exception{
-    logger.info(mmap.toString());
+  public String regist(MemberVO memberVO) throws Exception{
+    logger.info(memberVO.toString());
+    memberVO.setMbr_role(("ROLE_USER"));
     int result = 0;
     String path = "";
-    result = registService.Regist(mmap);
+
+    String rawPassword = memberVO.getMbr_pwd();
+    String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+    memberVO.setMbr_pwd(encPassword);//password변수 치환
+    result = registService.regist(memberVO);
     if(result == 1){
-      path = "redirect:/mainpage/ticketList";
+      path = "redirect:/mainpage/mainpage.jsp";
     }else{
       path = "redirect:/registerror.jsp";
     }

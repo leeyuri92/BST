@@ -13,9 +13,9 @@ public class MemberVO {
 
   @Builder
   public MemberVO(int mbr_seq, String mbr_id, String mbr_pwd,
-                  String mbr_nm, String mbr_birthdate, String mbr_phone,
+                  String mbr_nm, LocalDate mbr_birthdate, String mbr_phone,
                   String mbr_address, String mbr_postalcode, String mbr_email,
-                  String mbr_role, int team_id){
+                  String mbr_role, int team_id, String mbr_provider,  String mbr_providerId){
     super();
     this.mbr_seq = mbr_seq;
     this.mbr_id = mbr_id;
@@ -28,17 +28,21 @@ public class MemberVO {
     this.mbr_email = mbr_email;
     this.mbr_role = mbr_role;
     this.team_id = team_id;
+    this.mbr_provider = mbr_provider;
+    this.mbr_providerId = mbr_providerId;
   }
 
   private int mbr_seq ;
   private  String mbr_id="";
   private  String mbr_pwd="";
   private  String mbr_nm="";
-  private  String mbr_birthdate="";
+  private LocalDate mbr_birthdate;
   private  String mbr_phone="";
   private  String mbr_address="";
   private  String mbr_postalcode="";
   private  String mbr_email="";
   private String mbr_role ="";
   private  int team_id =0;
+  private  String mbr_provider ="";
+  private  String mbr_providerId ="";
 }

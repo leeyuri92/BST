@@ -1,7 +1,6 @@
 package com.bst.ticket.dao.impl;
 
-import java.util.Map;
-
+import com.bst.ticket.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +21,13 @@ public class RegistDaoImpl implements RegistDao {
     작성일자 : 24.01.18
     기능 : 회원가입(RegistDaoImpl)
     */
-  @Override
-  public int Regist(Map<String, Object> mmap) throws Exception {
-    logger.info("RegistDaoImpl 호출");
-    int result = 0;
-    result = sqlSessionTemplate.insert("memberInsert",mmap);
-    return result;
-  }
+    @Override
+    public int regist(MemberVO memberVO) throws Exception {
+      logger.info("RegistDaoImpl 호출");
+      int result = 0;
+      result = sqlSessionTemplate.insert("memberInsert",memberVO);
+      return result;
+    }
 
   /*
  작성자 : 이동건
