@@ -1,4 +1,7 @@
-
+/*마이페이지 */
+h2 {
+  font-weight: bold;
+}
 .mypageBody {
   display: flex;
   height: 126px;
@@ -31,13 +34,13 @@
 
 .button {
   background-color: #334ca5;
-  background: none;
+  /*background: none;*/
   color: #f5f5f7;
   border: 2px solid;
   padding: 1em 2em;
   font-size: 13px;
   width: 120px;
-  height: 70;
+  height: 70px;
   border-radius: 10px;
 }
 .button:hover {
@@ -63,16 +66,15 @@
   margin: 0 auto;
 }
 
-#img_category {
+.img_category {
   width: 90px;
   height: 90px;
 }
 
-#img_text {
+.img_text {
   display: block;
   text-align: center;
   margin-top: 20PX;
-  font-family: Inter;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -84,17 +86,127 @@
   margin-top: 10px;
   color: black;
 }
-@media (max-width: 1000px) {
-  .category_name{
-    /* 글자를 숨김 */
-    display: none; 
 
+.reservation{
+  height: 300px;
+  min-width: 100px;
+  max-width: 1000px;
+  padding: 30px;
+  flex-shrink: 0;
+  background-color: #f5f5f7;
+  border-radius: 30px;
+  margin: 0 auto;
+}
+
+
+.button.reservationContent {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  min-width: 100px;
+  max-width: 1000px;
+  justify-content: space-around;
+  align-items: center;
+  
+  background-color: #334ca5;
+  border-radius: 30px;
+  margin: 0 auto;
+}
+
+h4{
+  color: white;
+  display: flex;
+  min-width: 100px;
+  max-width: 1000px;
+  
+  align-items: center;
+}
+
+.btn.footer{
+  display: flex;
+  justify-content: space-around;
+  padding: 60px;
+  /* align-items: center; */
+}
+
+@media (max-width: 1000px) {
+  .mypageBody {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
   }
-  .mypageBody{
-    height: 300px;
+
+  .rounded-circle {
+    height: 150px;
+    width: 150px;
+  }
+
+  .category {
+    flex-direction: column;
+    height: auto;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .button.reservationContent {
+    height: auto;
+    display: block;
+  }
+
+  .btn.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+  /*프로필 페이지*/
+  .profileBody{
+    display: flex;
+    min-width: 100px;
+    max-width: 1000px;
+    padding: 60px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    justify-content: center;
-    align-items: center; 
+    border-radius: 30px;
+    margin: 0 auto;
   }
+
+  .pofileCircle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f7;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 100%;
+    margin-bottom: 30px;
+  }
+
+  .memberInfo{
+    width: 1000px;
+    height: 300px;
+  }
+
+  td{
+    font-size: 20px;
+    font-weight: bold ;
+  }
+
+  table tr td button{
+    border-radius: 10px;
+  }
+
+  /*reservation */
+.reservationBody{
+  display: flex;
+  min-width: 100px;
+  max-width: 1000px;
+  padding: 60px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin: 0 auto;
 }

@@ -21,6 +21,7 @@ public class ReservationServiceImpl implements ReservationService{
   @Override
   public List<Map<String, Object>> reserveList(Map<String, Object> mmap) throws Exception {
     logger.info("Service : reserveList 호출");
+
     return reservationDao.reserveList(mmap);
   }
 }
