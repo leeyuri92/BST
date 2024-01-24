@@ -1,4 +1,14 @@
-<%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page import="com.bst.ticket.vo.MainVO" %>
+<%@ page import="java.util.List, java.util.Map" %>
+<%@ page import="static com.fasterxml.jackson.databind.type.LogicalType.Map" %>
+<%@ page import="java.util.List, java.util.Map, java.time.format.DateTimeFormatter, java.time.LocalDate" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+  List<MainVO> ticketListFromDb = (List) request.getAttribute("ticketList");
+  Map<String,Object> tmap = null;
+
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,118 +64,36 @@
   <div class="body_title">
     <h2 class="ticket text-center">예매하기</h2>
   </div>
-  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 ">
-    <!-- 기존 카드 1 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">삼성LIONS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5">
+      <%
+        int cardCounter = 0; // 변경된 부분: 카드 개수를 세기 위한 변수 추가
+        for (MainVO mVO : ticketListFromDb) {
+
+          LocalDate currentDate = LocalDate.now();
+
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+          LocalDate localDate = LocalDate.parse((String)mVO.getGm_date(), formatter);
+
+          if (currentDate.equals(localDate)) {
+            cardCounter++;
+      %>
+      <div class="col ticket">
+        <a href="http://localhost:9000/reservation/ticketList.jsp">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
+            <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
+            <p class="t_name"><%= mVO.getTeam_home() %> IN <%= mVO.getStd_name() %></p>
+            <p class="g_date"><%= mVO.getGm_date() %></p>
+          </div>
+        </a>
+      </div>
+
+      <!-- 변경된 부분: 5개씩 출력되었을 때 줄바꿈 추가 -->
+      <% if (cardCounter % 5 == 0) { %>
     </div>
-
-    <!-- 기존 카드 2 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">키움HEROS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-
-    <!-- 기존 카드 3 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">두산BARES</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 4 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">한화EAGLES</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 5 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">신세계LANDERS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 6 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">엔씨DINOS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 7 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">기아TIGERS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 8 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">롯데GIANTS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 9 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">케이티WIZ</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
-    <!-- 새로운 카드 10 -->
-    <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
-          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
-          <p class="t_name">엘지TWINS</p>
-          <P class="g_date">일정: YYYY-MM-DD</P>
-        </div>
-      </a>
-    </div>
-
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+    <% } %>
+    <% } %>
+    <% } %>
   </div>
 </div>
 
@@ -182,7 +110,7 @@
 <!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->
-<%@include file="/include/ticket_footer.jsp" %>
+<%@include file="/include/test_footer.jsp" %>
 <!--================================== footer end ===================================-->
 
 

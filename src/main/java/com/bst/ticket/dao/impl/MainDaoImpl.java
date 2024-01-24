@@ -23,6 +23,6 @@ public class MainDaoImpl implements MainDao {
     public List<Map<String, Object>> ticketList(Map<String, Object> tmap) throws Exception {
         logger.info("Service : ticketList 호출");
 
-        return sqlSessionTemplate.selectList("ticketList",tmap);
+        return sqlSessionTemplate.selectList("mainTicketList",tmap);
     }
 }
