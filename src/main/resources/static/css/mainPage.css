@@ -84,9 +84,17 @@ a {
 .t_name{
     color: white;
     margin-left: 15px;
+    font-size: small;
 }
 
 .g_date{
     color: white;
     margin-left: 15px;
+    font-size: small;
+}
+
+.std{
+    color: white;
+    margin-left: 15px;
+    font-size: small;
 }
