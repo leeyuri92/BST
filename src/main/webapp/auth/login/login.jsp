@@ -48,7 +48,7 @@
 
             <div class="d-flex gap-3">
                 <button class="btn btn-light border fw-bold" style="width: 180px;">로그인</button>
-                <button class="btn btn-dark fw-bold" style="width: 180px;" onclick="location.href='/auth/regist/regist.jsp'">회원가입</button>
+                <button class="btn btn-dark fw-bold" style="width: 180px;" onclick="location.href='/auth/term/term.jsp'">회원가입</button>
             </div>
 
             <div class="d-flex gap-3">

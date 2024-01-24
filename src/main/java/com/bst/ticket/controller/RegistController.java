@@ -33,7 +33,7 @@ public class RegistController {
     String path = "";
     result = registService.Regist(mmap);
     if(result == 1){
-      path = "redirect:/mainpage/mainpage.jsp";
+      path = "redirect:/mainpage/ticketList";
     }else{
       path = "redirect:/registerror.jsp";
     }

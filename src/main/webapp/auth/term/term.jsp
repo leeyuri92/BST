@@ -7,110 +7,96 @@
   <link rel="stylesheet" href="/css/term.css">
   <title>약관동의 페이지</title>
   <%@include file="/common/bootstrap_common.jsp" %>
-  
   <script type="text/javascript">
-    /* 자바 스크립트 부분 */
-  // JavaScript code for handling "Agree to All" checkbox
-  document.addEventListener('DOMContentLoaded', function () {
-      var agreeAllCheckbox = document.querySelector('.allAgree input[type="checkbox"]');
-      var individualCheckboxes = document.querySelectorAll('.singleSelector');
 
-      // Event listener for "Agree to All" checkbox
-      agreeAllCheckbox.addEventListener('change', function () {
-        var isChecked = agreeAllCheckbox.checked;
+    function selectAll(selectAll)  {
+      const checkboxes = document.getElementsByName('allAgree');
 
-        // Set the state of individual checkboxes based on "Agree to All" checkbox
-        individualCheckboxes.forEach(function (checkbox) {
-          checkbox.checked = isChecked;
-        });
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+      })
+    }
 
-        // Enable or disable the "다음단계" button based on the "Agree to All" checkbox
-        var nextStepButton = document.querySelector('.uBtn[data-id="nextStep"]');
-        nextStepButton.disabled = !isChecked;
-      });
+    // 체크박스 상태 변경 시 호출되는 함수
+    function handleCheckboxChange() {
+      const termAgree1 = document.getElementById('termAgree1');
+      const termAgree2 = document.getElementById('termAgree2');
+      const nextButton = document.getElementById('target');
 
-      // Event listener for individual checkboxes
-      individualCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('change', function () {
-          // Disable "Agree to All" checkbox if any individual checkbox is checked
-          agreeAllCheckbox.disabled = Array.from(individualCheckboxes).some(function (checkbox) {
-            return checkbox.checked;
-          });
+      // 두 체크박스 모두 체크되어 있을 때만 버튼 활성화
+      nextButton.disabled = !(termAgree1.checked && termAgree2.checked);
+    }
 
-          // Enable or disable the "다음단계" button based on the state of individual checkboxes
-          var nextStepButton = document.querySelector('.uBtn[data-id="nextStep"]');
-          nextStepButton.disabled = Array.from(individualCheckboxes).every(function (checkbox) {
-            return !checkbox.checked;
-          });
-        });
-      });
+    // 페이지 로드 시 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      // 체크박스에 대한 체크 상태 변경 이벤트 리스너 등록
+      const termAgreeAll  = document.getElementById('allAgree');
+      const termAgree1 = document.getElementById('termAgree1');
+      const termAgree2 = document.getElementById('termAgree2');
 
-      // Event listener for "다음단계" button
-      var nextStepButton = document.querySelector('.uBtn[data-id="nextStep"]');
-      nextStepButton.addEventListener('click', function () {
-        // Navigate to the membership registration page
-        window.location.href = '/auth/regist/regist.jsp'; // Replace with the actual URL
-      });
+
+      termAgreeAll.addEventListener('change', handleCheckboxChange);
+      termAgree1.addEventListener('change', handleCheckboxChange);
+      termAgree2.addEventListener('change', handleCheckboxChange);
+
+      // 초기 상태에서 버튼 비활성화
+      handleCheckboxChange();
     });
-    function openWindowPop(url, name){
+
+  const next =()=>{
+    location.href = "../regist/regist.jsp"
+  }
+  function openWindowPop(url, name){
     var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
     window.open(url, name, options);
 }
   </script>
 </head>
 <body>
-<!--================================= header start ==================================-->
-	<%@include file="/include/ticket_header.jsp" %>
-<!--================================= header start ==================================-->
+  <%@include file="/include/ticket_header.jsp" %>
+  <div class="container-custom">
+    <div class="inner-container">
+      <div class="welcome-text">고객님 <br/><br/>환영합니다.</div>
+      <br>
+      <img class="img-fluid" src="/images/icon/ticketting.png" alt="Placeholder Image" />
+    </div>
 
-<!--================================= body start ==================================-->
-<div class="container mt-5">
-  <div class="page-header">
-    <h2 class="nav justify-content-center">약관동의</h2>
-    <hr />
-  </div>
-</div>
-<!--================================= body start ==================================-->
-  <div class="uCheckbox allAgree">
-    <label><input type="checkbox"><span class="text">약관 전체 동의</span></label></div>
-
-    <div class="termsBlock">
-     
-      <div class="label">필수 동의 항목</div>
-
-      <div class="termsItem">
-        <div class="uCheckbox sType">
-          
-          <label><div class="inputWrap"><input type="checkbox" class="singleSelector requireSelector">
-            <span class="text"></span>
-          </div>
-        </label><div class="checkboxCont">
-          <a href="javascript:openWindowPop('/popup/pop_agreement.html', 'popup');" class="btn btnLink">[필수] 이용약관</a>
-        </div>
-      </div>
-
-
-    <div class="uCheckbox sType">
-      <label><div class="inputWrap">
-        <input type="checkbox" class="singleSelector requireSelector">
-        <span class="text"></span>
-      </div></label>
-      <div class="checkboxCont">
-        <a href="javascript:openWindowPop('/popup/pop_service.html', 'popup');" class="btn btnLink">[필수] 개인정보 수집동의서</a>
+    <div class="checkbox-section">
+      <div class="checkbox-container">
+        <input type="checkbox" id="allAgree" name="allAgree" value='selectall' onclick='selectAll(this)'/>
+        <label class="checkbox-label" type="checkbox-label" >
+          약관 전체동의</label>
       </div>
     </div>
-</div>
-</div>
-</div>
 
-<div class="ubtnArea">
-      <div class="col"><button type="button" class="uBtn active" disabled="" data-id="nextStep">다음단계</button>
+    <br>
+
+    <div class="checkbox-section">
+      <div class="checkbox-container">
+        <input type="checkbox" name="allAgree" id="termAgree1">
+        <a class="checkbox-label"  href="javascript:openWindowPop('/popup/pop_agreement.html', 'popup')">
+          이용약관 동의(필수) ></a>
       </div>
+    </div>
+
+
+    <div class="checkbox-section">
+      <div class="checkbox-container">
+        <input type="checkbox" name="allAgree" id="termAgree2">
+        <a class="checkbox-label" href="javascript:openWindowPop('/popup/pop_service.html', 'popup');">
+          개인정보 수집 및 이용동의(필수)></a>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="button-container">
+      <button class="custom-button"  id="target" onclick="next()"  >
+          다 음
+      </button>
+    </div>
   </div>
-<!--================================= footer start ==================================-->
-	<%@include file="/include/ticket_footer.jsp" %>
-<!--================================== footer end ===================================-->
 
-
+  <%@include file="/include/ticket_footer.jsp" %>
 </body>
 </html>
