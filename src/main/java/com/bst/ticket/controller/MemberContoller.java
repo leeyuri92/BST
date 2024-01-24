@@ -8,11 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.bst.ticket.service.MemberService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/member/*")
@@ -21,9 +20,6 @@ public class MemberContoller {
 
   @Autowired
   private MemberService memberService;
-  
-
-
 
   /*
     작성자 : 박병현
@@ -32,11 +28,30 @@ public class MemberContoller {
    */
   @GetMapping("memberProfile")
     public String memberProfile(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
-      logger.info("Controller : memberProfile 호출");
+      logger.info("Controller : memberProfile 호출" + mmap);
 
       List<Map<String,Object>> memberList = null;
       memberList = memberService.memberList(mmap);
       model.addAttribute("memberList", memberList);
       return "forward:/mypage/profileForm.jsp";
+  }
+
+  /*
+   작성자 : 박병현
+   작성일자 : 24.01.24
+   기능 : 비밀번호 확인
+  */
+  @PostMapping("checkPwd")
+  public String checkPwd(@RequestParam String inputPassword, @RequestParam Map<String, Object> mbr_seq, RedirectAttributes redirectAttributes) throws Exception{
+    logger.info("Controller : checkPwd 호출");
+      logger.info(inputPassword);
+      int result = 0;
+      result = memberService.checkPwd(inputPassword, mbr_seq);
+      if (result==1){
+        redirectAttributes.addFlashAttribute(mbr_seq);
+        return "redirect:/member/memberProfile";
+      }else{
+        return "";
+      }
   }
 }

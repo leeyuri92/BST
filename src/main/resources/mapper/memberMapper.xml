@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.MemberMapper">
 
+<select id="checkPwd" parameterType="map" resultType="String">
+	select mbr_pwd
+	from member
+	where mbr_seq = #{mbr_seq}
+
+</select>
+
 <select id="memberList" parameterType="map"  resultType = "map">
   select a.mbr_seq, a.mbr_id, a.mbr_pwd, a.mbr_nm, a.mbr_birthdate, a.mbr_phone, a.mbr_email, 
 					b.team_name, b.team_logo, a.mbr_role, a.mbr_address, a.mbr_postalcode

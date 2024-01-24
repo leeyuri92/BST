@@ -1,5 +1,6 @@
 package com.bst.ticket.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,17 @@ public class MemberServiceImpl implements MemberService{
   @Override
   public List<Map<String, Object>> memberList(Map<String, Object> mmap) throws Exception {
     logger.info("Service : memberList 호출");
+    List<Map<String,Object>> mList = memberDao.memberList(mmap);
+    return mList;
+  }
 
-    return memberDao.memberList(mmap);
+  @Override
+  public int checkPwd(String inputPassword, Map<String, Object> mbr_seq) throws Exception {
+    logger.info("Service : checkPwd 호출");
+    if(inputPassword.equals(memberDao.checkPwd(mbr_seq))){
+      return 1;
+    }else{
+      return 0;
+    }
   }
 }

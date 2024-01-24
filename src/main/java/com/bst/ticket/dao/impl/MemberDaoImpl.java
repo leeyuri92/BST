@@ -25,8 +25,17 @@ public class MemberDaoImpl implements MemberDao{
   */
   @Override
   public List<Map<String, Object>> memberList(Map<String, Object> mmap) throws Exception {
-    logger.info("Service : memberList 호출");
+    logger.info("Repository : memberList 호출");
 
     return sqlSessionTemplate.selectList("memberList",mmap);
   }
+
+  @Override
+  public String checkPwd(Map<String, Object> mbrSeq) throws Exception {
+    logger.info("Repository : checkPwd 호출");
+    String selectPws = sqlSessionTemplate.selectOne("checkPwd",mbrSeq);
+    logger.info(selectPws);
+    return selectPws;
+  }
+
 }
