@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*" %>
 <%
-  List<Map<String, Object>> memberList = (List) request.getAttribute("memberList");
+  List<Map<String, Object>> memberList = (List)request.getAttribute("memberList");
   out.print(memberList);
   Map<String, Object> mmap = memberList.get(0);
 %>
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/css/mypageForm.css">
 
   <script type="text/javascript">
-      function pwCheck(){
+      const pwCheck = () =>{
           if($('#mbr_pwd').val() != ""){
 
             if($('#mbr_pwd').val() == $('#check_pwd').val()){
@@ -28,6 +28,15 @@
           }
       }
 
+      const memberInfoUpdate = () =>{
+        console.log("저장 클릭");
+        document.querySelector("#memberInfoUpdate").submit();
+      }
+
+      const memberDelete = () =>{
+          alert("memberDelete");
+          location.href = "/member/memberDelete?mbr_seq="+<%=mmap.get("mbr_seq")%>;
+      }
   </script>
 
 </head>
@@ -56,7 +65,8 @@
         }
     %>
   </div>
-  <form class="memberInfo" action="member/memberProfile" method="post">
+  <form class="memberInfo" id="memberInfoUpdate" action="./memberUpdate" method="post">
+    <input type="hidden" name="mbr_seq" value="<%=mmap.get("mbr_seq")%>">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -108,18 +118,43 @@
       </tr>
       <tr>
         <td>나의구단</td>
-        <td><%= mmap.get("team_name") %></td>
         <td>
-            <button class="btn btn-outline-primary">변경</button>
+          <select class="form-control" id="team_id" name="team_id">
+            <option value="0">없음</option>
+            <option value="1">LG</option>
+            <option value="2">KT</option>
+            <option value="3">SGG</option>
+            <option value="4">NC</option>
+            <option value="5">두산</option>
+            <option value="6">KIA</option>
+            <option value="7">롯데</option>
+            <option value="8">삼성</option>
+            <option value="9">한화</option>
+            <option value="10">키움</option>
+          </select>
+        </td>
+        <td>
         </td>
       </tr>
+      <script>
+          var selectedTeamId = <%=mmap.get("team_id")%>; // 원하는 팀 ID로 변경
+
+          // JavaScript를 사용하여 선택된 값을 설정
+          var selectElement = document.getElementById('team_id');
+          for (var i = 0; i < selectElement.options.length; i++) {
+              if (selectElement.options[i].value == selectedTeamId) {
+                  selectElement.options[i].selected = true;
+                  break;
+              }
+          }
+      </script>
       </tbody>
       <tfoot>
       <tr>
         <td style="color: #B8B8B9">계정삭제</td>
         <td></td>
         <td>
-          <button class="btn btn-outline-primary" style="color: #B8B8B9">삭제</button>
+          <input type="button" class="btn btn-outline-primary" style="color: #B8B8B9" onclick="memberDelete()" value="삭제"  />
         </td>
       </tr>
       </tfoot>
@@ -128,7 +163,7 @@
 </div>
 <br/>
 <div class='btn footer mx-3'>
-  <button class="button">저장</button>
+  <button class="button" onclick="memberInfoUpdate()">저장</button>
   <button class="button">취소</button>
 </div>
 

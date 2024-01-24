@@ -12,4 +12,8 @@ public interface MemberService {
 
   public List<Map<String,Object>> memberList(Map<String, Object> mmap) throws Exception;
   public int checkPwd(String inputPassword, Map<String, Object> mbr_seq) throws  Exception;
+
+  public int memberUpdate(Map<String, Object> mmap) throws Exception;
+
+  public int memberDelete(int mbrSeq) throws Exception;
 }

@@ -20,7 +20,10 @@ public class ReservationDaoImpl implements ReservationDao{
 
   @Override
   public List<Map<String, Object>> reserveList(Map<String, Object> mmap) throws Exception {
-    logger.info("Ropositiry : reserveList 호출");
-    return sqlSessionTemplate.selectList("reserveList", mmap);
+    logger.info("Ropositiry : reserveList 호출" + mmap);
+    List<Map<String,Object>> memList = null;
+    memList = sqlSessionTemplate.selectList("reserveList", mmap);
+    logger.info(memList.toString());
+    return memList;
   }
 }
