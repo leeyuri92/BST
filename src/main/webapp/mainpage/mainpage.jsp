@@ -66,16 +66,19 @@
   </div>
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5">
       <%
-        int cardCounter = 0; // 변경된 부분: 카드 개수를 세기 위한 변수 추가
-        for (MainVO mVO : ticketListFromDb) {
+        int homeTeamCounter = 0; // 홈팀 카드 개수를 세기 위한 변수 추가
+        int awayTeamCounter = 0; // 어웨이팀 카드 개수를 세기 위한 변수 추가
+          String currentDate = "2024-02-01"; // test
 
-          LocalDate currentDate = LocalDate.now();
+        // 홈팀 기준으로 출력
+        for (MainVO mVO : ticketListFromDb) {
+          String strDate = mVO.getGm_date();
 
           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-          LocalDate localDate = LocalDate.parse((String)mVO.getGm_date(), formatter);
+          LocalDate localDate = LocalDate.parse(strDate, formatter);
 
-          if (currentDate.equals(localDate)) {
-            cardCounter++;
+          if (currentDate.equals(localDate.toString())) {
+            homeTeamCounter++;
       %>
       <div class="col ticket">
         <a href="http://localhost:9000/reservation/ticketList.jsp">
@@ -87,13 +90,51 @@
         </a>
       </div>
 
-      <!-- 변경된 부분: 5개씩 출력되었을 때 줄바꿈 추가 -->
-      <% if (cardCounter % 5 == 0) { %>
+      <!-- 변경된 부분: 홈팀 카드가 5개씩 출력되었을 때 줄바꿈 추가 -->
+      <%
+        if (homeTeamCounter % 5 == 0) {
+      %>
     </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
-    <% } %>
-    <% } %>
-    <% } %>
+    <%
+          }
+        }
+      }
+    %>
+
+    <%
+      // 어웨이팀 기준으로 출력
+      for (MainVO mVO : ticketListFromDb) {
+        String strDate = mVO.getGm_date();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDate localDate = LocalDate.parse(strDate, formatter);
+
+        if (currentDate.equals(localDate.toString())) {
+          awayTeamCounter++;
+    %>
+    <div class="col ticket">
+      <a href="http://localhost:9000/reservation/ticketList.jsp">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
+          <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
+          <p class="t_name"><%= mVO.getTeam_away() %> IN <%= mVO.getStd_name() %></p>
+          <p class="g_date"><%= mVO.getGm_date() %></p>
+        </div>
+      </a>
+    </div>
+
+    <!-- 변경된 부분: 어웨이팀 카드가 5개씩 출력되었을 때 줄바꿈 추가 -->
+    <%
+      if (awayTeamCounter % 5 == 0) {
+    %>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+    <%
+          }
+        }
+      }
+    %>
+
   </div>
 </div>
 

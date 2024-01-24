@@ -7,15 +7,15 @@
                 <a href="javascript:;" id="introductionCompany" class="footer_menu_link">회사소개</a>
             </li>
             <li class="footer_menu_item">
-                <a href="http://www.ticketlink.co.kr/terms/personalInformation" class="footer_menu_link">
+                <a href="#" class="footer_menu_link">
                     <span class="text_bold">개인정보 처리방침</span>
                 </a>
             </li>
             <li class="footer_menu_item">
-                <a href="//www.ticketlink.co.kr/terms/use" class="footer_menu_link">이용약관</a>
+                <a href="#" class="footer_menu_link">이용약관</a>
             </li>
             <li class="footer_menu_item">
-                <a href="//www.ticketlink.co.kr/help/main" class="footer_menu_link">고객센터</a>
+                <a href="#" class="footer_menu_link">고객센터</a>
             </li>
         </ul>
     </div>
