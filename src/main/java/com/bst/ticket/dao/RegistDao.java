@@ -10,5 +10,11 @@ public interface RegistDao {
     기능 : 회원가입(RegistDao)
     */
   public int Regist(Map<String, Object> mmap) throws Exception;
-  
+
+    /*
+ 작성자 : 이동건
+ 작성일자 : 24.01.14
+ 기능 : 아이디 중복검사
+ */
+    public int checkId(String id) throws Exception;
 }

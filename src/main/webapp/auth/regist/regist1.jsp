@@ -138,19 +138,25 @@
                       //setPost({...post, zipcode:data.zonecode, addr:addr}) ;
                       // document.querySelector("#mem_zipcode").value = data.zonecode;//우편번호
                       // document.querySelector("#mem_address").value = addr;//주소
-                      document.getElementById("mbr_postalcode").value =data.zonecode; //우편번호
-                      document.getElementById("mbr_address").value = addr//주소
+                      document.getElementById("mbr_address").value = data.zonecode;//주소
+                      document.getElementById("mbr_postalcode").value =  addr;//우편번호
                       //document.getElementById("postDetail").focus();
                   }
               }).open();
           }
 
           // 정규표현식 패턴 상수 선언
+          //아이디 정규식표현
           const expIdText = /^[A-Za-z0-9]{4,12}$/;
+          //비밀번호 정규식표현
           const expPwText = /^[A-Za-z0-9]{4,12}$/;
-          const expNameText = /^[가-힣]{2,5}$/; // + 반복
+          //이름 정규식표현
+          const expNameText = /^[가-힣]{2,5}$/;
+          //핸드폰 정규식표현
           const expPhoneText = /^\d{3}-\d{3,4}-\d{4}$/;
+          //생년월일 정규식표현
           const expDateText = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+          //이메일 정규실표현
           const expEmailText = /^[a-zA-Z0-9._+=-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
 
 
@@ -173,18 +179,35 @@
           // 개별 유효성 검사 함수
           const validateId = () => {
             const idSpan = document.getElementById('id');
+            const id2 = document.getElementById('idd');
             const mbrIdInput = document.getElementById('mbr_id');
+            const id = document.getElementById('mbr_id').value;
             const isValid = /^[A-Za-z0-9]{4,12}$/.test(mbrIdInput.value);
 
             if (isValid) {
-              idSpan.style.display = 'none';
+              id2.style.display = 'none';
+              $.ajax({
+                type: 'POST',
+                url: '/auth/checkId',
+                data: {id : id },
+                success: function(cnt) {
+                  // 서버로부터의 응답 처리
+                  if (cnt == 0){
 
+                    idSpan.style.display = 'none';
+                  }else{
+                    id2.style.display = 'inline';
+                  }
+                },
+                error: function(error) {
+                  // 오류 처리
+                  alert("에러입니다");
+                }
+              });
             } else {
-
-
+              id2.style.display = 'none';
               idSpan.style.display = 'inline';
             }
-
             return isValid;
           }
 

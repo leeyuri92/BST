@@ -29,6 +29,17 @@ public class RegistDaoImpl implements RegistDao {
     result = sqlSessionTemplate.insert("memberInsert",mmap);
     return result;
   }
-  
-  
+
+  /*
+ 작성자 : 이동건
+ 작성일자 : 24.01.14
+ 기능 : 아이디 중복검사
+ */
+  @Override
+  public int checkId(String id) throws Exception {
+    int cnt = sqlSessionTemplate.selectOne("checkId",id);
+    return cnt;
+  }
+
+
 }

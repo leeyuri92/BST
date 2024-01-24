@@ -9,6 +9,12 @@
 
 </select>
 
+	<select id="checkId" parameterType="String" resultType="int">
+	select count(mbr_id)
+	from member
+	where mbr_id = #{mbr_id}
+</select>
+
 <select id="memberList" parameterType="map"  resultType = "map">
   select a.mbr_seq, a.mbr_id, a.mbr_pwd, a.mbr_nm, a.mbr_birthdate, a.mbr_phone, a.mbr_email, 
 					b.team_name, b.team_logo, a.mbr_role, a.mbr_address, a.mbr_postalcode
