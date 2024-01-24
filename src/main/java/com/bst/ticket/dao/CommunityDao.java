@@ -21,8 +21,13 @@ public interface CommunityDao {
     //게시글 조회수
     public void boardHitUpdate(Integer boardId);
 
-
     //게시글 작성
     void saveCommunityBoard(Map<String, CommunityVO> boardMap);
+
+    //게시글 삭제
+    void deleteCommunityBoard(Integer boardId);
+
+    //게시글 수정
+    void updateCommunityBoard(CommunityVO tempBoard);
 
 }

@@ -50,6 +50,7 @@
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">조회수</th>
+                    <th scope="col">작성일</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,7 @@
                         <td><a href="/community/view/${board.boardId}">${board.boardTitle}</a></td>
                         <th scope="row"> ${board.memberName}</th>
                         <th scope="row">${board.boardHit}</th>
+                        <th scope="row">${board.boardCreatedAt}</th>
                     </tr>
                 </c:forEach>
                 </tbody>
