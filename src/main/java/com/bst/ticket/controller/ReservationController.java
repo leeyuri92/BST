@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,10 +35,10 @@ public class ReservationController {
 **********************************************************************************/
   @GetMapping("mypageForm")
   public String reserveList(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
-    logger.info("Controller : mypageForm 호출");
+    logger.info("Controller : mypageForm 호출" + mmap);
     List<Map<String ,Object>> reserveList;
-    
     reserveList = reservationService.reserveList(mmap);
+    logger.info(reserveList.toString());
     model.addAttribute("reserveList", reserveList);
 
     return "forward:/mypage/mypageForm.jsp";

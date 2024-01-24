@@ -40,4 +40,16 @@ public class MemberServiceImpl implements MemberService{
       return 0;
     }
   }
+
+  @Override
+  public int memberUpdate(Map<String, Object> mmap) throws Exception {
+    logger.info("Service : memberUpdate 호출");
+    return memberDao.memberUpdate(mmap);
+  }
+
+  @Override
+  public int memberDelete(int mbrSeq) throws Exception {
+    logger.info("Service : memberDelete 호출");
+    return memberDao.memberDelete(mbrSeq);
+  }
 }

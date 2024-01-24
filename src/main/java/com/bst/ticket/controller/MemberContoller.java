@@ -32,8 +32,43 @@ public class MemberContoller {
 
       List<Map<String,Object>> memberList = null;
       memberList = memberService.memberList(mmap);
+      logger.info(memberList.toString());
       model.addAttribute("memberList", memberList);
       return "forward:/mypage/profileForm.jsp";
+  }
+
+  /*
+   작성자 : 박병현
+   작성일자 : 24.01.24
+   기능 : 회원 수정
+  */
+  @PostMapping("memberUpdate")
+  public String memberUpdate(@RequestParam Map<String,Object> mmap, RedirectAttributes redirectAttributes) throws Exception {
+    logger.info("Controller : memberUpdate 호출");
+    int result = 0;
+      result = memberService.memberUpdate(mmap);
+    if (result == 1) {
+      redirectAttributes.addAttribute("mbr_seq", mmap.get("mbr_seq").toString());
+      return "redirect:/reservation/mypageForm";
+    } else {
+      return "";
+    }
+  }
+  /*
+   작성자 : 박병현
+   작성일자 : 24.01.24
+   기능 : 회원 삭제
+  */
+  @GetMapping("memberDelete")
+  public String memberDelete(@RequestParam int mbr_seq) throws Exception {
+    logger.info("Controller : memberDelete 호출" + mbr_seq);
+    int result = 0;
+      result = memberService.memberDelete(mbr_seq);
+    if (result == 1) {
+      return "redirect:/mainpage/tickerList";
+    } else {
+      return "";
+    }
   }
 
   /*
@@ -48,7 +83,7 @@ public class MemberContoller {
       int result = 0;
       result = memberService.checkPwd(inputPassword, mbr_seq);
       if (result==1){
-        redirectAttributes.addFlashAttribute(mbr_seq);
+        redirectAttributes.addAttribute("mmap",mbr_seq.toString());
         return "redirect:/member/memberProfile";
       }else{
         return "";

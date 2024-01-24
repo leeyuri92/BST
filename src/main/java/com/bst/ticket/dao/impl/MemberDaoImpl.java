@@ -25,9 +25,11 @@ public class MemberDaoImpl implements MemberDao{
   */
   @Override
   public List<Map<String, Object>> memberList(Map<String, Object> mmap) throws Exception {
-    logger.info("Repository : memberList 호출");
-
-    return sqlSessionTemplate.selectList("memberList",mmap);
+    logger.info("Repository : memberList 호출" + mmap);
+    List<Map<String,Object>> memList = null;
+    memList = sqlSessionTemplate.selectList("memberList",mmap);
+    logger.info(memList.toString());
+    return memList;
   }
 
   @Override
@@ -38,4 +40,15 @@ public class MemberDaoImpl implements MemberDao{
     return selectPws;
   }
 
+  @Override
+  public int memberUpdate(Map<String, Object> mmap) throws Exception {
+    logger.info("Repository : memberUpdate 호출");
+    return sqlSessionTemplate.update("memberUpdate",mmap);
+  }
+
+  @Override
+  public int memberDelete(int mbrSeq) throws Exception {
+    logger.info("Repository : memberDelete 호출");
+    return sqlSessionTemplate.delete("memberDelete",mbrSeq);
+  }
 }

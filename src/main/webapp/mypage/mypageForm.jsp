@@ -3,11 +3,10 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%
   List<Map<String, Object>> reserveList = (List) request.getAttribute("reserveList");
-  out.print(reserveList);
   //생일과 현재 날짜를 비교하여 65세 기준으로 일반회원과 실버회원으로 나누기
   LocalDate currentDate = LocalDate.now();
   Map<String, Object> rsmap = reserveList.get(0);
-
+  out.print(reserveList);
   String strBirthDate = rsmap.get("mbr_birthdate").toString();
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   LocalDate birthDate = LocalDate.parse(strBirthDate, formatter);
@@ -100,7 +99,7 @@
             isSilver = "실버회원";
           }
         %>
-        <div style="color: black; background-color: #504f4f; width: 65px;"><%=isSilver%></div>
+        <div style="color: #f5f5f7; background-color: #504f4f; width: 65px;"><%=isSilver%></div>
         <div class="userText"><%=rsmap.get("mbr_email")%></div>
       </div>
       <div>
@@ -147,20 +146,26 @@
       <h2>예약 현황</h2>
       <button class="button reservationContent" onclick="reserveForm()">
         <%
-          strReservation.append(rsmap.get("gm_date").toString())
-                  .append(" ")
-                  .append(rsmap.get("std_name"));
+          if (rsmap.get("rsv_id") != null){
+              strReservation.append(rsmap.get("gm_date").toString())
+                      .append(" ")
+                      .append(rsmap.get("std_name"));
         %>
         <h4><%= strReservation %>
         </h4>
         <%
-          if (rsmap.get("myteam").equals("없음")) {
+            if (rsmap.get("myteam").equals("없음")) {
         %>
         <h4><%= rsmap.get("team_away") + " vs " + rsmap.get("team_home") %> &gt</h4>
         <%
-        } else {
+            } else {
         %>
         <h4><%= rsmap.get("myteam") %> &gt</h4>
+        <%
+             }
+          }else{
+        %>
+        <h4>예약내역 없음</h4>
         <%
           }
         %>
