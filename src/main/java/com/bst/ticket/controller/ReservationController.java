@@ -21,7 +21,7 @@ import com.bst.ticket.service.ReservationService;
 **********************************************************************************/
 @Controller
 @RequestMapping("/reservation/*")
-public class ReservationController {
+public class      ReservationController {
   Logger logger = LoggerFactory.getLogger(ReservationController.class);
 
   @Autowired

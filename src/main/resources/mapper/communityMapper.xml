@@ -14,7 +14,8 @@
                m.mbr_nm        AS memberName
         FROM board b
                  JOIN
-             member m ON b.mbr_seq = m.mbr_seq;
+             member m ON b.mbr_seq = m.mbr_seq
+        ORDER BY bd_id;
     </select>
     <!--게시글 상세조회-->
     <select id="getCommunityBoardById" resultType="com.bst.ticket.vo.CommunityVO">
@@ -37,10 +38,33 @@
         where bd_id = #{boardId}
     </update>
 
+    <!--게시글 작성-->
     <insert id="saveCommunityBoard" parameterType="hashMap">
         INSERT INTO board(bd_title, bd_content, bd_created_at, mbr_seq)
         VALUES (#{boardTitle}, #{boardContent}, NOW(), 0)
     </insert>
 
+    <!--게시글 삭제-->
+    <delete id="deleteCommunityBoardById" parameterType="int">
+        DELETE
+        FROM board
+        WHERE bd_id = #{boardId}
+    </delete>
 
+    <!--게시글 수정-->
+    <update id="updateCommunityBoard" parameterType="com.bst.ticket.vo.CommunityVO">
+        UPDATE board
+        SET bd_title=#{boardTitle},
+            bd_content=#{boardContent}
+        WHERE bd_id = #{boardId};
+    </update>
+
+    <!--댓글 목록-->
+    <select id="selectCommentList" resultType="com.bst.ticket.vo.CommunityCommentVO">
+        SELECT bdc_id         AS commentId,
+               brc_content    AS commentContent,
+               bdc_created_at AS commentCreatedAt
+        FROM board_comment
+        WHERE bd_id = #{boardId};
+    </select>
 </mapper>

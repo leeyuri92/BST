@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>커뮤니티 게시글 작성</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 게시글 수정</title>
     <%@include file="/common/bootstrap_common.jsp" %>
 
     <style>
@@ -34,41 +34,39 @@
         }
     </style>
 
-
+    <script type="text/javascript">
+        /* 자바 스크립트 부분 */
+    </script>
 </head>
-
-
 <body>
 <!--================================= header start ==================================-->
 <%@include file="/include/ticket_header.jsp" %>
 <!--================================= header end ==================================-->
 
 <!--================================= body start ==================================-->
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h2>게시글 작성</h2>
+                <h2>게시글 수정</h2>
                 <hr/>
             </div>
         </div>
     </div>
-
-    <!-- 게시글 작성 폼 -->
+    <!-- 게시글 수정 폼 -->
     <div class="row post-write">
         <div class="col-md-12 form-container">
-            <form action="/community/write" method="post">
+            <form action="/community/update/${boardId}" method="post">
+                <input type="hidden" name="boardId" value="${boardId}">
                 <div class="mb-3">
-                    <label for="boardTitle" class="form-label">제목</label>
+                    <label for="boardTitle" class="form-label">수정할 제목</label>
                     <input type="text" class="form-control" id="boardTitle" name="boardTitle" required>
                 </div>
                 <div class="mb-3">
-                    <label for="boardContent" class="form-label">내용</label>
+                    <label for="boardContent" class="form-label">수정할 내용</label>
                     <textarea class="form-control" id="boardContent" name="boardContent" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">게시글 작성</button>
+                <button type="submit" class="btn btn-primary">게시글 수정</button>
             </form>
         </div>
     </div>

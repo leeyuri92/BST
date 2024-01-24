@@ -39,5 +39,13 @@ public class CommunityDaoImpl implements CommunityDao {
         sqlSessionTemplate.insert("saveCommunityBoard", boardMap);
     }
 
+    @Override
+    public void deleteCommunityBoard(Integer boardId) {
+        sqlSessionTemplate.delete("deleteCommunityBoardById", boardId);
+    }
 
+    @Override
+    public void updateCommunityBoard(CommunityVO tempBoard) {
+        sqlSessionTemplate.update("updateCommunityBoard", tempBoard);
+    }
 }

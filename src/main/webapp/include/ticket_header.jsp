@@ -18,7 +18,7 @@
         <a class="nav-link" href="/notice/openNotice.jsp">오픈공지</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/community/community.jsp">커뮤니티</a>
+          <a class="nav-link" href="/community/">커뮤니티</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/ticket/ticketList">티켓팅</a>
