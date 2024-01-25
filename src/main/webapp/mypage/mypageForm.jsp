@@ -91,7 +91,7 @@
         <div class="userText"><%=rsmap.get("mbr_nm")%></div>
         <% //일반회원 실버회원 나이로 확인 하는 코드
           String isSilver = null;
-          if (65 > (currentDate.getYear() - birthDate.getYear())) {
+          if (65 >= (currentDate.getYear() - birthDate.getYear())) {
             isSilver = "일반회원";
           } else {
             isSilver = "실버회원";
