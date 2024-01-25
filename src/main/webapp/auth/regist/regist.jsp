@@ -14,6 +14,7 @@
         // 양식 전체 유효성을 확인한 후 폼을 제출합니다.
         if (validateForm()) {
           // 유효성 검사 성공 시, 폼을 제출합니다.
+          alert("회원가입 완료!");
           document.querySelector("#f_member").submit();
         } else {
           // 유효성 검사 실패 시, 오류 메시지를 표시하거나 적절한 조치를 취합니다.
@@ -22,7 +23,7 @@
       }
 
         const back=()=> {
-          location.href = "../term/term.jsp";
+          location.href = "./term/term.jsp";
         }
 
     </script>
