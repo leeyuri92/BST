@@ -67,13 +67,23 @@ public class RegistController {
   }
 
   /*
-  작성자 : 이유리
+  작성자 : 이동건
   작성일자 : 24.01.25
-  기능 : 로그아웃 페이지 호출 메소드 구현
+  기능 : 약관동의 페이지 호출 
 */
-  @GetMapping("/join")
-  public String joinPage() {
-    logger.info("joinPage() 호출");
+  @GetMapping("/termPage")
+  public String termPage() {
+    logger.info("termPage() 호출");
+    return "forward:term/term.jsp";
+  }
+  /*
+작성자 : 이동건
+작성일자 : 24.01.25
+기능 : 회원가입 페이지 호출
+*/
+  @GetMapping("/registPage")
+  public String registPage() {
+    logger.info("registPage() 호출");
     return "forward:regist/regist.jsp";
   }
 }

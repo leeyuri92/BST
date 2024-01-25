@@ -212,7 +212,7 @@
                   // 오류 처리
                   alert("에러입니다");
                 }
-              });
+              });6
             } else {
               id2.style.display = 'none';
               idSpan.style.display = 'inline';

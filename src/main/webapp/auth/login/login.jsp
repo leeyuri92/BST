@@ -33,7 +33,9 @@
             console.log("findPW");
             // controller로 입력받은 값 넘기기
         };
-
+        const regist = () =>{
+            location.href='/auth/termPage';
+        }
     </script>
 
 </head>
@@ -68,7 +70,7 @@
 
             <div class="d-flex gap-3">
                 <button class="btn btn-light border fw-bold" style="width: 180px;" onclick="login()">로그인</button>
-                <button class="btn btn-dark fw-bold" style="width: 180px;" onclick="location.href='/auth/regist/regist.jsp'">회원가입</button>
+                <button class="btn btn-dark fw-bold" style="width: 180px;" onclick="regist()">회원가입</button>
             </div>
 
             <div class="d-flex gap-3">
