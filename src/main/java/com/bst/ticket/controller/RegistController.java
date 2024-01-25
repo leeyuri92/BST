@@ -49,7 +49,7 @@ public class RegistController {
     memberVO.setMbr_pwd(encPassword);//password변수 치환
     result = registService.regist(memberVO);
     if(result == 1){
-      path = "redirect:/mainpage/mainpage.jsp";
+      path = "redirect:/auth/login/login.jsp";
     }else{
       path = "redirect:/registerror.jsp";
     }
