@@ -83,7 +83,7 @@
       <div class="form-group mb-3 mt-3">
         <label for="mbr_address">주소(선택사항)</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="mbr_address" name="mbr_address" placeholder="우편번호" aria-describedby="search-btn">
+          <input type="text" class="form-control" id="mbr_postalcode" name="mbr_postalcode" placeholder="우편번호" aria-describedby="search-btn">
           <div class="input-group-append">
             <button class="btn btn-success" type="button" id="search-btn" onclick="openZipcode()">검색</button>
           </div>
@@ -92,7 +92,7 @@
 
       <div class="form-group mb-3 mt-3">
         <label for="mbr_postalcode">상세주소</label>
-        <input type="text" class="form-control" id="mbr_postalcode" name="mbr_postalcode" placeholder="상세주소를 입력해주세요.">
+        <input type="text" class="form-control" id="mbr_address" name="mbr_address" placeholder="상세주소를 입력해주세요.">
       </div>
 
       <div class="form-group mb-3 mt-3">
@@ -146,8 +146,8 @@
                       //setPost({...post, zipcode:data.zonecode, addr:addr}) ;
                       // document.querySelector("#mem_zipcode").value = data.zonecode;//우편번호
                       // document.querySelector("#mem_address").value = addr;//주소
-                      document.getElementById("mbr_address").value = data.zonecode;//주소
-                      document.getElementById("mbr_postalcode").value =  addr;//우편번호
+                      document.getElementById("mbr_address").value = addr;//주소
+                      document.getElementById("mbr_postalcode").value =  data.zonecode;//우편번호
                       //document.getElementById("postDetail").focus();
                   }
               }).open();
