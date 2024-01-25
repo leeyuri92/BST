@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 //                        .requestMatchers("/user/**").authenticated()
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
-//                        .requestMatchers("/mypage/**").authenticated()
+                        .requestMatchers("/reservation/**").authenticated()
 //                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated())

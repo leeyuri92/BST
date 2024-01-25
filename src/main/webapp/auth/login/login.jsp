@@ -25,6 +25,10 @@
             console.log("구글로그인 호출");
             location.href="/oauth2/authorization/google";
         };
+        const loginK = () => {
+            console.log("카카오 호출");
+            location.href="/oauth2/authorization/kakao";
+        };
         const findId = () => {
             console.log("findId");
             document.querySelector("#f_findId").submit();
@@ -87,7 +91,7 @@
         <div class="social-login-container">
             <div class="mb-3 fs-5 fw-bold text-white">간편로그인</div>
             <div class="d-flex gap-5">
-                <img src="/images/ko/iconKakao.png">
+                <img src="/images/ko/iconKakao.png" onclick="loginK()">
                 <img src="/images/ko/iconNaver.png">
                 <img src="/images/ko/iconGoogle.png" onclick="loginG()">
             </div>
