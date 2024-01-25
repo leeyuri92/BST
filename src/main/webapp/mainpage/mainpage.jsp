@@ -30,9 +30,9 @@
   </div>
 </div>
 <!--================================= 메인보드 start ==================================-->
-<div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+<div id="carouselExampleRide" class="carousel slide" data-bs-ride="true"> <%-- 이미지 자동 흐름 참 --%>
   <div class="carousel-inner">
-    <a href="http://localhost:9000/mainpage.jsp" class="carousel-item active">
+    <a href="http://localhost:9000/mainpage.jsp" class="carousel-item active"> <%-- active = 메인으로 보여질 캐러셀 --%>
       <img src="/images/banner/samsung.png" class="d-block w-100" alt="삼성라이온즈메인사진">
     </a>
     <a href="http://localhost:9000/mainpage.jsp" class="carousel-item">
