@@ -35,6 +35,27 @@ public class NoticeServiceImpl implements NoticeService {
         rMap = noticeDao.getNoticeDetail(ntc_id);
         return rMap;
     }
+
+        @Override
+        public List<Map<String, Object>> noticeAdmin(Map<String,Object>aMap) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        list=noticeDao.noticeAdmin(aMap);
+        return list;
+        }
+
+    @Override
+    public int noticeDelete(int ntc_id) {
+        int result=0;
+        result=noticeDao.noticeDelete(ntc_id);
+        return result;
+    }
+
+    @Override
+    public int noticeInsert(Map<String, Object> aMap) {
+        int result=0;
+        result=noticeDao.noticeInsert(aMap);
+        return result;
+    }
     
 }
 

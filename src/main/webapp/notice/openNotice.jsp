@@ -19,8 +19,16 @@
 
   <script type="text/javascript">
     /* 자바 스크립트 부분 */
-    const noticeDetail=(ntc_id)=>{
+    const noticeDetail=(ntc_id)=>{ 
       window.location.href="noticeDetail?ntc_id=" +ntc_id;
+    }
+
+    const noticeAdmin=()=>{  //관리자 페이지이동
+      result=null;
+      if(noticeAdmin!=null){
+        result=location.href="/notice/noticeAdmin";
+        return result;
+      }else{alert("이동실페")}
     }
   </script>
 
@@ -34,20 +42,24 @@
 <div class="container mt-5">
   <div class="page-header">
     <h2 class="nav justify-content-center">오픈공지</h2>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" type="button" onclick="noticeAdmin()">관리자 페이지</button>
+    </div>
     <hr />
   </div>
 </div>
+
 <div>
  
 <!-- Button trigger modal -->
 <%
-for (int i = 0; i < size; i++) {
+for (int i = 1; i < size; i++) {
     Map<String, Object> pmap = listA.get(i);
 %>
 <div style="margin-bottom: 30px;">
     <ul class="nav nav-pills" style="padding-left: 50px; padding-right: 60px; background-color: #E7E4E4; left: 180px; display: flex; align-items: center;">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%=pmap.get("ntc_id")%>" style="margin-right: 120px;" onclick="redirectToDetail(<%=pmap.get("ntc_id")%>)">
-            <%=pmap.get("ntc_id")%>
+            <%=i%>
         </button>
         <li class="nav-item" style="margin-right:  10%;">
             <a class="nav-link" href="javascript:noticeDetail('<%=pmap.get("ntc_id")%>')">
