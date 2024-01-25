@@ -3,12 +3,6 @@
 <%@ page import="static com.fasterxml.jackson.databind.type.LogicalType.Map" %>
 <%@ page import="java.util.List, java.util.Map, java.time.format.DateTimeFormatter, java.time.LocalDate" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-  List<MainVO> ticketListFromDb = (List) request.getAttribute("ticketList");
-  Map<String,Object> tmap = null;
-
-
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,13 +58,19 @@
   <div class="body_title">
     <h2 class="ticket text-center">예매하기</h2>
   </div>
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5">
+<%
+  List<MainVO> ticketListFromDb = (List<MainVO>) request.getAttribute("ticketList");
+%>
       <%
+        if (ticketListFromDb != null && !ticketListFromDb.isEmpty()) {
         int homeTeamCounter = 0; // 홈팀 카드 개수를 세기 위한 변수 추가
         int awayTeamCounter = 0; // 어웨이팀 카드 개수를 세기 위한 변수 추가
           String currentDate = "2024-02-01"; // test
-
+      %>
+    <div class="row row-cols-1 row-cols-md-5 row-cols-lg-5">
+      <%
         // 홈팀 기준으로 출력
+        if (ticketListFromDb != null) {
         for (MainVO mVO : ticketListFromDb) {
           String strDate = mVO.getGm_date();
 
@@ -81,7 +81,7 @@
             homeTeamCounter++;
       %>
       <div class="col ticket">
-        <a href="http://localhost:9000/reservation/ticketList.jsp">
+        <a href="http://localhost:9000/ticket/ticketList">
           <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
             <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
             <p class="t_name"><%= mVO.getTeam_home() %> IN <%= mVO.getStd_name() %></p>
@@ -90,20 +90,21 @@
         </a>
       </div>
 
-      <!-- 변경된 부분: 홈팀 카드가 5개씩 출력되었을 때 줄바꿈 추가 -->
       <%
         if (homeTeamCounter % 5 == 0) {
       %>
     </div>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+  <div class="row row-cols-1 row-cols-md-5 row-cols-lg-5">
     <%
+            }
           }
         }
       }
     %>
 
     <%
-      // 어웨이팀 기준으로 출력
+      //ticketListFromDb가 null이 아니면서 비어있지 않을 때만 출력
+      if (ticketListFromDb != null && !ticketListFromDb.isEmpty())
       for (MainVO mVO : ticketListFromDb) {
         String strDate = mVO.getGm_date();
 
@@ -114,7 +115,7 @@
           awayTeamCounter++;
     %>
     <div class="col ticket">
-      <a href="http://localhost:9000/reservation/ticketList.jsp">
+      <a href="http://localhost:9000/ticket/ticketList">
         <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: blue;">
           <img src="/images/icon/Ticket.png" alt="Bootstrap" width="60px" max-height="60px" class="rounded-circle">
           <p class="t_name"><%= mVO.getTeam_away() %> IN <%= mVO.getStd_name() %></p>
@@ -123,18 +124,29 @@
       </a>
     </div>
 
-    <!-- 변경된 부분: 어웨이팀 카드가 5개씩 출력되었을 때 줄바꿈 추가 -->
     <%
       if (awayTeamCounter % 5 == 0) {
     %>
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
     <%
+            }
           }
         }
+    %>
+    <div>
+    <%
+    } else {
+    %>
+      <!-- ticketListFromDb가 null이거나 비어 있을 때만 출력 -->
+      <div class="row">
+        <div class="col ticket">
+          <p class="text-center">티켓 준비 중...</p>
+        </div>
+      </div>
+    <%
       }
     %>
-
   </div>
 </div>
 
@@ -151,7 +163,7 @@
 <!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->
-<%@include file="/include/test_footer.jsp" %>
+<%@include file="/include/ticket_footer.jsp" %>
 <!--================================== footer end ===================================-->
 
 

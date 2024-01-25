@@ -98,3 +98,38 @@ a {
     margin-left: 15px;
     font-size: small;
 }
+
+.btn_move_top {
+    position: fixed;
+    bottom: 20px; /* Adjust the distance from the bottom as needed */
+    right: 20px; /* Adjust the distance from the right as needed */
+    background-color: #ffffff; /* Background color of the button */
+    border: 2px solid #333333; /* Border color and thickness */
+    border-radius: 50%; /* Make it a circle */
+    padding: 10px; /* Adjust the padding as needed */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn_move_top:hover {
+    background-color: #dddddd; /* Change the background color on hover */
+}
+
+.is-active {
+    transform: scale(1.1); /* Increase size when active */
+}
+
+.is-stuck {
+    bottom: auto; /* Override bottom position when stuck */
+    top: 20px; /* Adjust the distance from the top when stuck */
+}
+
+.is-hidden {
+    display: none;
+}
+
+.moveTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
