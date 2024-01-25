@@ -57,13 +57,11 @@
                   });
               }
           })();
-          // console.log("profile 클릭");
-          // location.href = "/member/memberProfile?mbr_seq=1";
       }
 
       const reserveForm = () => {
           console.log("reserve 클릭");
-          location.href = "/reservation/reserveForm?mbr_seq=1";
+          location.href = "/reservation/reserveForm?mbr_seq=" + <%=rsmap.get("mbr_seq")%>;
       }
 
       const QnA = () => {
