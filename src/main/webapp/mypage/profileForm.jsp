@@ -37,6 +37,10 @@
           alert("memberDelete");
           location.href = "/member/memberDelete?mbr_seq="+<%=mmap.get("mbr_seq")%>;
       }
+
+      const btn_Cancel = () =>{
+          location.href = "/reservation/mypageForm?mbr_seq=1";
+      }
   </script>
 
 </head>
@@ -164,7 +168,7 @@
 <br/>
 <div class='btn footer mx-3'>
   <button class="button" onclick="memberInfoUpdate()">저장</button>
-  <button class="button">취소</button>
+  <button class="button" onclick="btn_Cancel()">취소</button>
 </div>
 
 
