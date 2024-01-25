@@ -66,7 +66,7 @@ public class MemberContoller {
     int result = 0;
       result = memberService.memberDelete(mbr_seq);
     if (result == 1) {
-      return "redirect:/mainpage/tickerList";
+      return "redirect:/mainpage/ticketList";
     } else {
       return "";
     }

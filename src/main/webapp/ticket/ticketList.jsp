@@ -1,8 +1,9 @@
 <%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.List, java.util.Map" %>
 <%
 	List<Map<String,Object>> ticketList = (List)request.getAttribute("ticketList");
 	out.print(ticketList);
+  Map<String,Object> tmap ;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,7 @@
 
   </script>
 
+
 </head>
 <body>
 <!--================================= header start ==================================-->
@@ -30,6 +32,18 @@
     <hr />
   </div>
 </div>
+<select class="form-select" aria-label="Default select example" style="width: 250px; margin-left: 30px">
+  <option selected>경기날짜를 선택하세요</option>
+  <%
+    for (int i = 0; i < ticketList.size(); i++) {
+        tmap = ticketList.get(i);
+
+  %>
+  <option value="<%=i%>"><%=tmap.get("gm_date")%></option>
+  <%
+    }
+  %>
+</select>
 <!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->
