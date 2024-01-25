@@ -74,32 +74,6 @@
         }
       %>
 
-
-      <!-- 여기가 디자인 코드 삽입 위치  -->
-<%--            <form class="d-flex mb-2 mb-lg-0" role="search">--%>
-<%--              <div class="me-auto mt-2 mb-lg-0"><%=nickname %>님.&nbsp;</div>--%>
-<%--              <input type="button" class="btn btn-outline-success" onclick="logout()" value="로그아웃">--%>
-<%--            </form>--%>
-<%--            <script>--%>
-<%--              const logout = () =>{--%>
-<%--                console.log("로그아웃 버튼 클릭");--%>
-<%--                location.href="/authc/logout";--%>
-<%--              }--%>
-<%--            </script>--%>
-<%--      <form class="d-flex mb-2 mb-lg-0" role="search">--%>
-<%--        <div class="me-auto mt-2 mb-lg-0"><%=nickname %>님.&nbsp;</div>--%>
-<%--        <input type="button" class="btn btn-outline-success" onclick="logout()" value="로그아웃">--%>
-<%--      </form>--%>
-<%--      <script>--%>
-<%--        const logout = () =>{--%>
-<%--          console.log("로그아웃 버튼 클릭");--%>
-<%--          location.href="/logout";--%>
-<%--        }--%>
-<%--      </script>--%>
-<%--      <%--%>
-<%--        }--%>
-<%--      %>--%>
-
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
         <button class="btn btn btn-outline-primary" type="submit">

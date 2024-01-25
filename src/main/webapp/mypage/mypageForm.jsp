@@ -85,7 +85,7 @@
   <div class="page-body">
     <div class="mypageBody">
       <div class="rounded-circle">
-        <img src="/images/logo/kiaLogo.png" style="width: 60px; height: 46px;">
+        <img src="/images/logo/<%=rsmap.get("team_logo")%>.png" style="width: 150px; height: 150px;">
       </div>
       <div class="userInfo">
         <div class="userText"><%=rsmap.get("mbr_nm")%></div>
