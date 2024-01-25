@@ -2,28 +2,29 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     String id = (String) request.getAttribute("findId");
-    out.print(id);
+    if (id != null) {
+        out.println("<script>alert('고객님의 id값은  " + id + "  입니다');</script>");
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>web - 로그인 </title>
+    <title> 로그인 </title>
     <link rel="stylesheet" href="/css/login.css">
     <%@include file="/common/bootstrap_common.jsp" %>
 
     <script type="text/javascript">
 
         const login = (event) => {
-            alert("로그인 호출");
+            // alert("로그인 호출");
             document.getElementById("f_login").submit();  // form 에 있는 action="loginProcess"실행
-        }
+        };
         const loginG = () => {
             console.log("구글로그인 호출");
             location.href="/oauth2/authorization/google";
         };
-
         const findId = () => {
             console.log("findId");
             document.querySelector("#f_findId").submit();
@@ -71,7 +72,8 @@
             </div>
 
             <div class="d-flex gap-3">
-                <button type="button" class="btn btn-secondary btn-sm"  data-bs-toggle="modal" data-bs-target="#findID">
+                <%--                <button type="button" class="btn btn-secondary btn-sm"  data-bs-toggle="modal" data-bs-target="#findID">--%>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/find'">
                     아이디 찾기
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#findPW">

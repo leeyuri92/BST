@@ -8,12 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.bst.ticket.service.RegistService;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/auth/*")
@@ -67,6 +64,16 @@ public class RegistController {
     logger.info(id);
     int cnt = registService.checkId(id);
     return cnt;
+  }
 
+  /*
+  작성자 : 이유리
+  작성일자 : 24.01.25
+  기능 : 로그아웃 페이지 호출 메소드 구현
+*/
+  @GetMapping("/join")
+  public String joinPage() {
+    logger.info("joinPage() 호출");
+    return "forward:regist/regist.jsp";
   }
 }
