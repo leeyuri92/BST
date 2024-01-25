@@ -10,4 +10,10 @@ public interface NoticeDao {
 
   public Map<String, Object> getNoticeDetail(int ntc_id) throws Exception;
 
+  public List<Map<String, Object>> noticeAdmin(Map<String,Object>aMap);
+  public int noticeDelete(int ntc_id);
+
+  public int noticeInsert(Map<String, Object> aMap);
+
+
   }
