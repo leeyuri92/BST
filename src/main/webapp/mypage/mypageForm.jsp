@@ -68,6 +68,9 @@
           location.href = "/QnA/QnA.jsp";
       }
 
+      const logout = () =>{
+          location.href = "/logout";
+      }
 
   </script>
 
