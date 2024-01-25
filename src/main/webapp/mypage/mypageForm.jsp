@@ -67,7 +67,7 @@
       }
 
       const QnA = () => {
-          location.href = "/reservation/reserveForm?mbr_seq=1";
+          location.href = "/QnA/QnA.jsp";
       }
 
 
@@ -111,25 +111,25 @@
     <br/>
     <div class="category">
       <div>
-        <a href="/notice/openNotice.jsp" class="img_text">
+        <a href="/notice/noticeList" class="img_text">
           <img class="img_category" src="/images/icon/openNotice.png">
           <p class="category_name">공지사항</p>
         </a>
       </div>
       <div>
-        <a href="/community/community.jsp" class="img_text">
+        <a href="/community/" class="img_text">
           <img class="img_category" src="/images/icon/Community.png">
           <p class="category_name">커뮤니티</p>
         </a>
       </div>
       <div>
-        <a href="/ticket/ticketList.jsp" class="img_text">
+        <a href="/ticket/ticketList" class="img_text">
           <img class="img_category" src="/images/icon/ticketting.png">
           <p class="category_name">티켓팅</p>
         </a>
       </div>
       <div>
-        <a href="/mypage/reserveForm.jsp" class="img_text">
+        <a href="/reservation/reserveForm" class="img_text">
           <img class="img_category" src="/images/icon/reservation.png">
           <p class="category_name">예약내역</p>
         </a>

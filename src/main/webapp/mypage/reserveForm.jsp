@@ -2,7 +2,7 @@
 <%@ page import="java.util.List, java.util.Map" %>
 <%
   List<Map<String, Object>> reserveList = (List) request.getAttribute("reserveList");
-  out.print(reserveList);
+//  out.print(reserveList.get(0).get("rsv_id"));
   StringBuffer strReservation = new StringBuffer();
 %>
 <!DOCTYPE html>
@@ -16,7 +16,6 @@
 
   <script type="text/javascript">
       /* 자바 스크립트 부분 */
-
   </script>
 
 </head>
@@ -38,7 +37,9 @@
       <tbody>
       <%--for 문 start--%>
       <%
+        if ((reserveList.get(0).get("rsv_id"))!=null){
         for (int i = 0; i < reserveList.size(); i++) {
+
           Map<String, Object> rsmap = reserveList.get(i);
           strReservation.append(" ")
                   .append(rsmap.get("gm_date").toString())
@@ -48,9 +49,15 @@
       <tr>
         <td><%=rsmap.get("rsv_number")%></td>
         <td><%=strReservation%></td>
-        <td>버튼</td>
       </tr>
       <%--for 문 end--%>
+      <%
+          }
+        }else{
+      %>
+      <tr>
+        <td>예약내역 없음</td>
+      </tr>
       <%
         }
       %>

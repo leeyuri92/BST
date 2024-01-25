@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse fw-bold fs-4">
       <ul class="navbar-nav nav justify-content-center ms-auto me-auto mb-0 mb-lg-0">
 
-        <a class="nav-link" href="/notice/openNotice.jsp">오픈공지</a>
+        <a class="nav-link" href="/notice/noticeList">오픈공지</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/community/">커뮤니티</a>
