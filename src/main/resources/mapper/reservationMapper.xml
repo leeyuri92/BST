@@ -3,20 +3,20 @@
 <mapper namespace="com.mybatis.mapper.ReservationMapper">
 
 <select id="reserveList" parameterType="map"  resultType = "map">
-  select b.mbr_seq, a.rsv_id, a.rsv_number, b.mbr_nm,b.mbr_email,b.mbr_birthdate, c.gm_date, d.std_name, e.team_name as team_away, f.team_name as team_home, g.team_name as myteam
-  from reservation as a
-      inner join game as c
-      inner join stadium as d
-      inner join team as e
-      inner join team as f
-      inner join team as g
-      right outer join member as b
-  on a.mbr_seq = b.mbr_seq
-  and a.gm_id = c.gm_id
-  and c.std_id = d.std_id
-  and c.team_id = e.team_id
-  and c.team_id2 = f.team_id
-  and b.team_id = g.team_id
+    select b.mbr_seq, a.rsv_id, a.rsv_number, b.mbr_nm,b.mbr_email,b.mbr_birthdate, c.gm_date, d.std_name, e.team_name as team_away, f.team_name as team_home, b.myteam, b.team_logo
+    from reservation as a
+    inner join game as c
+    inner join stadium as d
+    inner join team as e
+    inner join team as f
+    right outer join (select b.mbr_seq, b.mbr_nm, b.mbr_email,b.mbr_birthdate,  g.team_name as myteam ,g.team_logo
+    from member b left outer join team g
+    on b.team_id = g.team_id) as b
+    on a.mbr_seq = b.mbr_seq
+    and a.gm_id = c.gm_id
+    and c.std_id = d.std_id
+    and c.team_id = e.team_id
+    and c.team_id2 = f.team_id
     <where>
         <if test="mbr_seq!=null">AND b.mbr_seq=#{mbr_seq}</if>
     </where>

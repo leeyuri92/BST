@@ -60,11 +60,11 @@
     <%
         if(mmap.get("team_name").equals("없음")){
     %>
-    <img src="/images/logo/kboLogo.png" style="width: 150px; height: 150px; border-radius: 100%;">
+    <img src="/images/logo/<%=mmap.get("team_logo")%>.png" style="width: 250px; height: 250px; border-radius: 100%;">
     <%
         }else{
     %>
-      <img src="/images/logo/<%=mmap.get("team_name")%>" style="width: 150px; height: 150px; border-radius: 100%;">
+      <img src="/images/logo/<%=mmap.get("team_logo")%>.png" style="width: 250px; height: 250px; border-radius: 100%;">
     <%
         }
     %>
