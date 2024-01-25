@@ -19,7 +19,7 @@
 %>
 <nav class="navbar navbar-expand-sm " style="background-color: #f5f5f7;">
   <div class="container-fluid">
-    <a  href="/" class="navbar-brand fw-bold fs-3" >
+    <a  href="http://localhost:9000/mainpage/ticketList" class="navbar-brand" >
       <img src="/images/icon/Ticket.png" alt="" width="47" height="50">
       베스트 시니어 티켓
     </a>

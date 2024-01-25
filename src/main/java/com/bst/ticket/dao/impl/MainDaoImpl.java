@@ -21,7 +21,7 @@ public class MainDaoImpl implements MainDao {
 
     @Override
     public List<Map<String, Object>> ticketList(Map<String, Object> tmap) throws Exception {
-        logger.info("Service : ticketList 호출");
+        logger.info("Dao : ticketList 호출");
 
         return sqlSessionTemplate.selectList("mainTicketList",tmap);
     }

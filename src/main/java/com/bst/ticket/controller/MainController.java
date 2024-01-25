@@ -23,7 +23,7 @@ public class MainController {
     @GetMapping("/ticketList")
     public String ticketList(Model model,@RequestParam Map<String,Object> tmap) {
         List<Map<String,Object>> ticketList = null;
-        logger.info("MainController");
+        logger.info("MainController: ticketList 호출");
         ticketList = mainService.ticketList(tmap);
         logger.info(ticketList.toString());
         model.addAttribute("ticketList", ticketList);
