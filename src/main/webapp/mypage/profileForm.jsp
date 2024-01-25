@@ -26,7 +26,7 @@
           }else{
             $('#pwConfirm').text('비밀번호를 입력하세요').css('color', 'black')
           }
-      }
+      } 
 
       const memberInfoUpdate = () =>{
         console.log("저장 클릭");
