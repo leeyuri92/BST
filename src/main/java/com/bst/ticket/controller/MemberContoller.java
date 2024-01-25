@@ -3,6 +3,7 @@ package com.bst.ticket.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.vo.MemberVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +44,12 @@ public class MemberContoller {
    기능 : 회원 수정
   */
   @PostMapping("memberUpdate")
-  public String memberUpdate(@RequestParam Map<String,Object> mmap, RedirectAttributes redirectAttributes) throws Exception {
+  public String memberUpdate(MemberVO memberVO, RedirectAttributes redirectAttributes) throws Exception {
     logger.info("Controller : memberUpdate 호출");
     int result = 0;
-      result = memberService.memberUpdate(mmap);
+      result = memberService.memberUpdate(memberVO);
     if (result == 1) {
-      redirectAttributes.addAttribute("mbr_seq", mmap.get("mbr_seq").toString());
+      redirectAttributes.addAttribute("mbr_seq", memberVO.getMbr_seq());
       return "redirect:/reservation/mypageForm";
     } else {
       return "";

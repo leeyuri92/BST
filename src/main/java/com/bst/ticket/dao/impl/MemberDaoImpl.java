@@ -3,6 +3,7 @@ package com.bst.ticket.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +42,9 @@ public class MemberDaoImpl implements MemberDao{
   }
 
   @Override
-  public int memberUpdate(Map<String, Object> mmap) throws Exception {
+  public int memberUpdate(MemberVO memberVO) throws Exception {
     logger.info("Repository : memberUpdate 호출");
-    return sqlSessionTemplate.update("memberUpdate",mmap);
+    return sqlSessionTemplate.update("memberUpdate",memberVO);
   }
 
   @Override

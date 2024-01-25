@@ -2,7 +2,7 @@
 <%@ page import="java.util.*" %>
 <%
   List<Map<String, Object>> memberList = (List)request.getAttribute("memberList");
-  out.print(memberList);
+//  out.print(memberList);
   Map<String, Object> mmap = memberList.get(0);
 %>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
       }
 
       const btn_Cancel = () =>{
-          location.href = "/reservation/mypageForm?mbr_seq=1";
+          location.href = "/reservation/mypageForm?mbr_seq="+<%=mmap.get("mbr_seq")%>;
       }
   </script>
 

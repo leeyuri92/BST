@@ -6,7 +6,7 @@
   //생일과 현재 날짜를 비교하여 65세 기준으로 일반회원과 실버회원으로 나누기
   LocalDate currentDate = LocalDate.now();
   Map<String, Object> rsmap = reserveList.get(0);
-  out.print(reserveList);
+//  out.print(reserveList);
   String strBirthDate = rsmap.get("mbr_birthdate").toString();
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   LocalDate birthDate = LocalDate.parse(strBirthDate, formatter);
