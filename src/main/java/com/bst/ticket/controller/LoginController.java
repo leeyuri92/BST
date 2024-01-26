@@ -41,7 +41,7 @@ public class LoginController {
     else if(req.isUserInRole("ROLE_USER")) role="ROLE_USER";
 
     model.addAttribute("role", role);
-    return "forward:mainpage/mainpage.jsp";
+    return "redirect:mainpage/mainpage";
   }
 
   //   @PostMapping("/login")
@@ -69,13 +69,23 @@ public class LoginController {
     catch (Exception e) {
       throw new RuntimeException(e);
     }
-
   }
 
+  /*
+ 작성자 : 이유리
+ 작성일자 : 24.01.26
+ 기능 : 아이디찾기 페이지 호출(Controller)
+*/
+  @GetMapping("/find")
+  public String findPage() {
+    logger.info("findPage() 호출");
+    return "forward:auth/login/findID.jsp";
+  }
+  
   // 로그인처리가 되지 않았을 때 에러페이지 호출
   @GetMapping("/login-error")
   public String loginError() {
-    return "loginError";
+    return "errorPage";
   }
 
 

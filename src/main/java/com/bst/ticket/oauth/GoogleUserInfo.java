@@ -31,11 +31,11 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 
     @Override
     public String getBirthyear() {
-        return null;
+        return "2002";
     }
 
     @Override
     public String getBirthday() {
-        return null;
+        return "1004";
     }
 }
