@@ -34,7 +34,7 @@ public class NoticeDaoImpl implements NoticeDao {
     }
 
     @Override
-    public int noticeDelete(int ntc_id) {
+    public int noticeDelete(Integer ntc_id) {
         int result=0;
         result=sqlSessionTemplate.delete("deleteNotice", ntc_id);
         return result;

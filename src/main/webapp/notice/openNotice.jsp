@@ -1,6 +1,8 @@
 <%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%
     List<Map<String, Object>> listA = (List<Map<String, Object>>) request.getAttribute("listA");
     int size = 0; 
@@ -50,31 +52,31 @@
 </div>
 
 <div>
- 
-<!-- Button trigger modal -->
-<%
-for (int i = 1; i < size; i++) {
-    Map<String, Object> pmap = listA.get(i);
-%>
-<div style="margin-bottom: 30px;">
-    <ul class="nav nav-pills" style="padding-left: 50px; padding-right: 60px; background-color: #E7E4E4; left: 180px; display: flex; align-items: center;">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%=pmap.get("ntc_id")%>" style="margin-right: 120px;" onclick="redirectToDetail(<%=pmap.get("ntc_id")%>)">
-            <%=i%>
-        </button>
-        <li class="nav-item" style="margin-right:  10%;">
-            <a class="nav-link" href="javascript:noticeDetail('<%=pmap.get("ntc_id")%>')">
-                <%=pmap.get("ntc_title")%>
-            </a>
-        </li>
-        <li class="nav-item" style="margin-left: 10%;">
-            <a class="nav-link" ><%=pmap.get("ntc_updated_at")%></a>
-        </li>
-    </ul>
-</div>
-<%
-}
-%>
-
+  <%
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  for (int i = 1; i < size; i++) {
+      Map<String, Object> pmap = listA.get(i);
+      String formattedDate = ((LocalDateTime) pmap.get("ntc_updated_at")).format(formatter);
+  %>
+  <div style="margin-bottom: 30px;">
+      <ul class="nav nav-pills" style="padding-left: 50px; padding-right: 60px; background-color: #E7E4E4; left: 180px; display: flex; align-items: center;">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%=pmap.get("ntc_id")%>" style="margin-right: 120px;" onclick="redirectToDetail(<%=pmap.get("ntc_id")%>)">
+              <%=i%>
+          </button>
+          <li class="nav-item" style="margin-right:  10%;">
+              <a class="nav-link" href="javascript:noticeDetail('<%=pmap.get("ntc_id")%>')">
+                  <%=pmap.get("ntc_title")%>
+              </a>
+          </li>
+          <li class="nav-item" style="margin-left: 10%;">
+              <a class="nav-link" ><%=formattedDate%></a>
+          </li>
+      </ul>
+  </div>
+  <%
+  }
+  %>
+  
 
 <!--================================= body start ==================================-->
 

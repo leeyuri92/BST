@@ -3,7 +3,10 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
-<!-- dateTime LocalDateTime 차이  timeZone diffrent? -->
+<%
+Map<String, Object> rMap = (Map<String, Object>) request.getAttribute("rMap");
+  
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +16,26 @@
   <%@include file="/common/bootstrap_common.jsp" %>
 
   <script type="text/javascript">
-    const openNoitceList=()=>{  //목록 버튼 스크립트 기능function
+    const openNoticeList=()=>{  //목록 버튼 스크립트 기능function
       location.href="/notice/noticeList";
     }
+
+
+
+    // next page scrpript 개발 [ 추가 수정부분]
     const nextPage=()=>{
-        alert("nextPage 개발중");
+    let ntc_id= <%=(int)rMap.get("ntc_id")%>;
+    let   nextPK=null;
+    const lastPK=null;
+      while(nextPK===null||nextPK<=ntc_id||nextPK<=lastPK){
+        nextPK++;
+        window.location.href="noticeDetail?ntc_id="+nextPK;
+      } 
     }
+
+
+
+
     </script>
 </head>
 <body>
@@ -36,7 +53,6 @@
 
 
 <%
-Map<String, Object> rMap = (Map<String, Object>) request.getAttribute("rMap");
   if (rMap != null && !rMap.isEmpty()) {
     int ntc_id= (int)rMap.get("ntc_id");
     String ntc_title = (String) rMap.get("ntc_title");
@@ -54,7 +70,7 @@ Map<String, Object> rMap = (Map<String, Object>) request.getAttribute("rMap");
     <hr class="my-4">
     <p><%= ntc_content %></p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg " onclick="openNoitceList()"    role="button" >목록으로 </a>
+      <a class="btn btn-primary btn-lg " onclick="openNoticeList()"    role="button" >목록으로 </a>
       <a class="btn btn-primary btn-lg "onclick="nextPage()" role="button" >다음페이지 </a>
 
     </p>

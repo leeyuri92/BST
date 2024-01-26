@@ -18,8 +18,8 @@
 </select>
 
 <insert id="insertNotice" parameterType="map">
-    INSERT INTO ticket_notice(ntc_title, ntc_content, ntc_updated_at, ntc_created_at)
-        VALUES(#{ntc_title},#{ntc_content}, NOW(),NOW())
+    INSERT INTO ticket_notice(ntc_title, ntc_content, ntc_updated_at, ntc_created_at, mbr_seq)
+        VALUES(#{ntc_title},#{ntc_content}, NOW(),NOW(),0)
 </insert>
 
 <delete id="deleteNotice" parameterType="int">

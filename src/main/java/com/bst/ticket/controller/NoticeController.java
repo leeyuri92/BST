@@ -11,13 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bst.ticket.service.NoticeService;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -70,19 +69,30 @@ public class NoticeController {
     작성일자 : 24.01.25
     기능 : admin page delete
    */
-    @GetMapping("noticeAdminDelete")
-    public String noticeAdminDelte(int ntc_id) throws Exception {
-            noticeService.noticeDelete(ntc_id);
-            return "openNotice";
+    @DeleteMapping("noticeAdmin/{ntc_id}") //?ntc_id=5
+    @ResponseBody
+    public String noticeAdminDelte(@PathVariable Integer ntc_id) throws Exception {
+        logger.info("delete문"+ntc_id);    
+        int result=0;
+            result=noticeService.noticeDelete(ntc_id);
+            if(result==1){
+                return "openNotice";
+                // return "redirect:/openNotice";
+            }
+            else{
+                return "";
+            }
     }
+
+
 
     /*
     작성자 : 김재현
     작성일자 : 24.01.25
     기능 : admin page insert
    */
-    @PostMapping("noticeAdminInsert")
-    public String noticeAdminDelte(@RequestParam Map<String,Object>aMap) throws Exception {
+    @GetMapping("noticeAdminInsert")
+    public String noticeAdminInsert(@RequestParam Map<String,Object>aMap) throws Exception {
             int result=0;
             String path="";
             result=noticeService.noticeInsert(aMap);

@@ -16,46 +16,55 @@ List<Map<String, Object>> listB = (List<Map<String, Object>>) request.getAttribu
   <%@include file="/common/bootstrap_common.jsp" %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript">
-    //  ajax 사용 delete  {getMapping test처리}
-    const deleteList=(ntc_id)=>{
-      let url = "/notice/noticeDetail?ntc_id=" + ntc_id;
+    //  ajax 사용 delete  {delete 구현 기능 미완성}
+    const deleteList = (ntc_id) => {
+    let url = "/notice/noticeAdmin/" + ntc_id;
+    $.ajax({
+        url: url,
+        type: "DELETE",
+        success: function(response) {
+            console.log("delete성공");
+            // window.location.href = openNotice;
+        },
+        error: function(error) {
+            console.error("delete 실패");
+        }
+    });
+}
+
+
+
+  //  ajax 사용 insert {}
+  const insertList = () => {
+  const url = "/notice/noticeAdminInsert";
+
+  let ntc_title = $("#inputTitle").val();
+  let ntc_content = $("#inputContent").val();
+
+  if (!ntc_title || !ntc_content) {
+    console.error("내용작성해주세요");
+    return;
+  }
+
+  let dataObject = {
+    ntc_title: ntc_title,
+    ntc_content: ntc_content
+  };
+
   $.ajax({
     url: url,
     type: "GET",
-    success: function(response) {
-      console.log("delete성공");
+    data: dataObject,
+    success: function (data) {
+      console.log("success");
+      location.reload();
     },
-    error: function(error) {
-      console.error("delete 실패");
+    error: function (error) {
+      console.error("error message");
     }
   });
 }
-  //  ajax 사용 insert {postMapping test처리}
-  const insertList=()=>{
-    const url="/notice/noticeAdminInsert"
-    let dataObject = {};
-    // dataObject.ntc_title = "xml참고";
-    // dataObject.ntc_content = "xml참고";
-    // dataObject.ntc_updated_at = new Date().toISOString();
-    // dataObject.ntc_created_at = new Date().toISOString();
 
-  //   $.ajax({
-  //     url:url,
-  //     type:"GET",
-  //     data : dataObject,{
-      data1={#data1}
-
-  }
-	// 	success: function(data){
-	// 		console.log("입력성공");
-  //     closeModal();
-  //     location.reload();
-	// 	},
-  //   error: function(error){
-  //     console.error("입력실페")
-  //   }
-  //   });
-  }
 
   //MODAL OPEN
   function openInsert() {
@@ -127,22 +136,25 @@ List<Map<String, Object>> listB = (List<Map<String, Object>>) request.getAttribu
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">공지사항작성</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
         <form id="myForm">
-          <input type="text" name="title" placeholder="타이틀">
-          <input type="text" name="content" placeholder="내용">
+          <input type="text" name="title"id="inputTitle" class="myForm-control" placeholder="타이틀">
+      <hr>
+          <input type="text" name="content"id="inputContent"   class="myForm-control"   clplaceholder="내용">
         </form>
       </div>
+
 
       <!-- Modal footer -->
       <div class="modal-footer">
         <input type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="insertList()"  value="저장">
         <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="닫기" onclick="closeInsert()">
       </div>
+
+
 
     </div>
   </div>
