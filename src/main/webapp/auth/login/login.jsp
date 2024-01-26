@@ -29,6 +29,10 @@
             console.log("카카오 호출");
             location.href="/oauth2/authorization/kakao";
         };
+        const loginN = () => {
+            console.log("네이버 호출");
+            location.href="/oauth2/authorization/naver";
+        };
         const findId = () => {
             console.log("findId");
             document.querySelector("#f_findId").submit();
@@ -92,7 +96,7 @@
             <div class="mb-3 fs-5 fw-bold text-white">간편로그인</div>
             <div class="d-flex gap-5">
                 <img src="/images/ko/iconKakao.png" onclick="loginK()">
-                <img src="/images/ko/iconNaver.png">
+                <img src="/images/ko/iconNaver.png" onclick="loginN()">
                 <img src="/images/ko/iconGoogle.png" onclick="loginG()">
             </div>
         </div>
@@ -110,33 +114,6 @@
 <!--================================= footer start ==================================-->
 <%@include file="/include/ticket_footer.jsp" %>
 <!--================================== footer end ===================================-->
-
-<!-- ========================== [[ find ID Modal Start ]] ========================== -->
-<div class="modal" id="findID">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h1 class="fw-bold mb-0 fs-2">아이디 찾기</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-5 pt-0">
-                <form id="f_findId" method="post" action="/findId">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-3" id="mbr_nm" name="mbr_nm" placeholder="Leave a comment here">
-                        <label for="mbr_nm">이름 입력</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-3" id="mbr_email" name="mbr_email" placeholder="name@example.com">
-                        <label for="mbr_email">이메일주소 입력</label>
-                    </div>
-                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" style="background-color: #334CA5;"  onclick="findId()">찾기</button>
-                    <%--                    <small class="text-body-secondary">아이디 바로 보여주기 구현</small>--%>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ========================== [[ find ID Modal End ]] ========================== -->
 
 <!-- ========================== [[ find PW Modal Start ]] ========================== -->
 <div class="modal " id="findPW">
