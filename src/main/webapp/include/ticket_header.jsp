@@ -17,9 +17,9 @@
     isOk = true;
   }
 %>
-<nav class="navbar navbar-expand-sm " style="background-color: #f5f5f7;">
+<nav class="navbar navbar-expand-sm justify-content-center " style="background-color: #f5f5f7;">
   <div class="container-fluid">
-    <a  href="http://localhost:9000/mainpage/ticketList" class="navbar-brand" >
+    <a  href="http://localhost:9000/mainpage/mainpage" class="navbar-brand" >
       <img src="/images/icon/Ticket.png" alt="" width="47" height="50">
       베스트 시니어 티켓
     </a>
