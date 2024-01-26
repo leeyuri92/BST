@@ -3,6 +3,7 @@ package com.bst.ticket.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.dto.SearchDto;
 import com.bst.ticket.vo.CommunityVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -20,8 +21,13 @@ public class CommunityDaoImpl implements CommunityDao {
     SqlSessionTemplate sqlSessionTemplate;
 
     @Override
-    public List<CommunityVO> getCommunityBoardList() {
-        return sqlSessionTemplate.selectList("selectBoard");
+    public List<CommunityVO> getCommunityBoardList(SearchDto searchDto) {
+        return sqlSessionTemplate.selectList("selectBoard", searchDto);
+    }
+
+    @Override
+    public int count(SearchDto searchDto) {
+        return sqlSessionTemplate.selectOne("count", searchDto);
     }
 
     @Override

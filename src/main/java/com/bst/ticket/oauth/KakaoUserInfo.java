@@ -34,12 +34,19 @@ public class KakaoUserInfo implements OAuth2UserInfo{
 
     @Override
     public String getBirthyear() {
-        return (String) ((Map) attributes.get("kakao_account")).get("birthyear");
+        // 년도 권한 없을 때 :  상수로 지정
+        return "1992";
+//        년도 권한 있을 때
+//        return (String) ((Map) attributes.get("kakao_account")).get("birthyear");
     }
 
     @Override
+
     public String getBirthday() {
-        return (String) ((Map) attributes.get("kakao_account")).get("birthday");
+        //  생년월일 권한 있을 때
+        return "0627";
+//        생년월일 권한 있을 때
+//        return (String) ((Map) attributes.get("kakao_account")).get("birthday");
     }
 
 

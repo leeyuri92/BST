@@ -2,11 +2,15 @@ package com.bst.ticket.controller;
 
 import com.bst.ticket.dao.CommunityCommentDao;
 import com.bst.ticket.dao.CommunityDao;
+import com.bst.ticket.dto.SearchDto;
 import com.bst.ticket.vo.CommunityCommentVO;
 import com.bst.ticket.vo.CommunityVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +31,7 @@ public class CommunityController {
     @Autowired
     private CommunityCommentDao communityCommentDao;
 
+
     public CommunityController(CommunityDao communityDao, CommunityCommentDao communityCommentDao) {
         this.communityDao = communityDao;
         this.communityCommentDao = communityCommentDao;
@@ -34,15 +39,30 @@ public class CommunityController {
 
     /*
     Author: 전수빈
-    Data: 22 Jan
-    Feature: Community board
+    Data: 22 Jan, 24 Jan
+    Feature: Community board, Pagination
      */
     //게시글 리스트
     @GetMapping("/")
-    public ModelAndView CommunityboardList() {
+    public ModelAndView CommunityboardList(@ModelAttribute SearchDto searchDto) {
         ModelAndView mav = new ModelAndView("community");
-        List<CommunityVO> communityBoardList = communityDao.getCommunityBoardList();
+
+        //Start paging
+        // 페이지 및 레코드 크기 설정
+        int page = searchDto.getPage();
+        int recordSize = searchDto.getRecordSize();
+
+        // 전체 게시글 수 Counting
+        int totalBoards = communityDao.count(searchDto);
+
+        // 전체 페이지 수 계산
+        int totalPages = (int) Math.ceil((double) totalBoards / recordSize);
+
+        searchDto.setRecordSize(recordSize);
+        List<CommunityVO> communityBoardList = communityDao.getCommunityBoardList(searchDto);
         mav.addObject("communityBoardList", communityBoardList);
+        mav.addObject("totalPages", totalPages);
+        mav.addObject("currentPage", page);
         return mav;
     }
 
@@ -85,7 +105,7 @@ public class CommunityController {
     Author: 전수빈
     Data: 23 Jan
     Feature: Community CRUD
-     */
+     //***/
     //게시글 삭제
     @GetMapping("/delete/{boardId}")
     public String deleteCommunityBoard(@PathVariable("boardId") Integer boardId, Model model) {
@@ -120,14 +140,13 @@ Feature: Community CRUD
         if (tempBoard != null) {
             String newTitle = String.valueOf(boardMap.get("boardTitle"));
             String newContent = String.valueOf(boardMap.get("boardContent"));
-
             tempBoard.setBoardTitle(newTitle);
             tempBoard.setBoardContent(newContent);
+
             logger.info("New Title={}, Content={}", tempBoard.getBoardTitle(), tempBoard.getBoardContent());
+
             communityDao.updateCommunityBoard(tempBoard);
         }
         return "redirect:/community/";
     }
-
-
 }

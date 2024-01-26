@@ -73,16 +73,14 @@
       <%
         }
       %>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
-        <button class="btn btn btn-outline-primary" type="submit">
-
-          <a  href="#">
-            <img src="/images/icon/Search.png" alt="" width="30" height="30">
-          </a>
-
+      <form id="f_search" class="d-flex" action="/mainpage/searchDetail" method="GET">
+        <input class="form-control me-2" type="search" name="query" placeholder="검색" aria-label="Search">
+        <button class="btn btn btn-outline-primary" type="button" onclick="searchDetail()">
+          <img src="/images/icon/Search.png" alt="Search" width="30" height="30">
         </button>
       </form>
+
+
     </div>
   </div>
 </nav>
