@@ -190,6 +190,7 @@
             const idSpan = document.getElementById('id');
             const id2 = document.getElementById('idd');
             const mbrIdInput = document.getElementById('mbr_id');
+
             const id = document.getElementById('mbr_id').value;
             const isValid = expIdText.test(mbrIdInput.value);
 
@@ -202,7 +203,6 @@
                 success: function(cnt) {
                   // 서버로부터의 응답 처리
                   if (cnt == 0){
-
                     idSpan.style.display = 'none';
                   }else{
                     id2.style.display = 'inline';
@@ -212,7 +212,7 @@
                   // 오류 처리
                   alert("에러입니다");
                 }
-              });6
+              });
             } else {
               id2.style.display = 'none';
               idSpan.style.display = 'inline';
