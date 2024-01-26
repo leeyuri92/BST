@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class CommunityCommentDaoImpl implements CommunityCommentDao {
@@ -21,5 +22,15 @@ public class CommunityCommentDaoImpl implements CommunityCommentDao {
     @Override
     public List<CommunityCommentVO> getCommunityCommentList(Integer boardId) {
         return sqlSessionTemplate.selectList("selectCommentList", boardId);
+    }
+
+    @Override
+    public void writecomment(Map<String, Integer> cMap) {
+        sqlSessionTemplate.insert("writeComment", cMap);
+    }
+
+    @Override
+    public void deleteComment(Integer boardId) {
+        sqlSessionTemplate.delete("deleteComment", boardId);
     }
 }

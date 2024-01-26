@@ -9,18 +9,16 @@
     <%@include file="/common/bootstrap_common.jsp" %>
 
     <style>
-        /* 추가적인 스타일링은 여기에 작성하세요 */
         .search-bar {
             margin-top: 10px;
         }
 
         .search-input {
-            max-width: 150px; /* 검색 입력창 최대 너비 지정 */
+            max-width: 150px;
         }
     </style>
 
     <script type="text/javascript">
-        /* 자바 스크립트 부분 */
 
     </script>
 </head>
@@ -68,7 +66,6 @@
             </table>
         </div>
     </div>
-
     <!-- 검색 기능 및 글쓰기 버튼 -->
     <div class="row mt-3">
         <div class="col-md-6 text-right">
@@ -85,11 +82,47 @@
             </div>
         </div>
     </div>
-</div>
-<!--================================= body end ==================================-->
 
-<!--================================= footer start ==================================-->
-<%@include file="/include/ticket_footer.jsp" %>
-<!--================================== footer end ===================================-->
+    <!-- 페이지네이션 -->
+    <div class="row mt-3">
+        <div class="col-md-12 text-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:if test="${totalPages > 1}">
+                        <!-- Previous Button -->
+                        <li class="page-item <c:if test="${currentPage eq 1}">disabled</c:if>">
+                            <a class="page-link"
+                               href="<c:url value='/community/'><c:param name='page' value='${currentPage - 1}'/></c:url>"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <!-- Page Numbers -->
+                        <c:forEach var="pageNumber" begin="1" end="${totalPages}">
+                            <li class="page-item <c:if test="${pageNumber eq currentPage}">active</c:if>">
+                                <a class="page-link"
+                                   href="<c:url value='/community/'><c:param name='page' value='${pageNumber}'/></c:url>">${pageNumber}</a>
+                            </li>
+                        </c:forEach>
+
+                        <!-- Next Button -->
+                        <li class="page-item <c:if test="${currentPage eq totalPages}">disabled</c:if>">
+                            <a class="page-link"
+                               href="<c:url value='/community/'><c:param name='page' value='${currentPage + 1}'/></c:url>"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--================================= body end ==================================-->
+
+    <!--================================= footer start ==================================-->
+    <%@include file="/include/ticket_footer.jsp" %>
+    <!--================================== footer end ===================================-->
 </body>
 </html>

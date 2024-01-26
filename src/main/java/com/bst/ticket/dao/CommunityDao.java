@@ -1,7 +1,10 @@
 package com.bst.ticket.dao;
 
+import com.bst.ticket.dto.SearchDto;
 import com.bst.ticket.vo.CommunityVO;
+import org.springframework.core.annotation.MergedAnnotations;
 
+import java.awt.datatransfer.Clipboard;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +15,16 @@ import java.util.Map;
  */
 public interface CommunityDao {
 
-    //게시글 목록
-    List<CommunityVO> getCommunityBoardList();
+    /*
+    Author: 전수빈
+    Date: 24 Jan
+    Feature: Pagination
+     */
+
+    //게시글 목록 & 페이징
+    List<CommunityVO> getCommunityBoardList(SearchDto searchDto);
+
+    int count(SearchDto searchDto);
 
     //게시글 조회
     CommunityVO getCommunityBoardById(Integer boardId);
@@ -29,5 +40,6 @@ public interface CommunityDao {
 
     //게시글 수정
     void updateCommunityBoard(CommunityVO tempBoard);
+
 
 }
