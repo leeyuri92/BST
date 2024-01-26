@@ -1,8 +1,15 @@
 package com.bst.ticket.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.config.LocalDateTimeSerializer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bst.ticket.service.TicketService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/ticket/*")
@@ -28,10 +36,25 @@ public class TicketController {
     List<Map<String ,Object>> ticketList;
     
     ticketList = ticketService.ticketList(tmap);
+    logger.info(ticketList.toString());
     model.addAttribute("ticketList", ticketList);
 
     return "forward:/ticket/ticketList.jsp";
   }
+  @GetMapping("ticketDateList")
+  @ResponseBody
+  public String ticketDateList(@RequestParam Map<String,Object> gm_date) throws Exception{
+    logger.info("Controller : ticketDateList 호출");
+    List<Map<String,Object>> ticketList;
+    Map<String, Object> response = new HashMap<>();
+    logger.info(gm_date.toString());
+    ticketList = ticketService.ticketList(gm_date);
 
+    Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
+            .create();
 
+    String jsonTicketList = gson.toJson(ticketList);
+    return jsonTicketList;
+  }
 }
