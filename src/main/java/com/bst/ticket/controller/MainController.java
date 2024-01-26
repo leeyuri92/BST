@@ -20,6 +20,18 @@ public class MainController {
     @Autowired
     private MainService mainService;
 
+
+
+    @GetMapping("mainpage")
+    public String mainpage(Model model,@RequestParam Map<String,Object> tmap) {
+        List<Map<String,Object>> ticketList = null;
+        logger.info("MainController: mainpage 호출");
+        ticketList = mainService.ticketList(tmap);
+        logger.info(ticketList.toString());
+        model.addAttribute("ticketList", ticketList);
+        return "forward:mainpage.jsp";
+    }
+
     @GetMapping("ticketList")
     public String ticketList(Model model,@RequestParam Map<String,Object> tmap) {
         List<Map<String,Object>> ticketList = null;
