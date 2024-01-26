@@ -19,10 +19,28 @@ public class MainDaoImpl implements MainDao {
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
 
+    /*
+       작성자 : 한은지
+       작성일자 : 24.01.24
+       기능 : 티켓리스트(DaoImpl)
+    */
     @Override
     public List<Map<String, Object>> ticketList(Map<String, Object> tmap) throws Exception {
         logger.info("Dao : ticketList 호출");
-
         return sqlSessionTemplate.selectList("mainTicketList",tmap);
+    }
+
+    /*
+       작성자 : 한은지
+       작성일자 : 24.01.26
+       기능 : 검색창(DaoImpl)
+    */
+    @Override
+    public List<Map<String, Object>> searchDetail(Map<String, Object> smap) throws Exception {
+        logger.info("Dao : searchDetail 호출");
+        List<Map<String, Object>> smList;
+        smList = sqlSessionTemplate.selectList("searchDetail",smap);
+        logger.info(smList.toString());
+        return smList;
     }
 }

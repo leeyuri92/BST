@@ -5,7 +5,8 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
     List<Map<String, Object>> listA = (List<Map<String, Object>>) request.getAttribute("listA");
-    int size = 0; 
+    out.print(listA);
+    int size = 0;
     if (listA != null) {
         size = listA.size(); 
     }
