@@ -45,7 +45,7 @@
                     let formattedDate = getCurrentDateTime(item.gm_date);
                     let remainingSeats = (item.gm_total - item.gm_reserve)
                     htmlString += `
-                    <div class="card mb-3" style="max-width: 540px; margin-left: 16%; margin-top: 5%">
+                    <div class="card mb-3" onclick="selectTicket(\${item.gm_id})">
                       <div class="row g-0" >
                         <div class="col-md-4" style="margin: auto">
                           <h2>\${item.team_away}</h2>
@@ -57,7 +57,7 @@
                             <h5 class="card-title">\${item.team_away} vs \${item.team_home}</h5>
                             <p class="card-text">\${item.std_name}</p>
                             <p class="card-text">\${formattedDate}</p>
-                            <p class="card-text" style="text-align: right;"><small class="text-muted">잔여좌석 :\${remainingSeats}</small></p>
+                            <p class="card-text" style="text-align: right;">잔여좌석 :<small class="text-muted">\${remainingSeats}</small></p>
                           </div>
                         </div>
                       </div>
@@ -82,9 +82,49 @@
         })
       }
 
+      const selectTicket = (gm_id) =>{
+          console.log("ticket클릭" + gm_id);
+          document.querySelector("#mbr_seq").value = 1;
+          document.querySelector("#gm_id").value = gm_id;
+
+          $.ajax({
+              url: "/ticket/ticketDateList",
+              type: 'GET',
+              data: {gm_id:gm_id},
+              dataType: 'json',
+              success: function(response){
+                console.log(response)
+                  let formattedDate = getCurrentDateTime(response[0].gm_date);
+                  let remainingSeats = (response[0].gm_total - response[0].gm_reserve)
+
+                  document.querySelector("#gm_team").value =  response[0].team_away + 'vs' + response[0].team_home;
+                  document.querySelector("#std_name").value = response[0].std_name;
+                  document.querySelector("#gm_date").value = formattedDate;
+                  document.querySelector("#remainingSeats").innerHTML = remainingSeats;
+
+
+              },
+              error: function(error) {
+                  // 오류 처리
+                  alert("에러입니다");
+              }
+          })
+      }
+      const publicReservation = () =>{
+          location.href="https://ticket.interpark.com/Contents/Sports/Bridge/baseball";
+      }
+
+      const silberReservation = () =>{
+          let mbr_seq = document.querySelector("#mbr_seq").value;
+          let gm_id = document.querySelector("#gm_id").value;
+          if (mbr_seq!=null || mbr_seq!==""||gm_id!=null){
+            document.querySelector("#f_reservation").submit();
+          }else{
+              alert("다시시도 하여 주세요.");
+          }
+      }
+
   </script>
-
-
 </head>
 <body>
 <!--================================= header start ==================================-->
@@ -98,66 +138,104 @@
     <hr />
   </div>
 </div>
-<div>
-  <div>
-    <select id="dateSelect" onchange="handleDateSelectChange()" class="form-select" aria-label="Default select example" style="width: 250px; margin-left: 30px" >
-      <option selected>경기날짜를 선택하세요</option>
-      <%
-        //set/Hashset 고유값데이터를 출력 한다
-        Set<LocalDateTime> uniqueDates = new HashSet<>();
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div>
+<%---------------------------------   select option     -------------------------------------------%>
+        <select id="dateSelect" onchange="handleDateSelectChange()" class="form-select" aria-label="Default select example" style="width: 250px; margin-left: 30px" >
+          <option selected>경기날짜를 선택하세요</option>
+          <%
+            //set/Hashset 고유값데이터를 출력 한다
+            Set<LocalDateTime> uniqueDates = new HashSet<>();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        for (int i = 0; i < ticketList.size(); i++) {
-          tmap = ticketList.get(i);
-          gameDate = (LocalDateTime)tmap.get("gm_date");
-          if (gameDate != null && uniqueDates.add(gameDate)) {
-            String formattedDate = gameDate.format(formatter);
-      %>
-      <option value="<%=i%>"><%=formattedDate%></option>
-      <%
-          }
-        }
-      %>
-    </select>
-  </div>
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            for (int i = 0; i < ticketList.size(); i++) {
+              tmap = ticketList.get(i);
+              gameDate = (LocalDateTime)tmap.get("gm_date");
+              if (gameDate != null && uniqueDates.add(gameDate)) {
+                String formattedDate = gameDate.format(formatter);
+          %>
+          <option value="<%=i%>"><%=formattedDate%></option>
+          <%
+              }
+            }
+          %>
+        </select>
+  <%---------------------------------   select option     -------------------------------------------%>
+      </div>
 
-  <div class="ticketDateList" id="ticketDateList">
+      <%--   경기날짜 선택 했을 때 동적으로 생성되는 화면단   --%>
+      <div class="ticketDateList" id="ticketDateList">
 
-  </div>
-  <div class="hidden" id="divHidden" >
-    <%
-      DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-      int remainingSeats = 0;
+      </div>
+      <%---------------------------------   티켓 전체 조회하는 화면     -------------------------------------------%>
+      <div class="hidden" id="divHidden" >
+        <%
+          DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+          int remainingSeats = 0;
 
-      // 날짜에 따라 티켓 리스트 정렬
-      Collections.sort(ticketList, Comparator.comparing(t -> (LocalDateTime) t.get("gm_date")));
+          // 날짜에 따라 티켓 리스트 정렬
+          Collections.sort(ticketList, Comparator.comparing(t -> (LocalDateTime) t.get("gm_date")));
 
-      for (int i = 0; i < ticketList.size(); i++) {
-        tmap = ticketList.get(i);
-        gameDate = (LocalDateTime)tmap.get("gm_date");
-        String formattedDate = gameDate.format(formatter2);
-        remainingSeats = (Integer) tmap.get("gm_total") - (Integer)tmap.get("gm_reserve");
-    %>
-    <div class="card mb-3" style="max-width: 540px; margin-left: 16%; margin-top: 5%">
-      <div class="row g-0" >
-        <div class="col-md-4" style="margin: auto">
-          <h2><%=tmap.get("team_away")%></h2>
-          <h2>vs</h2>
-          <h2><%=tmap .get("team_home")%></h2>
+          for (int i = 0; i < ticketList.size(); i++) {
+            tmap = ticketList.get(i);
+            gameDate = (LocalDateTime)tmap.get("gm_date");
+            String formattedDate = gameDate.format(formatter2);
+            remainingSeats = (Integer) tmap.get("gm_total") - (Integer)tmap.get("gm_reserve");
+        %>
+        <div class="card mb-3" onclick="selectTicket(<%=tmap.get("gm_id")%>)">
+          <div class="row g-0" >
+            <div class="col-md-4" style="margin: auto">
+              <h2><%=tmap.get("team_away")%></h2>
+              <h2>vs</h2>
+              <h2><%=tmap .get("team_home")%></h2>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%=tmap.get("team_away")%> vs <%=tmap.get("team_home")%></h5>
+                <p class="card-text"><%=tmap.get("std_name")%></p>
+                <p class="card-text"><%=formattedDate%></p>
+                <p class="card-text" style="text-align: right;">잔여좌석 :<small class="text-muted"> <%=remainingSeats%></small></p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%=tmap.get("team_away")%> vs <%=tmap.get("team_home")%></h5>
-            <p class="card-text"><%=tmap.get("std_name")%></p>
-            <p class="card-text"><%=formattedDate%></p>
-            <p class="card-text" style="text-align: right;"><small class="text-muted">잔여좌석 : <%=remainingSeats%></small></p>
+        <%
+          }
+        %>
+      </div>
+      <%---------------------------------   티켓 전체 조회하는 화면 end     -------------------------------------------%>
+    </div>
+    <%---------------------------------   티켓 예약하는 화면    -------------------------------------------%>
+    <div class="col" >
+      <div class="card mb-3" style="max-width: 600px; height: 500px; margin-left: 16%; margin-top: 10.5%; border-radius: 30px">
+        <div class="container" style="margin: auto">
+          <form id="f_reservation" method="get" action="/reservation/ticketReservation">
+            <input type="hidden" id="mbr_seq" name="mbr_seq" value="">
+            <input type="hidden" id="gm_id" name="gm_id" value="">
+            <div class="input-group mt-3 mb-5">
+              <span class="input-group-text" >경기팀</span>
+              <input type="text" id="gm_team" class="form-control" disabled>
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text" >경기장</span>
+              <input type="text" id="std_name" class="form-control" disabled>
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text" >경기시간</span>
+              <input type="text" id="gm_date" class="form-control" disabled>
+            </div>
+            <p class="card-text" style="text-align: right;" >잔여좌석 : <small class="text-muted" id="remainingSeats"><%=remainingSeats%></small></p>
+          </form>
+            <div class="container" style="text-align: center;">
+            <button class="button" type="button" onclick="publicReservation()">일반예약</button>
+            <button class="button" type="button" onclick="silberReservation()">실버예약</button>
           </div>
         </div>
       </div>
     </div>
-    <%
-      }
-    %>
+    <%---------------------------------   티켓 예약하는 화면 end    -------------------------------------------%>
   </div>
 </div>
 <!--================================= body start ==================================-->

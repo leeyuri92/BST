@@ -15,8 +15,10 @@
         <if test="gm_date != null">
             AND gm_date LIKE #{gm_date}
         </if>
+        <if test="gm_id != null">
+            AND gm_id LIKE #{gm_id}
+        </if>
     </where>
-
 </select>
 
 </mapper>

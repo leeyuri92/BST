@@ -23,4 +23,9 @@
 
 </select>
 
+<insert id="ticketInsert" parameterType="map">
+    insert into reservation (rsv_number,mbr_seq, gm_id)
+                values('12345', #{mbr_seq}, #{gm_id})
+</insert>
+
 </mapper>
