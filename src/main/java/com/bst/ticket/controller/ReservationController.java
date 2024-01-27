@@ -41,7 +41,11 @@ public class      ReservationController {
 
     return "forward:/mypage/mypageForm.jsp";
   }
-
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.18
+   기능 : 예약 내역 페이지 조회
+   **********************************************************************************/
   @GetMapping("reserveForm")
   public String reserveForm(@RequestParam Map<String,Object> mmap, Model model) throws Exception{
     logger.info("Controller : reserveForm 호출");
@@ -52,6 +56,11 @@ public class      ReservationController {
 
     return "forward:/mypage/reserveForm.jsp";
   }
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.27
+   기능 : 티켓 예약
+   **********************************************************************************/
   @GetMapping("ticketReservation")
   public String ticketReservation(@RequestParam Map<String,Object> tmap) throws Exception{
     logger.info("Controller : ticketReservation 호출");
