@@ -1,14 +1,12 @@
 package com.bst.ticket.service.impl;
 
 import com.bst.ticket.dao.MainDao;
-import com.bst.ticket.dao.impl.MainDaoImpl;
 import com.bst.ticket.service.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

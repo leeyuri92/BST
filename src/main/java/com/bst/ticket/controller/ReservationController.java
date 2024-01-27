@@ -3,15 +3,13 @@ package com.bst.ticket.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.vo.ReservationVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.bst.ticket.service.ReservationService;
 
@@ -53,5 +51,11 @@ public class      ReservationController {
     model.addAttribute("reserveList", reserveList);
 
     return "forward:/mypage/reserveForm.jsp";
+  }
+  @GetMapping("ticketReservation")
+  public String ticketReservation(@RequestParam Map<String,Object> tmap) throws Exception{
+    logger.info("Controller : ticketReservation 호출");
+    reservationService.ticketReservation(tmap);
+    return "redirect:/ticket/ticketList";
   }
 }

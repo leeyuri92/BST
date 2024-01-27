@@ -22,8 +22,10 @@ public class TicketDaoImpl implements TicketDao{
   @Override
   public List<Map<String, Object>> ticketList(Map<String, Object> tmap) throws Exception {
     logger.info("Ropositiry : ticketList 호출");
-    
-    return sqlSessionTemplate.selectList("ticketList", tmap); 
+    List<Map<String, Object>> tList = null;
+    tList = sqlSessionTemplate.selectList("ticketList", tmap);
+    logger.info(tList.toString());
+    return tList;
   }
 
 }

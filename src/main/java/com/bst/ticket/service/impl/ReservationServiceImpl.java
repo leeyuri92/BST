@@ -3,6 +3,7 @@ package com.bst.ticket.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.vo.ReservationVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,11 @@ public class ReservationServiceImpl implements ReservationService{
     logger.info("Service : reserveList 호출");
 
     return reservationDao.reserveList(mmap);
+  }
+
+  @Override
+  public int ticketReservation(Map<String,Object> tmap) throws Exception {
+    logger.info("Service : reserveList 호출");
+    return reservationDao.ticketReservation(tmap);
   }
 }

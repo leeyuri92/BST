@@ -3,6 +3,7 @@ package com.bst.ticket.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.bst.ticket.vo.ReservationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,5 +26,14 @@ public class ReservationDaoImpl implements ReservationDao{
     memList = sqlSessionTemplate.selectList("reserveList", mmap);
     logger.info(memList.toString());
     return memList;
+  }
+
+  @Override
+  public int ticketReservation(Map<String, Object> tmap) throws Exception {
+    logger.info("Ropositiry : ticketReservation 호출" + tmap);
+    int result = 0;
+    result = sqlSessionTemplate.insert("ticketInsert", tmap);
+
+    return result;
   }
 }

@@ -33,12 +33,10 @@ public class TicketController {
   @GetMapping("ticketList")
   public String ticketList(@RequestParam Map<String,Object> tmap, Model model) throws Exception{
     logger.info("Controller : ticketList 호출");
-    List<Map<String ,Object>> ticketList;
-    
+    List<Map<String ,Object>> ticketList = null;
     ticketList = ticketService.ticketList(tmap);
-    logger.info(ticketList.toString());
     model.addAttribute("ticketList", ticketList);
-
+//    logger.info(ticketList.toString());
     return "forward:/ticket/ticketList.jsp";
   }
   @GetMapping("ticketDateList")
@@ -50,6 +48,7 @@ public class TicketController {
     logger.info(gm_date.toString());
     ticketList = ticketService.ticketList(gm_date);
 
+    //
     Gson gson = new GsonBuilder()
             .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
             .create();
