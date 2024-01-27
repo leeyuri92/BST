@@ -19,7 +19,7 @@
 %>
 <nav class="navbar navbar-expand-sm justify-content-center " style="background-color: #f5f5f7;">
   <div class="container-fluid">
-    <a  href="http://localhost:9000/mainpage/mainpage" class="navbar-brand" >
+    <a  href="http://localhost:9000/" class="navbar-brand" >
       <img src="/images/icon/Ticket.png" alt="" width="47" height="50">
       베스트 시니어 티켓
     </a>
@@ -73,7 +73,7 @@
       <%
         }
       %>
-      <form id="f_search" class="d-flex" action="/mainpage/searchDetail" method="GET">
+      <form id="f_search" class="d-flex" action="/searchDetail" method="GET">
         <input class="form-control me-2" type="search" name="query" placeholder="검색" aria-label="Search">
         <button class="btn btn btn-outline-primary" type="button" onclick="searchDetail()">
           <img src="/images/icon/Search.png" alt="Search" width="30" height="30">

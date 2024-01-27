@@ -19,7 +19,6 @@
   <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
   <script type="text/javascript">
-      //
       function getCurrentDateTime(gm_date) {
           return moment(gm_date).format('YYYY-MM-DD HH:mm:ss');
       }
@@ -84,7 +83,7 @@
 
       const selectTicket = (gm_id) =>{
           console.log("ticket클릭" + gm_id);
-          document.querySelector("#mbr_seq").value = 1;
+          document.querySelector("#mbr_seq").value = 1; //세션적용시켜 나타낼 예정
           document.querySelector("#gm_id").value = gm_id;
 
           $.ajax({

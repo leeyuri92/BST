@@ -27,22 +27,22 @@ public class LoginController {
  작성일자 : 24.01.23
  기능 : 로그인(Controller)
 */
-  @GetMapping({ "", "/" })
-  public String index(HttpServletRequest req, Model model) {
-    logger.info("index 호출 > mainpage 이동");
-    logger.info("index"+req.isUserInRole("ROLE_USER"));
-    logger.info("index"+req.isUserInRole("ROLE_MANAGER"));
-    logger.info("index"+req.isUserInRole("ROLE_ADMIN"));
-
-    String role = "default";
-
-    if(req.isUserInRole("ROLE_ADMIN")) role="ROLE_ADMIN";
-    else if(req.isUserInRole("ROLE_MANAGER")) role="ROLE_MANAGER";
-    else if(req.isUserInRole("ROLE_USER")) role="ROLE_USER";
-
-    model.addAttribute("role", role);
-    return "redirect:mainpage/mainpage";
-  }
+//  @GetMapping({ "", "/" })
+//  public String index(HttpServletRequest req, Model model) {
+//    logger.info("index 호출 > mainpage 이동");
+//    logger.info("index"+req.isUserInRole("ROLE_USER"));
+//    logger.info("index"+req.isUserInRole("ROLE_MANAGER"));
+//    logger.info("index"+req.isUserInRole("ROLE_ADMIN"));
+//
+//    String role = "default";
+//
+//    if(req.isUserInRole("ROLE_ADMIN")) role="ROLE_ADMIN";
+//    else if(req.isUserInRole("ROLE_MANAGER")) role="ROLE_MANAGER";
+//    else if(req.isUserInRole("ROLE_USER")) role="ROLE_USER";
+//
+//    model.addAttribute("role", role);
+//    return "redirect:";
+//  }
 
   //   @PostMapping("/login")
   @GetMapping("/login")  // 여기 모르게뜸

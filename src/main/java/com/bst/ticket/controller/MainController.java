@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/mainpage/*")
+//@RequestMapping("/")
 public class MainController {
     Logger logger = LoggerFactory.getLogger(MainController.class);
     @Autowired
@@ -26,21 +26,21 @@ public class MainController {
        작성일자 : 24.01.23
        기능 : 메인페이지(Controller)
     */
-    @GetMapping("mainpage")
+    @GetMapping("/")
     public String mainpage(Model model,@RequestParam Map<String,Object> tmap) {
         List<Map<String,Object>> ticketList = null;
         logger.info("MainController: mainpage 호출");
         ticketList = mainService.ticketList(tmap);
         logger.info(ticketList.toString());
         model.addAttribute("ticketList", ticketList);
-        return "forward:mainpage.jsp";
+        return "forward:/mainpage.jsp";
     }
     /*
        작성자 : 한은지
        작성일자 : 24.01.23
        기능 : 티켓리스트(Controller)
     */
-    @GetMapping("ticketList")
+    @GetMapping("/magepage/ticketList")
     public String ticketList(Model model,@RequestParam Map<String,Object> tmap) {
         List<Map<String,Object>> ticketList = null;
         logger.info("MainController: ticketList 호출");
@@ -55,7 +55,7 @@ public class MainController {
        작성일자 : 24.01.23
        기능 : 검색창(Controller)
     */
-    @GetMapping("searchDetail")
+    @GetMapping("/searchDetail")
     public String searchDetail(Model model, @RequestParam Map<String,Object> smap) {
         List<Map<String,Object>> smList = null;
         logger.info("MainController: searchDetail 호출"+smap);
@@ -64,6 +64,6 @@ public class MainController {
         logger.info(smList.toString());
         // 검색 결과를 모델에 추가하여 뷰로 전달
         model.addAttribute("listA", smList);
-        return "forward:/notice/openNotice.jsp"; // 검색 상세 페이지로 이동
+        return "forward:/notice/noticeList"; // 검색 상세 페이지로 이동
     }
 }
