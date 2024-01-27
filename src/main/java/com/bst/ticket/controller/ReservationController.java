@@ -59,12 +59,25 @@ public class      ReservationController {
   /**********************************************************************************
    작성자 : 박병현
    작성일자 : 24.01.27
-   기능 : 티켓 예약
+   기능 : 티켓 예약하기
    **********************************************************************************/
   @GetMapping("ticketReservation")
-  public String ticketReservation(@RequestParam Map<String,Object> tmap) throws Exception{
+  public String ticketReservation(ReservationVO reservationVO) throws Exception{
     logger.info("Controller : ticketReservation 호출");
-    reservationService.ticketReservation(tmap);
+    reservationService.ticketReservation(reservationVO);
     return "redirect:/ticket/ticketList";
+  }
+
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.28
+   기능 : 티켓 삭제하기
+   **********************************************************************************/
+  @GetMapping("reservationDelete")
+  public String reservationDelete(ReservationVO reservationVO) throws Exception{
+    logger.info("Controller : reservationDelete 호출");
+    int result = 0;
+    result = reservationService.reservationDelete(reservationVO);
+    return "redirect:/";
   }
 }

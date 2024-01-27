@@ -10,7 +10,8 @@ public class ReservationVO {
   private Integer rsv_id;
   private String rsv_number;
   private Integer mbr_seq;
-  private Integer gm_id;
+  private int gm_id;
+  private boolean isAddOne;
 
 
   @Override
@@ -19,7 +20,8 @@ public class ReservationVO {
             "rsv_id=" + rsv_id +
             ", rsv_number='" + rsv_number + '\'' +
             ", mbr_seq=" + mbr_seq +
-            ", mg_id=" + gm_id +
+            ", gm_id=" + gm_id +
+            ", isAddOne=" + isAddOne +
             '}';
   }
 }

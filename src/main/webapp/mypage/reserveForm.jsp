@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, java.util.Map" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%
   List<Map<String, Object>> reserveList = (List) request.getAttribute("reserveList");
-//  out.print(reserveList.get(0).get("rsv_id"));
+//  out.print(reserveList);
   StringBuffer strReservation = new StringBuffer();
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  LocalDateTime gameDate = null;
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +21,9 @@
 
   <script type="text/javascript">
       /* 자바 스크립트 부분 */
+      const reservationDelete = (rsv_id) =>{
+        location.href = "/reservation/reservationDelete?rsv_id="+rsv_id;
+      }
   </script>
 
 </head>
@@ -38,20 +46,28 @@
       <%--for 문 start--%>
       <%
         if ((reserveList.get(0).get("rsv_id"))!=null){
-        for (int i = 0; i < reserveList.size(); i++) {
+          for (int i = 0; i < reserveList.size(); i++) {
+            Map<String, Object> rsmap = reserveList.get(i);
 
-          Map<String, Object> rsmap = reserveList.get(i);
-          strReservation.append(" ")
-                  .append(rsmap.get("gm_date").toString())
-                  .append(" ")
-                  .append(rsmap.get("std_name"));
+            gameDate = (LocalDateTime)rsmap.get("gm_date");
+            String formattedDate = gameDate.format(formatter);
+
+            strReservation.append(" ")
+                    .append(formattedDate)
+                    .append(" ")
+                    .append(rsmap.get("std_name"));
       %>
       <tr>
         <td><%=rsmap.get("rsv_number")%></td>
         <td><%=strReservation%></td>
+        <td>
+          <button class="button" type="button" style="text-align: center;width: 100px; height: 40px" onclick="reservationDelete(<%=rsmap.get("rsv_id")%>)">삭제</button>
+        </td>
       </tr>
       <%--for 문 end--%>
       <%
+          //strReservation 초기화 작업
+          strReservation.delete(0,strReservation.length());
           }
         }else{
       %>

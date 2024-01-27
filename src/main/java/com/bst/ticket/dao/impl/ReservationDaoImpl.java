@@ -29,11 +29,25 @@ public class ReservationDaoImpl implements ReservationDao{
   }
 
   @Override
-  public int ticketReservation(Map<String, Object> tmap) throws Exception {
-    logger.info("Ropositiry : ticketReservation 호출" + tmap);
+  public int ticketReservation(ReservationVO reservationVO) throws Exception {
+    logger.info("Ropositiry : ticketReservation 호출");
     int result = 0;
-    result = sqlSessionTemplate.insert("ticketInsert", tmap);
+    result = sqlSessionTemplate.insert("ticketInsert", reservationVO);
 
+    return result;
+  }
+
+  @Override
+  public int gmamReserveUpdate(ReservationVO reservationVO) throws Exception {
+    logger.info("Ropositiry : gmamReserveUpdate 호출");
+    return sqlSessionTemplate.update("gmamReserveUpdate", reservationVO);
+  }
+
+  @Override
+  public int reservationDelete(ReservationVO reservationVO) throws Exception {
+    logger.info("Ropositiry : reservationDelete 호출");
+    int result = 0;
+    result = sqlSessionTemplate.delete("reservationDelete", reservationVO);
     return result;
   }
 }
