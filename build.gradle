@@ -32,7 +32,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
-    implementation 'jakarta.el:jakarta.el-api:5.0.1'
     implementation 'com.zaxxer:HikariCP:5.1.0'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     runtimeOnly 'com.mysql:mysql-connector-j'
@@ -40,6 +39,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'taglibs', name: 'standard', version: '1.1.2'
 }
 
 tasks.named('bootBuildImage') {
