@@ -46,6 +46,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         } else if(mbr_provider.equals("kakao")) {
             logger.info("카카오 로그인 요청");
             oAuth2UserInfo = new KakaoUserInfo((Map) oAuth2User.getAttributes());
+        }else if(mbr_provider.equals("naver")) {
+            logger.info("네이버 로그인 요청");
+            oAuth2UserInfo = new NaverUserInfo( (Map)oAuth2User.getAttributes());
         }
 
         String birth = oAuth2UserInfo.getBirthday();

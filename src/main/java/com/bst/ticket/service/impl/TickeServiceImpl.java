@@ -21,7 +21,6 @@ public class TickeServiceImpl implements TicketService{
 
   @Override
   public List<Map<String, Object>> ticketList(Map<String, Object> tmap) throws Exception {
-    logger.info("Service : reserveList 호출");
 
     return ticketDao.ticketList(tmap);
   }

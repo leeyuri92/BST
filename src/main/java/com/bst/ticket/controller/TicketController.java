@@ -30,23 +30,31 @@ public class TicketController {
   @Autowired
   private TicketService ticketService;
 
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.27
+   기능 : 경기티켓 전체 조회
+   **********************************************************************************/
   @GetMapping("ticketList")
   public String ticketList(@RequestParam Map<String,Object> tmap, Model model) throws Exception{
     logger.info("Controller : ticketList 호출");
-    List<Map<String ,Object>> ticketList;
-    
+    List<Map<String ,Object>> ticketList = null;
     ticketList = ticketService.ticketList(tmap);
-    logger.info(ticketList.toString());
     model.addAttribute("ticketList", ticketList);
-
+//    logger.info(ticketList.toString());
     return "forward:/ticket/ticketList.jsp";
   }
+
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.27
+   기능 : 경기티켓 조건 조회
+   **********************************************************************************/
   @GetMapping("ticketDateList")
   @ResponseBody
   public String ticketDateList(@RequestParam Map<String,Object> gm_date) throws Exception{
     logger.info("Controller : ticketDateList 호출");
     List<Map<String,Object>> ticketList;
-    Map<String, Object> response = new HashMap<>();
     logger.info(gm_date.toString());
     ticketList = ticketService.ticketList(gm_date);
 

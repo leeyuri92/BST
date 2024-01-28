@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List, java.util.Map, java.time.format.DateTimeFormatter, java.time.LocalDate" %>
-<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.util.List, java.util.Map, java.time.format.DateTimeFormatter, java.time.LocalDate, java.time.LocalDateTime" %>
 <%
   List<Map<String, Object>> reserveList = (List) request.getAttribute("reserveList");
   //생일과 현재 날짜를 비교하여 65세 기준으로 일반회원과 실버회원으로 나누기
@@ -9,10 +8,12 @@
 //  out.print(reserveList);
   String strBirthDate = rsmap.get("mbr_birthdate").toString();
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
   LocalDate birthDate = LocalDate.parse(strBirthDate, formatter);
 
   //문자열을 나열하기 위해 선언
   StringBuffer strReservation = new StringBuffer();
+  LocalDateTime gameDate = null;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +149,9 @@
       <button class="button reservationContent" onclick="reserveForm()">
         <%
           if (rsmap.get("rsv_id") != null){
-              strReservation.append(rsmap.get("gm_date").toString())
+              gameDate = (LocalDateTime)rsmap.get("gm_date");
+              String formattedDate = gameDate.format(formatter2);
+              strReservation.append(formattedDate)
                       .append(" ")
                       .append(rsmap.get("std_name"));
         %>

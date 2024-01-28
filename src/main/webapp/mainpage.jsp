@@ -13,7 +13,9 @@
 
   <script type="text/javascript">
     /* 자바 스크립트 부분 */
-
+  const searchDetail =  () => {
+    document.getElementById("f_search").submit();
+  }
   </script>
   <link rel="stylesheet" href="/css/mainpage.css" />
 </head>
@@ -53,6 +55,7 @@
 </div>
 <!-- <hr/> -->
 <!--================================== 메인보드 end ===================================-->
+
 <!--================================= 메인예매 start ==================================-->
 <div class="container " id="reservation">
   <div class="body_title">
@@ -157,10 +160,7 @@
 
 </body>
 </html>
-
-
 <!--================================= 메인예매 end ==================================-->
-<!--================================= body start ==================================-->
 
 <!--================================= footer start ==================================-->
 <%@include file="/include/ticket_footer.jsp" %>

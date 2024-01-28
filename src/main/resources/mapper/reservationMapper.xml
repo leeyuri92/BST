@@ -23,4 +23,32 @@
 
 </select>
 
+<insert id="ticketInsert" parameterType="map">
+    insert into reservation (rsv_number,mbr_seq, gm_id)
+                values(nextval('reservation_seq'), #{mbr_seq}, #{gm_id})
+</insert>
+
+<update id="gmamReserveUpdate" parameterType="map">
+    <!--
+        gm_reserve를 +1 또는 -1 업데이트하는 동적 쿼리.
+        isAddOne 변수가 true이면 +1, false이면 -1 적용.
+    -->
+    <choose>
+        <when test="isAddOne">
+            update game
+            set gm_reserve = gm_reserve + 1
+            where gm_id = #{gm_id};
+        </when>
+        <otherwise>
+            update game
+            set gm_reserve = gm_reserve - 1
+            where gm_id = #{gm_id};
+        </otherwise>
+    </choose>
+</update>
+
+<delete id="reservationDelete" parameterType="map">
+    delete from reservation
+    where rsv_id = #{rsv_id};
+</delete>
 </mapper>
