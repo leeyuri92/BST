@@ -1,9 +1,10 @@
-<%@ page language="java"	contentType="text/html;charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/header.css" />
 <%
   // Controller와 연결되는 부분
   String role = (String)request.getAttribute("role");
-//  String nickname = (String)session.getAttribute("nickname");
+  String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
   // 권한에 맞는 메뉴를 노출시키기 위해 변수 선언
   Boolean isAdmin = request.isUserInRole("ROLE_ADMIN");
@@ -64,7 +65,7 @@
       %>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/reservation/mypageForm?mbr_seq=1"><%=role%></a>
+          <a class="nav-link" href="/reservation/mypageForm?mbr_seq=1"><%=username%></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout">로그아웃</a>

@@ -37,7 +37,7 @@
     <a href="http://localhost:9000/mainpage.jsp" class="carousel-item active"> <%-- active = 메인으로 보여질 캐러셀 --%>
       <img src="/images/banner/samsung.png" class="d-block w-100" alt="삼성라이온즈메인사진">
     </a>
-    <a href="http://localhost:9000/mainpage.jsp" class="carousel-item">
+    <a href="https://www.youtube.com/watch?v=gDSlU9oxtf8" class="carousel-item">
       <img src="/images/banner/kiwoom.png" class="d-block w-100" alt="키움히어로즈메인사진">
     </a>
     <a href="http://localhost:9000/mainpage.jsp" class="carousel-item">
