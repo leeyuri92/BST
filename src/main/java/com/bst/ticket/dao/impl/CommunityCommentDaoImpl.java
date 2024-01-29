@@ -33,4 +33,9 @@ public class CommunityCommentDaoImpl implements CommunityCommentDao {
     public void deleteComment(Integer boardId) {
         sqlSessionTemplate.delete("deleteComment", boardId);
     }
+
+    @Override
+    public void updateComment(Integer commentId) {
+        sqlSessionTemplate.update("updateComment", commentId);
+    }
 }

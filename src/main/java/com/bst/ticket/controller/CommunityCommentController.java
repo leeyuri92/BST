@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpRequest;
@@ -48,5 +49,12 @@ public class CommunityCommentController {
         communityCommentDao.deleteComment(boardId);
         return "redirect:/community/view/" + boardId;
     }
+
     // 댓글 수정
+    @PostMapping("/view/{boardId}/{commentId}/updatecomment")
+    public String updateComment(@PathVariable("boardId") Integer boardId, @PathVariable("commentId") Integer commentId, Model model) {
+        logger.info("Update comment");
+        communityCommentDao.updateComment(commentId);
+        return "redirect:/community/view" + boardId;
+    }
 }

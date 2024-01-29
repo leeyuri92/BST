@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="java.util.List" %>
+<%@ page import="com.bst.ticket.vo.CommunityVO" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,121 +10,158 @@
     <title>커뮤니티 페이지</title>
     <%@include file="/common/bootstrap_common.jsp" %>
 
+    <script type="text/javascript">
+    </script>
+
     <style>
-        .search-bar {
-            margin-top: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
         }
 
-        .search-input {
-            max-width: 150px;
+        h2 {
+            color: #007bff;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .table-container {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .board-link {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .board-link:hover {
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .write-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
         }
     </style>
 
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
 <!--================================= header start ==================================-->
 <%@include file="/include/ticket_header.jsp" %>
 <!--================================= header end ==================================-->
-
 <!--================================= body start ==================================-->
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h2 class="text-center">커뮤니티</h2>
-                <hr/>
-            </div>
-        </div>
-    </div>
-    <!-- 게시글 목록 -->
-    <div class="row">
-        <div class="col-md-12">
-            <!-- 게시글 리스트 테이블 -->
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">작성자</th>
-                    <th scope="col">조회수</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- 여러 게시글을 반복하여 표시 -->
-                <c:forEach var="board" items="${communityBoardList}">
-                    <tr>
-                        <th scope="row">${board.boardId}</th>
-                        <td><a href="/community/view/${board.boardId}">${board.boardTitle}</a></td>
-                        <th scope="row"> ${board.memberName}</th>
-                        <th scope="row">${board.boardHit}</th>
-                        <th scope="row">${board.boardCreatedAt}</th>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- 검색 기능 및 글쓰기 버튼 -->
-    <div class="row mt-3">
-        <div class="col-md-6 text-right">
-            <div class="search-bar">
-                <div class="input-group">
-                    <input type="text" class="form-control search-input" placeholder="검색어를 입력하세요"
-                           aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">검색</button>
-                        <a href="/community/writeform" class="btn btn-secondary btn-lg active" role="button"
-                           aria-pressed="true">글쓰기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 페이지네이션 -->
-    <div class="row mt-3">
-        <div class="col-md-12 text-center">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <c:if test="${totalPages > 1}">
-                        <!-- Previous Button -->
-                        <li class="page-item <c:if test="${currentPage eq 1}">disabled</c:if>">
-                            <a class="page-link"
-                               href="<c:url value='/community'><c:param name='page' value='${currentPage - 1}'/></c:url>"
-                               aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+<%
+    List<CommunityVO> communityBoardList = (List<CommunityVO>) request.getAttribute("communityBoardList");
+    int totalPages = (int) request.getAttribute("totalPages");
+    int currentPage = (int) request.getAttribute("currentPage");
+%>
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <h4>커뮤니티 게시판</h4>
+        </tr>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (CommunityVO board : communityBoardList) {
+        %>
+        <tr>
+            <td><%= board.getBoardId() %>
+            </td>
+            <td>
+                <a href="<%= request.getContextPath() %>/community/view/<%= board.getBoardId() %>"
+                   class="board-link"><%= board.getBoardTitle() %>
+                </a>
+            </td>
+            <td><%= board.getMemberName() %>
+            </td>
+            <td><%= board.getBoardHit() %>
+            </td>
+            <td><%= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(board.getBoardCreatedAt()) %>
+            </td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+</div>
+<!-- 게시글 작성 버튼 -->
+<div>
+    <a href="<%= request.getContextPath() %>/community/writeform" class="btn btn-primary">게시글 작성</a>
+</div>
 
-                        <!-- Page Numbers -->
-                        <c:forEach var="pageNumber" begin="1" end="${totalPages}">
-                            <li class="page-item <c:if test="${pageNumber eq currentPage}">active</c:if>">
-                                <a class="page-link"
-                                   href="<c:url value='/community'><c:param name='page' value='${pageNumber}'/></c:url>">${pageNumber}</a>
-                            </li>
-                        </c:forEach>
 
-                        <!-- Next Button -->
-                        <li class="page-item <c:if test="${currentPage eq totalPages}">disabled</c:if>">
-                            <a class="page-link"
-                               href="<c:url value='/community'><c:param name='page' value='${currentPage + 1}'/></c:url>"
-                               aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </c:if>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <!--================================= body end ==================================-->
+<!--페이지네이션-->
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+    <a href="<%= request.getContextPath() %>/community?page=<%= currentPage - 1 %>">이전</a>
+    <% } %>
 
-    <!--================================= footer start ==================================-->
-    <%@include file="/include/ticket_footer.jsp" %>
-    <!--================================== footer end ===================================-->
+    <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) { %>
+    <a href="<%= request.getContextPath() %>/community?page=<%= pageNumber %>"
+            <%= (pageNumber == currentPage) ? "class='active'" : "" %>><%= pageNumber %></a>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+    <a href="<%= request.getContextPath() %>/community?page=<%= currentPage + 1 %>">다음</a>
+    <% } %>
+</div>
+
+<!--================================= body end ==================================-->
+
+<!--================================= footer start ==================================-->
+
+<%@include file="/include/ticket_footer.jsp" %>
+<!--================================== footer end ===================================-->
 </body>
 </html>

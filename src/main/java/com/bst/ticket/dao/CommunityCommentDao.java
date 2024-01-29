@@ -11,4 +11,7 @@ public interface CommunityCommentDao {
     void writecomment(Map<String, Integer> cMap);
 
     void deleteComment(Integer boardId);
+
+    void updateComment(Integer commentId);
+
 }
