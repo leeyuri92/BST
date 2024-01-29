@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +93,7 @@
                         <!-- Previous Button -->
                         <li class="page-item <c:if test="${currentPage eq 1}">disabled</c:if>">
                             <a class="page-link"
-                               href="<c:url value='/community/'><c:param name='page' value='${currentPage - 1}'/></c:url>"
+                               href="<c:url value='/community'><c:param name='page' value='${currentPage - 1}'/></c:url>"
                                aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
@@ -102,14 +103,14 @@
                         <c:forEach var="pageNumber" begin="1" end="${totalPages}">
                             <li class="page-item <c:if test="${pageNumber eq currentPage}">active</c:if>">
                                 <a class="page-link"
-                                   href="<c:url value='/community/'><c:param name='page' value='${pageNumber}'/></c:url>">${pageNumber}</a>
+                                   href="<c:url value='/community'><c:param name='page' value='${pageNumber}'/></c:url>">${pageNumber}</a>
                             </li>
                         </c:forEach>
 
                         <!-- Next Button -->
                         <li class="page-item <c:if test="${currentPage eq totalPages}">disabled</c:if>">
                             <a class="page-link"
-                               href="<c:url value='/community/'><c:param name='page' value='${currentPage + 1}'/></c:url>"
+                               href="<c:url value='/community'><c:param name='page' value='${currentPage + 1}'/></c:url>"
                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
