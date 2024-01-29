@@ -158,7 +158,7 @@
         <td style="color: #B8B8B9">계정삭제</td>
         <td></td>
         <td>
-          <input type="button" class="btn btn-outline-primary" style="color: #B8B8B9" onclick="memberDelete()" value="삭제"  />
+          <button type="button" class="btn btn-outline-primary"  onclick="memberDelete()" >삭제</button>
         </td>
       </tr>
       </tfoot>
@@ -166,7 +166,7 @@
   </form>
 </div>
 <br/>
-<div class='btn footer mx-3'>
+<div class='footer_btn' style="margin: auto; margin-top: 60px">
   <button class="button" onclick="memberInfoUpdate()">저장</button>
   <button class="button" onclick="btn_Cancel()">취소</button>
 </div>

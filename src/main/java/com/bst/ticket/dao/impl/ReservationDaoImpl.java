@@ -1,5 +1,6 @@
 package com.bst.ticket.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,19 +29,26 @@ public class ReservationDaoImpl implements ReservationDao{
     return memList;
   }
 
+  /**********************************************************************************
+   작성자 : 박병현
+   작성일자 : 24.01.29
+   기능 : 티켓 mbr_id 받아서 mbr_seq 조회 -> ticketInsert 진행
+   **********************************************************************************/
   @Override
   public int ticketReservation(ReservationVO reservationVO) throws Exception {
     logger.info("Ropositiry : ticketReservation 호출");
     int result = 0;
-    result = sqlSessionTemplate.insert("ticketInsert", reservationVO);
-
+    Map<String,Object> selectmbr_seq = new HashMap<>();
+    selectmbr_seq.put("gm_id",reservationVO.getGm_id());
+    selectmbr_seq.put("mbr_seq", sqlSessionTemplate.selectOne("mbr_seq", reservationVO));
+    result = sqlSessionTemplate.insert("ticketInsert", selectmbr_seq);
     return result;
   }
 
   @Override
-  public int gmamReserveUpdate(ReservationVO reservationVO) throws Exception {
-    logger.info("Ropositiry : gmamReserveUpdate 호출");
-    return sqlSessionTemplate.update("gmamReserveUpdate", reservationVO);
+  public int gameReserveUpdate(ReservationVO reservationVO) throws Exception {
+    logger.info("Ropositiry : gameReserveUpdate 호출");
+    return sqlSessionTemplate.update("gameReserveUpdate", reservationVO);
   }
 
   @Override

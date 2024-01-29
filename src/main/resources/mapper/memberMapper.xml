@@ -39,7 +39,7 @@ insert into member(mbr_id,mbr_pwd,mbr_nm,mbr_birthdate,mbr_phone,mbr_email,mbr_a
 
 <delete id="memberDelete" parameterType="int">
 	delete from member
-	       where mbr_seq=#{mbr_seq}||'%';
+	       where mbr_seq=#{mbr_seq};
 </delete>
 
 	

@@ -35,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService{
     int result = 0;
     reservationVO.setAddOne(true);
     result = reservationDao.ticketReservation(reservationVO);
-    result = reservationDao.gmamReserveUpdate(reservationVO);
+    result = reservationDao.gameReserveUpdate(reservationVO);
     return result;
   }
 
@@ -46,7 +46,7 @@ public class ReservationServiceImpl implements ReservationService{
     int result = 0;
     reservationVO.setAddOne(false);
     result = reservationDao.reservationDelete(reservationVO);
-    result = reservationDao.gmamReserveUpdate(reservationVO);
+    result = reservationDao.gameReserveUpdate(reservationVO);
     return result;
   }
 }

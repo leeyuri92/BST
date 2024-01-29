@@ -66,7 +66,8 @@ public class MemberContoller {
     int result = 0;
       result = memberService.memberDelete(mbr_seq);
     if (result == 1) {
-      return "redirect:/mainpage/ticketList";
+
+      return "redirect:/logout";
     } else {
       return "";
     }

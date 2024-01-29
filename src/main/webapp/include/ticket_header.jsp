@@ -1,4 +1,5 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="com.bst.ticket.vo.MemberVO" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/header.css" />
 <%
@@ -38,7 +39,7 @@
           <a class="nav-link" href="/ticket/ticketList">티켓팅</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/reservation/mypageForm?mbr_seq=1">마이페이지</a>
+          <a class="nav-link" href="/reservation/mypageForm?mbr_id=<%=username%>">마이페이지</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/QnA/QnA.jsp">고객센터</a>
@@ -65,7 +66,7 @@
       %>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/reservation/mypageForm?mbr_seq=1"><%=username%></a>
+          <a class="nav-link" href="/reservation/mypageForm?mbr_id=<%=username%>"><%=username%></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout">로그아웃</a>

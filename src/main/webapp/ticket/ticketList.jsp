@@ -17,7 +17,7 @@
   <%@include file="/common/bootstrap_common.jsp" %>
   <link rel="stylesheet" href="/css/ticket.css">
   <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-
+  <%@include file="/include/ticket_header.jsp" %>
   <script type="text/javascript">
       function getCurrentDateTime(gm_date) {
           return moment(gm_date).format('YYYY-MM-DD HH:mm:ss');
@@ -25,25 +25,25 @@
       /* 자바 스크립트 부분 */
       //콤보박스의 option 값을 가지고 옴
       function handleDateSelectChange(){
-        let selectedOption = document.getElementById('dateSelect').options[document.getElementById('dateSelect').selectedIndex];
-        let selectedValue = selectedOption.innerText;
-        // Do something with the selected value
-        console.log(selectedValue);
+          let selectedOption = document.getElementById('dateSelect').options[document.getElementById('dateSelect').selectedIndex];
+          let selectedValue = selectedOption.innerText;
+          // Do something with the selected value
+          console.log(selectedValue);
 
-        $.ajax({
-            url: "/ticket/ticketDateList",
-            type: 'GET',
-            data: {gm_date:selectedValue+"%"},
-            dataType: 'json',
-            success: function(response){
-                console.log(response)
+          $.ajax({
+              url: "/ticket/ticketDateList",
+              type: 'GET',
+              data: {gm_date:selectedValue+"%"},
+              dataType: 'json',
+              success: function(response){
+                  console.log(response)
 
-                // HTML 문자열로 변환
-                let htmlString = "";
-                response.forEach(function (item) {
-                    let formattedDate = getCurrentDateTime(item.gm_date);
-                    let remainingSeats = (item.gm_total - item.gm_reserve)
-                    htmlString += `
+                  // HTML 문자열로 변환
+                  let htmlString = "";
+                  response.forEach(function (item) {
+                      let formattedDate = getCurrentDateTime(item.gm_date);
+                      let remainingSeats = (item.gm_total - item.gm_reserve)
+                      htmlString += `
                     <div class="card mb-3" onclick="selectTicket(\${item.gm_id})">
                       <div class="row g-0" >
                         <div class="col-md-4" style="margin: auto">
@@ -62,28 +62,27 @@
                       </div>
                     </div>
                     `; // item에 있는 속성에 따라 변경
-                });
+                  });
 
 
-                // ticketDateList의 내용을 HTML 문자열로 변경
-                let ticketDateList = document.querySelector("#ticketDateList");
-                ticketDateList.innerHTML = htmlString;
+                  // ticketDateList의 내용을 HTML 문자열로 변경
+                  let ticketDateList = document.querySelector("#ticketDateList");
+                  ticketDateList.innerHTML = htmlString;
 
-                let divHidden = document.querySelector("#divHidden");
-                // 스타일 변경 예시
-                divHidden.style.display = "none";
+                  let divHidden = document.querySelector("#divHidden");
+                  // 스타일 변경 예시
+                  divHidden.style.display = "none";
 
-            },
-            error: function(error) {
-                // 오류 처리
-                alert("에러입니다");
-            }
-        })
+              },
+              error: function(error) {
+                  // 오류 처리
+                  alert("에러입니다");
+              }
+          })
       }
-
       const selectTicket = (gm_id) =>{
           console.log("ticket클릭" + gm_id);
-          document.querySelector("#mbr_seq").value = 1; //세션적용시켜 나타낼 예정
+          document.querySelector("#mbr_id").value = '<%=username%>'; //세션적용시켜 나타낼 예정
           document.querySelector("#gm_id").value = gm_id;
 
           $.ajax({
@@ -92,7 +91,7 @@
               data: {gm_id:gm_id},
               dataType: 'json',
               success: function(response){
-                console.log(response)
+                  console.log(response)
                   let formattedDate = getCurrentDateTime(response[0].gm_date);
                   let remainingSeats = (response[0].gm_total - response[0].gm_reserve)
 
@@ -114,10 +113,10 @@
       }
 
       const silberReservation = () =>{
-          let mbr_seq = document.querySelector("#mbr_seq").value;
+          let mbr_id = document.querySelector("#mbr_id").value;
           let gm_id = document.querySelector("#gm_id").value;
-          if (mbr_seq!=null || mbr_seq!==""||gm_id!=null){
-            document.querySelector("#f_reservation").submit();
+          if (mbr_id!=null || mbr_id!==""||gm_id!=null){
+              document.querySelector("#f_reservation").submit();
           }else{
               alert("다시시도 하여 주세요.");
           }
@@ -127,7 +126,7 @@
 </head>
 <body>
 <!--================================= header start ==================================-->
-<%@include file="/include/ticket_header.jsp" %>
+
 <!--================================= header start ==================================-->
 
 <!--================================= body start ==================================-->
@@ -211,7 +210,7 @@
       <div class="card mb-3" style="max-width: 600px; height: 500px; margin-left: 16%; margin-top: 10.5%; border-radius: 30px">
         <div class="container" style="margin: auto">
           <form id="f_reservation" method="get" action="/reservation/ticketReservation">
-            <input type="hidden" id="mbr_seq" name="mbr_seq" value="">
+            <input type="hidden" id="mbr_id" name="mbr_id" value="">
             <input type="hidden" id="gm_id" name="gm_id" value="">
             <div class="input-group mt-3 mb-5">
               <span class="input-group-text" >경기팀</span>

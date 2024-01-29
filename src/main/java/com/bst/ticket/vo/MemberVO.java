@@ -3,13 +3,28 @@ package com.bst.ticket.vo;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class MemberVO {
+public class MemberVO{
+
+  private int mbr_seq ;
+  private  String mbr_id="";
+  private  String mbr_pwd="";
+  private  String mbr_nm="";
+  private LocalDate mbr_birthdate;
+  private  String mbr_phone="";
+  private  String mbr_address="";
+  private  String mbr_postalcode="";
+  private  String mbr_email="";
+  private String mbr_role ="";
+  private  int team_id =0;
+  private  String mbr_provider ="";
+  private  String mbr_providerId ="";
 
   @Builder
   public MemberVO(int mbr_seq, String mbr_id, String mbr_pwd,
@@ -31,18 +46,4 @@ public class MemberVO {
     this.mbr_provider = mbr_provider;
     this.mbr_providerId = mbr_providerId;
   }
-
-  private int mbr_seq ;
-  private  String mbr_id="";
-  private  String mbr_pwd="";
-  private  String mbr_nm="";
-  private LocalDate mbr_birthdate;
-  private  String mbr_phone="";
-  private  String mbr_address="";
-  private  String mbr_postalcode="";
-  private  String mbr_email="";
-  private String mbr_role ="";
-  private  int team_id =0;
-  private  String mbr_provider ="";
-  private  String mbr_providerId ="";
 }

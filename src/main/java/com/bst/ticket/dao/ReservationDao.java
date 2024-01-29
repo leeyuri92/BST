@@ -11,7 +11,7 @@ public interface ReservationDao {
 
    int ticketReservation(ReservationVO reservationVO) throws Exception;
 
-    int gmamReserveUpdate(ReservationVO reservationVO) throws Exception;
+    int gameReserveUpdate(ReservationVO reservationVO) throws Exception;
 
     int reservationDelete(ReservationVO reservationVO) throws  Exception;
 }

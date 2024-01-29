@@ -9,7 +9,7 @@
     inner join stadium as d
     inner join team as e
     inner join team as f
-    right outer join (select b.mbr_seq, b.mbr_nm, b.mbr_email,b.mbr_birthdate,  g.team_name as myteam ,g.team_logo
+    right outer join (select b.mbr_seq,b.mbr_id, b.mbr_nm, b.mbr_email,b.mbr_birthdate,  g.team_name as myteam ,g.team_logo
     from member b left outer join team g
     on b.team_id = g.team_id) as b
     on a.mbr_seq = b.mbr_seq
@@ -18,9 +18,15 @@
     and c.team_id = e.team_id
     and c.team_id2 = f.team_id
     <where>
+        <if test="mbr_id!=null">AND b.mbr_id=#{mbr_id}</if>
         <if test="mbr_seq!=null">AND b.mbr_seq=#{mbr_seq}</if>
     </where>
+</select>
 
+<select id="mbr_seq" parameterType="map" resultType="int">
+    select mbr_seq
+    from member
+    where mbr_id = #{mbr_id}
 </select>
 
 <insert id="ticketInsert" parameterType="map">
@@ -28,7 +34,7 @@
                 values(nextval('reservation_seq'), #{mbr_seq}, #{gm_id})
 </insert>
 
-<update id="gmamReserveUpdate" parameterType="map">
+<update id="gameReserveUpdate" parameterType="map">
     <!--
         gm_reserve를 +1 또는 -1 업데이트하는 동적 쿼리.
         isAddOne 변수가 true이면 +1, false이면 -1 적용.
