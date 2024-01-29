@@ -28,8 +28,7 @@ public class CommunityCommentController {
      * Date: 24 Jan
      * Feature: Community Board Comment
      */
-    // 댓글 작성,
-    // To do: Session
+    // 댓글 작성
     @PostMapping("/view/{boardId}/writecomment")
     public String writeComment(@PathVariable("boardId") Integer boardId,
                                @RequestParam Map<String, Integer> cMap) {

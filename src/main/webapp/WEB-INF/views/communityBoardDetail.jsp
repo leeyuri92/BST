@@ -89,6 +89,22 @@
             background-color: #007bff;
             color: white;
         }
+
+        .comment-form form {
+            width: 100%;
+        }
+
+        .comment-form textarea::placeholder {
+            color: #999;
+        }
+
+        .comment-form textarea {
+        }
+
+        .comment-form button {
+            margin-bottom: 10px;
+            align-self: flex-end;
+        }
     </style>
 
     <script>
@@ -181,18 +197,23 @@
                 <button onclick="deleteComment(<%= comment.getCommentId() %>)" class="btn btn-light">댓글 삭제</button>
             </li>
             <% } %>
-        </ul>
+        </ul>board
     </div>
 
     <!-- 댓글 작성 폼 -->
-    <div class="comment-form">
-        <form action="<%= request.getContextPath() %>/community/view/<%= communityBoard.getBoardId() %>/writecomment" method="post">
-            <textarea name="commentContent" rows="4" cols="50" placeholder="댓글을 입력하세요"></textarea>
-            <br>
-            <button type="submit">댓글 작성</button>
+    <div class="comment-form mt-4">
+        <form action="<%= request.getContextPath() %>/community/view/<%= communityBoard.getBoardId() %>/writecomment"
+              method="post">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <textarea class="form-control" name="commentContent" rows="4" placeholder="댓글을 입력하세요"></textarea>
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-primary btn-block">댓글 작성</button>
+                </div>
+            </div>
         </form>
     </div>
-
 
 </div>
 
