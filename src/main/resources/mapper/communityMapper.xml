@@ -88,8 +88,8 @@
 
     <!--댓글 작성-->
     <insert id="writeComment" parameterType="java.util.Map">
-        INSERT INTO board_comment (bdc_id, mbr_seq, bdc_content, bdc_created_at, bd_id)
-        VALUES (0, 1, #{commentContent}, NOW(), #{boardId})
+        INSERT INTO board_comment (mbr_seq, bdc_content, bdc_created_at, bd_id)
+        VALUES (1, #{commentContent}, NOW(), #{boardId})
     </insert>
 
     <!--댓글 삭제-->
@@ -99,5 +99,11 @@
         WHERE bd_id = #{boardId};
     </delete>
 
+    <!--댓글 수정-->
+    <update id="updateComment" parameterType="int">
+        UPDATE board_comment
+        SET comment_conten = #{commentContent}
+        WHERE bdc_id = #{commentId}
+    </update>
 
 </mapper>

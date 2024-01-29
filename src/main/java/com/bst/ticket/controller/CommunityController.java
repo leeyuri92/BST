@@ -55,7 +55,11 @@ public class CommunityController {
         int totalPages = (int) Math.ceil((double) totalBoards / recordSize);
 
         searchDto.setRecordSize(recordSize);
+        searchDto.setPage(page);
+
+
         List<CommunityVO> communityBoardList = communityDao.getCommunityBoardList(searchDto);
+        logger.info("Total Boards: " + totalBoards);
         mav.addObject("communityBoardList", communityBoardList);
         mav.addObject("totalPages", totalPages);
         mav.addObject("currentPage", page);
@@ -73,9 +77,7 @@ public class CommunityController {
         if (communityBoard != null) {
             logger.info("Board title={}, content={}, hit={}", communityBoard.getBoardTitle(), communityBoard.getBoardContent(), communityBoard.getBoardHit());
             logger.info(commentList.toString());
-
             communityDao.boardHitUpdate(boardId);
-
             mav.addObject("communityBoard", communityBoard);
             mav.addObject("commentList", commentList);
         }
@@ -101,7 +103,7 @@ public class CommunityController {
     Author: 전수빈
     Data: 23 Jan
     Feature: Community CRUD
-     //***/
+     */
     //게시글 삭제
     @GetMapping("/delete/{boardId}")
     public String deleteCommunityBoard(@PathVariable("boardId") Integer boardId, Model model) {
@@ -120,10 +122,11 @@ public class CommunityController {
     }
 
     /*
-Author: 전수빈
-Data: 24 Jan
-Feature: Community CRUD
- */
+    Author: 전수빈
+    Data: 24 Jan
+    Feature: Community CRUD
+    */
+
     //게시글 수정
     @PostMapping("/update/{boardId}")
     public String updateCommunityBoard(@PathVariable("boardId") Integer boardId,
@@ -145,4 +148,5 @@ Feature: Community CRUD
         }
         return "redirect:/community/";
     }
+
 }

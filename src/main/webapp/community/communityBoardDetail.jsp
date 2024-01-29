@@ -56,7 +56,7 @@
     <!-- 댓글 리스트 -->
     <div class="row mt-3">
         <div class="col-md-12">
-            <h3>댓글 리스트</h3>
+            <h3>[댓글 리스트]</h3>
             <%--            <ul>--%>
             <%--                <c:forEach var="comment" items="${commentList}">--%>
             <%--                    <li>${comment.commentContent} - 작성자: ${comment.memberName}</li>--%>
