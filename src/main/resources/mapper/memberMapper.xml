@@ -27,8 +27,8 @@
 </select>
 
 <insert id="memberInsert" parameterType="map">
-insert into member(mbr_id,mbr_pwd,mbr_nm,mbr_birthdate,mbr_phone,mbr_email,mbr_address,mbr_postalcode,mbr_role,team_id)
- values(#{mbr_id},#{mbr_pwd},#{mbr_nm},#{mbr_birthdate},#{mbr_phone},#{mbr_email},#{mbr_address},#{mbr_postalcode},#{mbr_role},#{team_id})
+insert into member(mbr_id,mbr_pwd,mbr_nm,mbr_birthdate,mbr_phone,mbr_email,mbr_address,mbr_postalcode,mbr_role,team_id,mbr_provider, mbr_providerId)
+ values(#{mbr_id},#{mbr_pwd},#{mbr_nm},#{mbr_birthdate},#{mbr_phone},#{mbr_email},#{mbr_address},#{mbr_postalcode},#{mbr_role},#{team_id},#{mbr_provider},#{mbr_providerId})
 </insert>
 
 <update id="memberUpdate" parameterType="map">
