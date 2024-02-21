@@ -94,10 +94,10 @@
 
     <!--댓글 삭제-->
     <delete id="deleteComment" parameterType="int">
-        DELETE
-        FROM board
-        WHERE bd_id = #{boardId};
-    </delete>
+    DELETE
+    FROM board
+    WHERE bd_id = #{boardId};
+</delete>
 
     <!--댓글 수정-->
     <update id="updateComment" parameterType="int">
